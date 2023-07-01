@@ -1,0 +1,16 @@
+{
+  "name": "tree-sitter-noir",
+  "version": "1.0.0",
+  "description": "tree-sitter plugin for noir language",
+  "main": "index.js",
+  "repository": "https://github.com/hhamud/tree-sitter-noir",
+  "author": "Hamza Hamud",
+  "license": "gpl v3.0",
+  "dependencies": {
+    "@types/node": "^20.3.3",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}

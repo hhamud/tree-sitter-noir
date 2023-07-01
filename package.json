@@ -3,14 +3,33 @@
   "version": "1.0.0",
   "description": "tree-sitter plugin for noir language",
   "main": "index.js",
-  "repository": "https://github.com/hhamud/tree-sitter-noir",
+  "keywords": [
+    "parser",
+    "noir"
+  ],
+  "repository": "https://github.com/hhamud/tree-sitter-noir.git",
   "author": "Hamza Hamud",
-  "license": "gpl v3.0",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "@types/node": "^20.3.3",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
+    "prettier": "2.8.8",
+    "tree-sitter-cli": "^0.20.0",
     "ts-node": "^10.9.1"
-  }
+  },
+  "scripts": {
+    "test": "tree-sitter test",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.noir",
+      "injection-regex": "noir",
+      "file-types": [
+        "nr"
+      ]
+    }
+  ]
 }

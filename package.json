@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "tree-sitter generate && tree-sitter test",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,json}\"",
     "generate": "tree-sitter generate"
   },
   "tree-sitter": [

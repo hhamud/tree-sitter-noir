@@ -1,0 +1,83 @@
+
+============================================
+Empty Function
+============================================
+
+fn foo() {}
+
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+   (identifier)
+   (parameter)
+   (body)))
+
+
+
+============================================
+Function with inputs
+============================================
+
+fn foo(x : Field, y : pub Field){}
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (single_type)
+        (identifier)
+        (viewer)
+        (single_type))
+    (body)))
+
+============================================
+Function with inputs and return body
+============================================
+
+fn foo(x : Field, y : pub Field) -> pub Field {
+   x + y;
+}
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (single_type)
+        (identifier)
+        (viewer)
+        (single_type))
+    (return_type
+        (viewer)
+        (single_type))
+        (body
+          (binary_expression
+            (identifier)
+            (identifier)))))
+
+=====================================
+Array Function
+============================================
+
+fn sha256(_input : [u8]) -> [u8; 32]{}
+
+-------------------------------------------------------------------------------
+
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (array_type))
+    (return_type
+        (array_type
+            (integer)))
+        (body)))

@@ -55,7 +55,8 @@ module.exports = grammar({
         $._type,
         $.function_definition,
         $.module,
-        $.import
+        $.import,
+        $.macro
       ),
 
     //Statements
@@ -249,5 +250,20 @@ module.exports = grammar({
         choice($.identifier, $.body, "*", $.as_identifier),
         ";"
       ),
+
+    // macros
+
+    macro: ($) =>
+      seq(
+        "#",
+        "[",
+        repeat(
+          choice($.identifier, $._punctuation, $._literal)
+        ),
+        "]"
+      ),
+
+    _punctuation: (_) => token(choice(..."(){}[],;.")),
+    _literal: ($) => choice($.integer, $.string),
   },
 })

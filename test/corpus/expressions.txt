@@ -96,3 +96,55 @@ let x = [163, 117, 178, 149];
         (integer)
         (integer)
         (integer))))
+
+
+
+============================================
+Structs
+============================================
+
+struct Animal {
+    hands: Field,
+    legs: Field,
+    eyes: u8,
+}
+
+let dog = Animal {
+    eyes: 2,
+    hands: 0,
+    legs,
+};
+
+let Animal { hands, legs: feet, eyes } = get_octopus();
+
+----------------------------------------------------------------
+
+(source_file
+    (struct
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type))
+    (let_declaration
+    (identifier)
+    (struct
+        (identifier)
+        (identifier)
+        (integer)
+        (identifier)
+        (integer)
+        (identifier)))
+    (let_declaration
+    (struct
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier))
+    (function_call
+        (identifier)
+        (parameter))))
+

@@ -56,18 +56,8 @@ module.exports = grammar({
         $.function_definition,
         $.module,
         $.import,
-        $.macro
-      ),
-
-    //Statements
-    let_declaration: ($) =>
-      seq(
-        "let",
-        optional($.mutable),
-        $.identifier,
-        optional(seq(":", field("type", $._type))),
-        optional(seq("=", field("value", $._expression))),
-        ";"
+        $.macro,
+        $.struct
       ),
 
     binary_expression: ($) => {
@@ -224,6 +214,8 @@ module.exports = grammar({
     return_type: ($) =>
       seq("->", optional($.viewer), $._type),
 
+    function_call: ($) => seq($.identifier, $.parameter),
+
     // modules
     module: ($) =>
       choice(
@@ -252,7 +244,6 @@ module.exports = grammar({
       ),
 
     // macros
-
     macro: ($) =>
       seq(
         "#",
@@ -265,5 +256,58 @@ module.exports = grammar({
 
     _punctuation: (_) => token(choice(..."(){}[],;.")),
     _literal: ($) => choice($.integer, $.string),
+
+    // structs
+    struct: ($) =>
+      seq(
+        optional("struct"),
+        $.identifier,
+        "{",
+        repeat($._field),
+        "}"
+      ),
+
+    _field: ($) =>
+      seq(
+        $.identifier,
+        optional(
+          seq(
+            ":",
+            choice(
+              $._type,
+              $.integer,
+              $.string,
+              $.identifier
+            )
+          )
+        ),
+        optional(",")
+      ),
+
+    // declarations
+
+    //Statements
+    // TODO: add function and struct declaration
+    let_declaration: ($) =>
+      seq(
+        "let",
+        optional($.mutable),
+        choice($.struct, $.identifier),
+        optional(seq(":", field("type", $._type))),
+        optional(
+          seq(
+            "=",
+            field(
+              "value",
+              choice(
+                $._expression,
+                $.struct,
+                $.function_call
+              )
+            )
+          )
+        ),
+        ";"
+      ),
   },
 })

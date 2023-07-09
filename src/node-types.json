@@ -256,6 +256,25 @@
     }
   },
   {
+    "type": "function_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_definition",
     "named": true,
     "fields": {},
@@ -363,6 +382,10 @@
             "named": true
           },
           {
+            "type": "function_call",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -372,6 +395,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "struct",
             "named": true
           },
           {
@@ -391,6 +418,10 @@
         },
         {
           "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         }
       ]
@@ -562,7 +593,42 @@
           "named": true
         },
         {
+          "type": "struct",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -802,6 +868,10 @@
   {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "struct",
+    "named": false
   },
   {
     "type": "u128",

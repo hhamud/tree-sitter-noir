@@ -34,6 +34,21 @@
     }
   },
   {
+    "type": "as_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binary_expression",
     "named": true,
     "fields": {
@@ -198,7 +213,15 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "body",
           "named": true
         },
         {
@@ -210,7 +233,15 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
           "named": true
         },
         {
@@ -246,6 +277,52 @@
         },
         {
           "type": "return_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
+          "type": "viewer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -314,6 +391,29 @@
         },
         {
           "type": "mutable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -411,11 +511,19 @@
           "named": true
         },
         {
+          "type": "import",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
           "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "module",
           "named": true
         },
         {
@@ -529,6 +637,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -582,6 +694,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
@@ -645,6 +761,10 @@
     "named": false
   },
   {
+    "type": "mod",
+    "named": false
+  },
+  {
     "type": "mutable",
     "named": true
   },
@@ -670,6 +790,10 @@
   },
   {
     "type": "u8",
+    "named": false
+  },
+  {
+    "type": "use",
     "named": false
   },
   {

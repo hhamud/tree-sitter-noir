@@ -1,0 +1,131 @@
+================================================================================
+Modules
+================================================================================
+
+mod secp256k1;
+
+
+mod secp256k1 {}
+
+mod secp256k1 {
+    mod greetings {}
+    mod farewells {}
+}
+
+pub mod secp256k1;
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (module
+    (identifier))
+    (module
+    (identifier)
+    (body))
+    (module
+    (identifier)
+    (body
+        (module
+        (identifier)
+        (body))
+        (module
+        (identifier)
+        (body))))
+    (module
+    (viewer)
+    (identifier)))
+
+================================================================================
+Use imports
+================================================================================
+
+use abc;
+use phrases::japanese;
+use sayings::english::greetings;
+use sayings::english::greetings as en_greetings ;
+use phrases::english::{greetings,farewells};
+use sayings::japanese::farewells::*;
+pub use self::greetings::hello;
+use sayings::english::{self, greetings as en_greetings, farewells as en_farewells};
+use three::{ dot::{one, four} };
+use my::{ some::* };
+use my::{*};
+
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (import
+    (identifier))
+    (import
+    (import_identifier
+        (identifier))
+    (identifier))
+    (import
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (identifier))
+    (import
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (as_identifier
+        (identifier)
+        (identifier)))
+    (import
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (body
+        (identifier)
+        (identifier)))
+    (import
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier)))
+    (import
+    (viewer)
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (identifier))
+    (import
+    (import_identifier
+        (identifier))
+    (import_identifier
+        (identifier))
+    (body
+        (identifier)
+        (as_identifier
+        (identifier)
+        (identifier))
+        (as_identifier
+        (identifier)
+        (identifier))))
+    (import
+    (import_identifier
+        (identifier))
+    (body
+        (import_identifier
+        (identifier))
+        (body
+        (identifier)
+        (identifier))))
+    (import
+    (import_identifier
+        (identifier))
+    (body
+        (import_identifier
+        (identifier))))
+    (import
+    (import_identifier
+        (identifier))
+    (body)))

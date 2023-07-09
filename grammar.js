@@ -53,7 +53,9 @@ module.exports = grammar({
         $._expression_statement,
         $.let_declaration,
         $._type,
-        $.function_definition
+        $.function_definition,
+        $.module,
+        $.import
       ),
 
     //Statements
@@ -122,6 +124,9 @@ module.exports = grammar({
     integer: ($) => /(\d+_?)+/,
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
+
+    as_identifier: ($) =>
+      seq($.identifier, "as", $.identifier),
 
     string: ($) => /b?"(\\.|[^"\\])*"/,
 
@@ -200,7 +205,16 @@ module.exports = grammar({
         "{",
         optional(
           repeat(
-            choice($._expression, $._expression_statement)
+            choice(
+              $._expression,
+              $._expression_statement,
+              $.module,
+              $.as_identifier,
+              $.import_identifier,
+              $.body,
+              "*",
+              ","
+            )
           )
         ),
         "}"
@@ -208,5 +222,32 @@ module.exports = grammar({
 
     return_type: ($) =>
       seq("->", optional($.viewer), $._type),
+
+    // modules
+    module: ($) =>
+      choice(
+        // If the body is present, the semicolon is optional
+        seq(
+          optional($.viewer),
+          "mod",
+          $.identifier,
+          $.body,
+          optional(";")
+        ),
+        // If the body is not present, the semicolon is required
+        seq(optional($.viewer), "mod", $.identifier, ";")
+      ),
+
+    // imports
+    import_identifier: ($) => seq($.identifier, "::"),
+
+    import: ($) =>
+      seq(
+        optional($.viewer),
+        "use",
+        repeat($.import_identifier),
+        choice($.identifier, $.body, "*", $.as_identifier),
+        ";"
+      ),
   },
 })

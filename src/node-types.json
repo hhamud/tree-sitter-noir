@@ -123,7 +123,15 @@
             "named": false
           },
           {
+            "type": "+=",
+            "named": false
+          },
+          {
             "type": "-",
+            "named": false
+          },
+          {
+            "type": "-=",
             "named": false
           },
           {
@@ -253,6 +261,10 @@
           "named": true
         },
         {
+          "type": "function_definition",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -282,6 +294,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -670,6 +686,10 @@
           "named": true
         },
         {
+          "type": "mutable",
+          "named": true
+        },
+        {
           "type": "single_type",
           "named": true
         },
@@ -688,6 +708,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
         {
           "type": "integer",
           "named": true
@@ -835,6 +859,10 @@
           "named": true
         },
         {
+          "type": "struct_method",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }
@@ -847,7 +875,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "array_type",
@@ -867,6 +895,25 @@
         },
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -960,11 +1007,19 @@
     "named": false
   },
   {
+    "type": "+=",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
   {
     "type": "-",
+    "named": false
+  },
+  {
+    "type": "-=",
     "named": false
   },
   {
@@ -1028,6 +1083,10 @@
     "named": false
   },
   {
+    "type": "Self",
+    "named": false
+  },
+  {
     "type": "String",
     "named": false
   },
@@ -1058,6 +1117,10 @@
   {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "comptime",
+    "named": false
   },
   {
     "type": "else",
@@ -1134,6 +1197,10 @@
   {
     "type": "mutable",
     "named": true
+  },
+  {
+    "type": "self",
+    "named": false
   },
   {
     "type": "string",

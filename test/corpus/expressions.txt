@@ -264,3 +264,59 @@ if a == 0 {
         (integer)))))
 
 
+============================================
+Impl Structs
+============================================
+
+struct RepeatedValue {
+    value: u8,
+    count: comptime Field,
+}
+
+impl RepeatedValue {
+    fn new(value: u8) -> Self {
+        Self { value, count: 1 }
+    }
+
+    fn increment(mut repeated: Self) -> Self {
+        repeated.count += 1;
+        repeated
+    }
+
+    fn print(self) {
+        for _i in 0..self.count {
+            dep::std::println(self.value);
+        }
+    }
+}
+
+----------------------------------------------------------------
+
+============================================
+Generic Structs
+============================================
+
+struct RepeatedValue<T> {
+    value: T,
+    count: comptime Field,
+}
+
+impl<T> RepeatedValue<T> {
+    fn new(value: T) -> Self {
+        Self { value, count: 1 }
+    }
+
+    fn increment(mut repeated: Self) -> Self {
+        repeated.count += 1;
+        repeated
+    }
+
+    fn print(self) {
+        for _i in 0 .. self.count {
+            dep::std::println(self.value);
+        }
+    }
+}
+
+
+----------------------------------------------------------------

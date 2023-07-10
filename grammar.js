@@ -2,6 +2,8 @@
 // @ts-check
 
 const PREC = {
+  high: 20,
+  low: 10,
   range: 15,
   call: 14,
   field: 13,
@@ -37,7 +39,13 @@ const numeric_types = [
   "f64",
 ]
 
-const primitve_types = ["Field", "bool", "String"]
+const primitve_types = [
+  "Field",
+  "bool",
+  "String",
+  "comptime",
+  "Self",
+]
 
 module.exports = grammar({
   name: "noir",
@@ -58,6 +66,7 @@ module.exports = grammar({
         $.import,
         $.macro,
         $.struct,
+        $.struct_method,
         $.for_loop,
         $._if_else_exp
       ),
@@ -74,7 +83,7 @@ module.exports = grammar({
           choice("==", "!=", "<", "<=", ">", ">="),
         ],
         [PREC.shift, choice("<<", ">>")],
-        [PREC.additive, choice("+", "-")],
+        [PREC.additive, choice("+", "-", "+=", "-=")],
         [PREC.multiplicative, choice("*", "/", "%")],
       ]
 
@@ -132,7 +141,12 @@ module.exports = grammar({
 
     character: ($) => /'(\\.|[^'\\])*'/,
 
-    range: ($) => seq($.integer, "..", $.integer),
+    range: ($) =>
+      seq(
+        choice($.integer, $.identifier),
+        "..",
+        choice($.integer, $.identifier)
+      ),
 
     array: ($) =>
       seq(
@@ -188,13 +202,17 @@ module.exports = grammar({
       seq(
         "(",
         optional(
-          repeat(
-            seq(
-              $.identifier,
-              ":",
-              optional($.viewer),
-              $._type,
-              optional(",")
+          seq(
+            optional(choice("self", seq("self", ","))),
+            repeat(
+              seq(
+                optional($.mutable),
+                $.identifier,
+                ":",
+                optional($.viewer),
+                $._type,
+                optional(",")
+              )
             )
           )
         ),
@@ -216,7 +234,9 @@ module.exports = grammar({
               "*",
               ",",
               $.for_loop,
-              $._if_else_exp
+              $._if_else_exp,
+              $.function_definition,
+              $.struct
             )
           )
         ),
@@ -230,17 +250,20 @@ module.exports = grammar({
 
     // modules
     module: ($) =>
-      choice(
-        // If the body is present, the semicolon is optional
-        seq(
-          optional($.viewer),
-          "mod",
-          $.identifier,
-          $.body,
-          optional(";")
-        ),
-        // If the body is not present, the semicolon is required
-        seq(optional($.viewer), "mod", $.identifier, ";")
+      prec(
+        PREC.high,
+        choice(
+          // If the body is present, the semicolon is optional
+          seq(
+            optional($.viewer),
+            "mod",
+            $.identifier,
+            $.body,
+            optional(";")
+          ),
+          // If the body is not present, the semicolon is required
+          seq(optional($.viewer), "mod", $.identifier, ";")
+        )
       ),
 
     // imports
@@ -251,8 +274,30 @@ module.exports = grammar({
         optional($.viewer),
         "use",
         repeat($.import_identifier),
-        choice($.identifier, $.body, "*", $.as_identifier),
+        choice(
+          $.identifier,
+          alias($.import_body, $.body),
+          "*",
+          $.as_identifier
+        ),
         ";"
+      ),
+
+    import_body: ($) =>
+      seq(
+        "{",
+        optional(
+          repeat(
+            choice(
+              $.identifier,
+              $.import_identifier,
+              "*",
+              ",",
+              $.as_identifier
+            )
+          )
+        ),
+        "}"
       ),
 
     // macros
@@ -271,12 +316,15 @@ module.exports = grammar({
 
     // structs
     struct: ($) =>
-      seq(
-        optional("struct"),
-        $.identifier,
-        "{",
-        repeat($._field),
-        "}"
+      prec(
+        PREC.low,
+        seq(
+          optional("struct"),
+          choice("Self", $.identifier),
+          "{",
+          repeat($._field),
+          "}"
+        )
       ),
 
     _field: ($) =>
@@ -296,10 +344,9 @@ module.exports = grammar({
         optional(",")
       ),
 
-    struct_method: ($) => seq("impl", $.body),
+    struct_method: ($) => seq("impl", $.identifier, $.body),
 
     // control flow
-
     for_loop: ($) =>
       seq(
         "for",

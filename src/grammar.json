@@ -46,6 +46,14 @@
         {
           "type": "SYMBOL",
           "name": "struct"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_loop"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_if_else_exp"
         }
       ]
     },
@@ -450,6 +458,49 @@
         }
       ]
     },
+    "re_assignment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "integer"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+    },
+    "grouped_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "_expression": {
       "type": "CHOICE",
       "members": [
@@ -460,6 +511,10 @@
         {
           "type": "SYMBOL",
           "name": "unary_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "re_assignment"
         },
         {
           "type": "SYMBOL",
@@ -480,6 +535,10 @@
         {
           "type": "SYMBOL",
           "name": "array"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "grouped_expression"
         }
       ]
     },
@@ -519,6 +578,23 @@
     "character": {
       "type": "PATTERN",
       "value": "'(\\\\.|[^'\\\\])*'"
+    },
+    "range": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "STRING",
+          "value": ".."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        }
+      ]
     },
     "array": {
       "type": "SEQ",
@@ -967,6 +1043,14 @@
                   {
                     "type": "STRING",
                     "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "for_loop"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_if_else_exp"
                   }
                 ]
               }
@@ -1213,31 +1297,7 @@
           },
           {
             "type": "STRING",
-            "value": "{"
-          },
-          {
-            "type": "STRING",
-            "value": "}"
-          },
-          {
-            "type": "STRING",
-            "value": "["
-          },
-          {
-            "type": "STRING",
-            "value": "]"
-          },
-          {
-            "type": "STRING",
             "value": ","
-          },
-          {
-            "type": "STRING",
-            "value": ";"
-          },
-          {
-            "type": "STRING",
-            "value": "."
           }
         ]
       }
@@ -1342,6 +1402,104 @@
             {
               "type": "STRING",
               "value": ","
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "struct_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "impl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "body"
+        }
+      ]
+    },
+    "for_loop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "for"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "range"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "body"
+        }
+      ]
+    },
+    "if_exp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "body"
+        }
+      ]
+    },
+    "else_exp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "body"
+        }
+      ]
+    },
+    "_if_else_exp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if_exp"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "else_exp"
             },
             {
               "type": "BLANK"

@@ -69,11 +69,19 @@
             "named": true
           },
           {
+            "type": "grouped_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "re_assignment",
             "named": true
           },
           {
@@ -181,11 +189,19 @@
             "named": true
           },
           {
+            "type": "grouped_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "re_assignment",
             "named": true
           },
           {
@@ -229,7 +245,23 @@
           "named": true
         },
         {
+          "type": "else_exp",
+          "named": true
+        },
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_exp",
           "named": true
         },
         {
@@ -245,11 +277,53 @@
           "named": true
         },
         {
+          "type": "re_assignment",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
         {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "else_exp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "range",
           "named": true
         }
       ]
@@ -296,6 +370,104 @@
         },
         {
           "type": "return_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grouped_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "re_assignment",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_exp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "re_assignment",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -386,11 +558,19 @@
             "named": true
           },
           {
+            "type": "grouped_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "re_assignment",
             "named": true
           },
           {
@@ -501,6 +681,44 @@
     }
   },
   {
+    "type": "range",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "re_assignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "return_type",
     "named": true,
     "fields": {},
@@ -557,11 +775,27 @@
           "named": true
         },
         {
+          "type": "else_exp",
+          "named": true
+        },
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
           "type": "function_definition",
           "named": true
         },
         {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_exp",
           "named": true
         },
         {
@@ -582,6 +816,10 @@
         },
         {
           "type": "module",
+          "named": true
+        },
+        {
+          "type": "re_assignment",
           "named": true
         },
         {
@@ -655,11 +893,19 @@
           "named": true
         },
         {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "re_assignment",
           "named": true
         },
         {
@@ -723,6 +969,10 @@
   },
   {
     "type": "->",
+    "named": false
+  },
+  {
+    "type": "..",
     "named": false
   },
   {
@@ -810,6 +1060,10 @@
     "named": true
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "f32",
     "named": false
   },
@@ -819,6 +1073,10 @@
   },
   {
     "type": "fn",
+    "named": false
+  },
+  {
+    "type": "for",
     "named": false
   },
   {
@@ -844,6 +1102,18 @@
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "impl",
+    "named": false
+  },
+  {
+    "type": "in",
+    "named": false
   },
   {
     "type": "integer",

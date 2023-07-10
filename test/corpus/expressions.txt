@@ -148,3 +148,119 @@ let Animal { hands, legs: feet, eyes } = get_octopus();
         (identifier)
         (parameter))))
 
+
+============================================
+For loop
+============================================
+
+for i in message {
+    i + 10;
+}
+
+for i in 0..8 {
+    i + 10;
+}
+
+----------------------------------------------------------------
+
+
+
+
+(source_file
+    (for_loop
+    (identifier)
+    (identifier)
+    (body
+        (binary_expression
+        (identifier)
+        (integer))))
+    (for_loop
+    (identifier)
+    (range
+        (integer)
+        (integer))
+    (body
+        (binary_expression
+        (identifier)
+        (integer)))))
+
+
+============================================
+if else statement
+============================================
+
+
+if (my_val > 6) | (my_val == 0) {
+    flag = 0;
+}
+
+if (my_val != 10) & (my_val < 50) {
+    flag = 0;
+}
+
+if a == 0 {
+    if a != 0 {
+        x = 6;
+    } else {
+        x = 2;
+    }
+} else {
+    x = 5;
+}
+
+----------------------------------------------------------------
+
+(source_file
+    (if_exp
+    (binary_expression
+        (grouped_expression
+        (binary_expression
+            (identifier)
+            (integer)))
+        (grouped_expression
+        (binary_expression
+            (identifier)
+            (integer))))
+    (body
+        (re_assignment
+        (identifier)
+        (integer))))
+    (if_exp
+    (binary_expression
+        (grouped_expression
+        (binary_expression
+            (identifier)
+            (integer)))
+        (grouped_expression
+        (binary_expression
+            (identifier)
+            (integer))))
+    (body
+        (re_assignment
+        (identifier)
+        (integer))))
+    (if_exp
+    (binary_expression
+        (identifier)
+        (integer))
+    (body
+        (if_exp
+        (binary_expression
+            (identifier)
+            (integer))
+        (body
+            (re_assignment
+            (identifier)
+            (integer))))
+        (else_exp
+        (body
+            (re_assignment
+            (identifier)
+            (integer))))))
+    (else_exp
+    (body
+        (re_assignment
+        (identifier)
+        (integer)))))
+
+

@@ -57,7 +57,9 @@ module.exports = grammar({
         $.module,
         $.import,
         $.macro,
-        $.struct
+        $.struct,
+        $.for_loop,
+        $._if_else_exp
       ),
 
     binary_expression: ($) => {
@@ -98,15 +100,22 @@ module.exports = grammar({
 
     _expression_statement: ($) => seq($._expression, ";"),
 
+    re_assignment: ($) =>
+      seq($.identifier, "=", choice($.integer, $.string)),
+
+    grouped_expression: ($) => seq("(", $._expression, ")"),
+
     _expression: ($) =>
       choice(
         $.binary_expression,
         $.unary_expression,
+        $.re_assignment,
         $.identifier,
         $.integer,
         $.string,
         $.character,
-        $.array
+        $.array,
+        $.grouped_expression
       ),
 
     // primitives
@@ -122,6 +131,8 @@ module.exports = grammar({
     string: ($) => /b?"(\\.|[^"\\])*"/,
 
     character: ($) => /'(\\.|[^'\\])*'/,
+
+    range: ($) => seq($.integer, "..", $.integer),
 
     array: ($) =>
       seq(
@@ -145,7 +156,6 @@ module.exports = grammar({
       ),
 
     //specifiers
-
     mutable: ($) => "mut",
 
     viewer: ($) => "pub",
@@ -204,7 +214,9 @@ module.exports = grammar({
               $.import_identifier,
               $.body,
               "*",
-              ","
+              ",",
+              $.for_loop,
+              $._if_else_exp
             )
           )
         ),
@@ -254,7 +266,7 @@ module.exports = grammar({
         "]"
       ),
 
-    _punctuation: (_) => token(choice(..."(){}[],;.")),
+    _punctuation: (_) => token(choice(..."(),")),
     _literal: ($) => choice($.integer, $.string),
 
     // structs
@@ -284,10 +296,27 @@ module.exports = grammar({
         optional(",")
       ),
 
-    // declarations
+    struct_method: ($) => seq("impl", $.body),
 
-    //Statements
-    // TODO: add function and struct declaration
+    // control flow
+
+    for_loop: ($) =>
+      seq(
+        "for",
+        $.identifier,
+        "in",
+        choice($.identifier, $.range),
+        $.body
+      ),
+
+    if_exp: ($) => seq("if", $._expression, $.body),
+
+    else_exp: ($) => seq("else", $.body),
+
+    _if_else_exp: ($) =>
+      seq($.if_exp, optional($.else_exp)),
+
+    // declarations
     let_declaration: ($) =>
       seq(
         "let",

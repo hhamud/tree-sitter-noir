@@ -80,7 +80,7 @@ use my::{*};
         (identifier))
     (import_identifier
         (identifier))
-    (body
+    (import_body
         (identifier)
         (identifier)))
     (import
@@ -102,7 +102,7 @@ use my::{*};
         (identifier))
     (import_identifier
         (identifier))
-    (body
+    (import_body
         (identifier)
         (as_identifier
         (identifier)
@@ -113,19 +113,19 @@ use my::{*};
     (import
     (import_identifier
         (identifier))
-    (body
+    (import_body
         (import_identifier
         (identifier))
-        (body
+        (import_body
         (identifier)
         (identifier))))
     (import
     (import_identifier
         (identifier))
-    (body
+    (import_body
         (import_identifier
         (identifier))))
     (import
     (import_identifier
         (identifier))
-    (body)))
+    (import_body)))

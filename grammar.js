@@ -115,16 +115,20 @@ module.exports = grammar({
     grouped_expression: ($) => seq("(", $._expression, ")"),
 
     _expression: ($) =>
-      choice(
-        $.binary_expression,
-        $.unary_expression,
-        $.re_assignment,
-        $.identifier,
-        $.integer,
-        $.string,
-        $.character,
-        $.array,
-        $.grouped_expression
+      prec(
+        PREC.high,
+        choice(
+          $.binary_expression,
+          $.unary_expression,
+          $.re_assignment,
+          $.identifier,
+          $.integer,
+          $.string,
+          $.character,
+          $.array,
+          $.grouped_expression,
+          $.struct_expression
+        )
       ),
 
     // primitives
@@ -141,12 +145,7 @@ module.exports = grammar({
 
     character: ($) => /'(\\.|[^'\\])*'/,
 
-    range: ($) =>
-      seq(
-        choice($.integer, $.identifier),
-        "..",
-        choice($.integer, $.identifier)
-      ),
+    range: ($) => seq($._expression, "..", $._expression),
 
     array: ($) =>
       seq(
@@ -198,20 +197,24 @@ module.exports = grammar({
         $.body
       ),
 
+    function_call: ($) => seq($.identifier, $.parameter),
+
     parameter: ($) =>
       seq(
         "(",
         optional(
-          seq(
-            optional(choice("self", seq("self", ","))),
-            repeat(
-              seq(
-                optional($.mutable),
-                $.identifier,
-                ":",
-                optional($.viewer),
-                $._type,
-                optional(",")
+          choice(
+            $.struct_expression,
+            seq(
+              repeat(
+                seq(
+                  optional($.mutable),
+                  $.identifier,
+                  ":",
+                  optional($.viewer),
+                  $._type,
+                  optional(",")
+                )
               )
             )
           )
@@ -229,14 +232,14 @@ module.exports = grammar({
               $._expression_statement,
               $.module,
               $.as_identifier,
-              $.import_identifier,
+              $.import,
               $.body,
-              "*",
               ",",
               $.for_loop,
               $._if_else_exp,
               $.function_definition,
-              $.struct
+              $.struct,
+              $.function_import
             )
           )
         ),
@@ -246,7 +249,14 @@ module.exports = grammar({
     return_type: ($) =>
       seq("->", optional($.viewer), $._type),
 
-    function_call: ($) => seq($.identifier, $.parameter),
+    struct_expression: ($) =>
+      prec(
+        PREC.field,
+        seq(
+          choice("self", $.identifier),
+          repeat(seq(".", $.identifier))
+        )
+      ),
 
     // modules
     module: ($) =>
@@ -276,7 +286,7 @@ module.exports = grammar({
         repeat($.import_identifier),
         choice(
           $.identifier,
-          alias($.import_body, $.body),
+          $.import_body,
           "*",
           $.as_identifier
         ),
@@ -293,11 +303,22 @@ module.exports = grammar({
               $.import_identifier,
               "*",
               ",",
-              $.as_identifier
+              $.as_identifier,
+              $.import_body
             )
           )
         ),
         "}"
+      ),
+
+    function_import: ($) =>
+      prec(
+        PREC.high,
+        seq(
+          repeat($.import_identifier),
+          $.function_call,
+          optional(";")
+        )
       ),
 
     // macros
@@ -352,7 +373,7 @@ module.exports = grammar({
         "for",
         $.identifier,
         "in",
-        choice($.identifier, $.range),
+        choice($._expression, $.range),
         $.body
       ),
 

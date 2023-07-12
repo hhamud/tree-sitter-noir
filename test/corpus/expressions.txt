@@ -292,6 +292,68 @@ impl RepeatedValue {
 
 ----------------------------------------------------------------
 
+(source_file
+    (struct
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type)
+    (identifier))
+    (struct_method
+    (identifier)
+    (body
+        (function_definition
+        (identifier)
+        (parameter
+            (identifier)
+            (single_type))
+        (return_type
+            (single_type))
+        (body
+            (struct
+            (identifier)
+            (identifier)
+            (integer))))
+        (function_definition
+        (identifier)
+        (parameter
+            (mutable)
+            (identifier)
+            (single_type))
+        (return_type
+            (single_type))
+        (body
+            (binary_expression
+            (struct_expression
+                (identifier)
+                (identifier))
+            (integer))
+            (identifier)))
+        (function_definition
+        (identifier)
+        (parameter
+            (struct_expression))
+        (body
+            (for_loop
+            (identifier)
+            (range
+                (integer)
+                (struct_expression
+                (identifier)))
+            (body
+                (function_import
+                (import_identifier
+                    (identifier))
+                (import_identifier
+                    (identifier))
+                (function_call
+                    (identifier)
+                    (parameter
+                    (struct_expression
+                        (identifier))))))))))))
+
+
 ============================================
 Generic Structs
 ============================================

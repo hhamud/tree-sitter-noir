@@ -311,7 +311,8 @@ impl RepeatedValue {
         (return_type
             (single_type))
         (body
-            (struct
+            (struct_initialization
+            (identifier)
             (identifier)
             (identifier)
             (integer))))
@@ -354,6 +355,7 @@ impl RepeatedValue {
                         (identifier))))))))))))
 
 
+
 ============================================
 Generic Structs
 ============================================
@@ -374,7 +376,7 @@ impl<T> RepeatedValue<T> {
     }
 
     fn print(self) {
-        for _i in 0 .. self.count {
+        for _i in 0..self.count {
             dep::std::println(self.value);
         }
     }
@@ -382,3 +384,71 @@ impl<T> RepeatedValue<T> {
 
 
 ----------------------------------------------------------------
+
+(source_file
+    (struct
+    (identifier)
+    (generic
+        (identifier))
+    (identifier)
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier))
+    (struct_method
+    (generic
+        (identifier))
+    (identifier)
+    (generic
+        (identifier))
+    (body
+        (function_definition
+        (identifier)
+        (parameter
+            (identifier)
+            (identifier))
+        (return_type
+            (single_type))
+        (body
+            (struct_initialization
+            (identifier)
+            (identifier)
+            (identifier)
+            (integer))))
+        (function_definition
+        (identifier)
+        (parameter
+            (mutable)
+            (identifier)
+            (single_type))
+        (return_type
+            (single_type))
+        (body
+            (binary_expression
+            (struct_expression
+                (identifier)
+                (identifier))
+            (integer))
+            (identifier)))
+        (function_definition
+        (identifier)
+        (parameter
+            (struct_expression))
+        (body
+            (for_loop
+            (identifier)
+            (range
+                (integer)
+                (struct_expression
+                (identifier)))
+            (body
+                (function_import
+                (import_identifier
+                    (identifier))
+                (import_identifier
+                    (identifier))
+                (function_call
+                    (identifier)
+                    (parameter
+                    (struct_expression
+                        (identifier))))))))))))

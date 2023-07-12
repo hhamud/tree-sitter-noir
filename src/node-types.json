@@ -309,11 +309,11 @@
           "named": true
         },
         {
-          "type": "struct",
+          "type": "struct_expression",
           "named": true
         },
         {
-          "type": "struct_expression",
+          "type": "struct_initialization",
           "named": true
         },
         {
@@ -457,6 +457,21 @@
         },
         {
           "type": "import_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1025,10 +1040,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "generic",
           "named": true
         },
         {
@@ -1066,6 +1085,57 @@
     }
   },
   {
+    "type": "struct_initialization",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "re_assignment",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "struct_method",
     "named": true,
     "fields": {},
@@ -1075,6 +1145,10 @@
       "types": [
         {
           "type": "body",
+          "named": true
+        },
+        {
+          "type": "generic",
           "named": true
         },
         {

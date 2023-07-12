@@ -51,6 +51,13 @@ module.exports = grammar({
   name: "noir",
 
   extras: ($) => [/\s|\\\r?\n/, $.comment],
+  conflicts: ($) => [
+    [
+      $.struct_initialization,
+      $._expression,
+      $.struct_expression,
+    ],
+  ],
 
   rules: {
     source_file: ($) => repeat($._definition),
@@ -136,6 +143,8 @@ module.exports = grammar({
 
     integer: ($) => /(\d+_?)+/,
 
+    generic: ($) => seq("<", $.identifier, ">"),
+
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     as_identifier: ($) =>
@@ -212,7 +221,7 @@ module.exports = grammar({
                   $.identifier,
                   ":",
                   optional($.viewer),
-                  $._type,
+                  choice($._type, $.identifier),
                   optional(",")
                 )
               )
@@ -238,7 +247,7 @@ module.exports = grammar({
               $.for_loop,
               $._if_else_exp,
               $.function_definition,
-              $.struct,
+              $.struct_initialization,
               $.function_import
             )
           )
@@ -336,14 +345,32 @@ module.exports = grammar({
     _literal: ($) => choice($.integer, $.string),
 
     // structs
+    //
     struct: ($) =>
       prec(
-        PREC.low,
+        PREC.low, // Lower precedence
         seq(
           optional("struct"),
-          choice("Self", $.identifier),
+          $.identifier,
+          optional($.generic),
           "{",
           repeat($._field),
+          "}"
+        )
+      ),
+
+    struct_initialization: ($) =>
+      prec(
+        PREC.high, // Higher precedence
+        seq(
+          $.identifier,
+          "{",
+          commaSep(
+            seq(
+              $.identifier,
+              optional(seq(":", $._expression))
+            )
+          ),
           "}"
         )
       ),
@@ -365,7 +392,14 @@ module.exports = grammar({
         optional(",")
       ),
 
-    struct_method: ($) => seq("impl", $.identifier, $.body),
+    struct_method: ($) =>
+      seq(
+        "impl",
+        optional($.generic),
+        $.identifier,
+        optional($.generic),
+        $.body
+      ),
 
     // control flow
     for_loop: ($) =>
@@ -408,3 +442,7 @@ module.exports = grammar({
       ),
   },
 })
+
+function commaSep(rule) {
+  return optional(seq(rule, repeat(seq(",", rule))))
+}

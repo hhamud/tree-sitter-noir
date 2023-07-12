@@ -81,3 +81,30 @@ fn sha256(_input : [u8]) -> [u8; 32]{}
         (array_type
             (integer)))
         (body)))
+
+
+
+=====================================
+Generic Functions
+============================================
+
+fn id<T>(x: T) -> T  {
+    x
+}
+
+
+-------------------------------------------------------------------------------
+
+
+(source_file
+    (function_definition
+    (identifier)
+    (generic
+        (identifier))
+    (parameter
+        (identifier)
+        (identifier))
+    (return_type
+        (identifier))
+    (body
+        (identifier))))

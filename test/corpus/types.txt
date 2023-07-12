@@ -39,3 +39,90 @@ let a: [u32];
  (let_declaration
   (identifier)
   (array_type)))
+
+============================================
+Struct With Generic type
+============================================
+
+struct BigInt<N> {
+    limbs: [u32; N],
+}
+
+impl<N> BigInt<N> {
+    // `N` is in scope of all methods in the impl
+    fn first(first: BigInt<N>, second: BigInt<N>) -> Self {
+        assert(first.limbs != second.limbs);
+        first
+    }
+
+    fn second(first: BigInt<N>, second: Self) -> Self {
+        assert(first.limbs != second.limbs);
+        second
+    }
+}
+
+----------------------------------------------------------------
+
+(source_file
+    (struct
+    (identifier)
+    (generic
+        (identifier))
+    (identifier)
+    (array_type
+        (identifier)))
+    (struct_method
+    (generic
+        (identifier))
+    (identifier)
+    (generic
+        (identifier))
+    (body
+        (comment)
+        (function_definition
+        (identifier)
+        (parameter
+            (identifier)
+            (generic_type
+            (identifier)
+            (generic
+                (identifier)))
+            (identifier)
+            (generic_type
+            (identifier)
+            (generic
+                (identifier))))
+        (return_type
+            (single_type))
+        (body
+            (assert
+            (binary_expression
+                (struct_expression
+                (identifier)
+                (identifier))
+                (struct_expression
+                (identifier)
+                (identifier))))
+            (identifier)))
+        (function_definition
+        (identifier)
+        (parameter
+            (identifier)
+            (generic_type
+            (identifier)
+            (generic
+                (identifier)))
+            (identifier)
+            (single_type))
+        (return_type
+            (single_type))
+        (body
+            (assert
+            (binary_expression
+                (struct_expression
+                (identifier)
+                (identifier))
+                (struct_expression
+                (identifier)
+                (identifier))))
+            (identifier))))))

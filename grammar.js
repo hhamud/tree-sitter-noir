@@ -143,7 +143,7 @@ module.exports = grammar({
 
     integer: ($) => /(\d+_?)+/,
 
-    generic: ($) => seq("<", $.identifier, ">"),
+    generic: ($) => seq("<", commaSep($.identifier), ">"),
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
@@ -190,9 +190,11 @@ module.exports = grammar({
       seq(
         "[",
         choice(...numeric_types, ...primitve_types),
-        optional(seq(";", $.integer)),
+        optional(seq(";", choice($.integer, $.identifier))),
         "]"
       ),
+
+    generic_type: ($) => seq($.identifier, $.generic),
 
     _type: ($) => choice($.single_type, $.array_type),
 
@@ -201,6 +203,7 @@ module.exports = grammar({
       seq(
         "fn",
         $.identifier,
+        optional($.generic),
         $.parameter,
         optional($.return_type),
         $.body
@@ -221,7 +224,11 @@ module.exports = grammar({
                   $.identifier,
                   ":",
                   optional($.viewer),
-                  choice($._type, $.identifier),
+                  choice(
+                    $._type,
+                    $.identifier,
+                    $.generic_type
+                  ),
                   optional(",")
                 )
               )
@@ -248,7 +255,8 @@ module.exports = grammar({
               $._if_else_exp,
               $.function_definition,
               $.struct_initialization,
-              $.function_import
+              $.function_import,
+              $.assert
             )
           )
         ),
@@ -256,7 +264,11 @@ module.exports = grammar({
       ),
 
     return_type: ($) =>
-      seq("->", optional($.viewer), $._type),
+      seq(
+        "->",
+        optional($.viewer),
+        choice($._type, $.identifier)
+      ),
 
     struct_expression: ($) =>
       prec(
@@ -440,6 +452,9 @@ module.exports = grammar({
         ),
         ";"
       ),
+
+    assert: ($) =>
+      seq("assert", "(", $._expression, ")", ";"),
   },
 })
 

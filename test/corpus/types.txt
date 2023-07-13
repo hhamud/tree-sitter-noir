@@ -64,7 +64,7 @@ impl<N> BigInt<N> {
 ----------------------------------------------------------------
 
 (source_file
-    (struct
+    (struct_definition
     (identifier)
     (generic
         (identifier))

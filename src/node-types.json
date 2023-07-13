@@ -73,6 +73,10 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -82,10 +86,6 @@
         },
         {
           "type": "integer",
-          "named": true
-        },
-        {
-          "type": "re_assignment",
           "named": true
         },
         {
@@ -133,10 +133,6 @@
           },
           {
             "type": "integer",
-            "named": true
-          },
-          {
-            "type": "re_assignment",
             "named": true
           },
           {
@@ -210,6 +206,10 @@
             "named": false
           },
           {
+            "type": "=",
+            "named": false
+          },
+          {
             "type": "==",
             "named": false
           },
@@ -268,10 +268,6 @@
             "named": true
           },
           {
-            "type": "re_assignment",
-            "named": true
-          },
-          {
             "type": "string",
             "named": true
           },
@@ -300,6 +296,10 @@
           "named": true
         },
         {
+          "type": "array_type",
+          "named": true
+        },
+        {
           "type": "as_identifier",
           "named": true
         },
@@ -320,6 +320,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "else_exp",
           "named": true
         },
@@ -333,6 +337,10 @@
         },
         {
           "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "generic_type",
           "named": true
         },
         {
@@ -356,15 +364,31 @@
           "named": true
         },
         {
+          "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "module",
           "named": true
         },
         {
-          "type": "re_assignment",
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct_definition",
           "named": true
         },
         {
@@ -373,6 +397,10 @@
         },
         {
           "type": "struct_initialization",
+          "named": true
+        },
+        {
+          "type": "struct_method",
           "named": true
         },
         {
@@ -435,10 +463,6 @@
         },
         {
           "type": "range",
-          "named": true
-        },
-        {
-          "type": "re_assignment",
           "named": true
         },
         {
@@ -592,10 +616,6 @@
           "named": true
         },
         {
-          "type": "re_assignment",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -644,10 +664,6 @@
         },
         {
           "type": "integer",
-          "named": true
-        },
-        {
-          "type": "re_assignment",
           "named": true
         },
         {
@@ -751,6 +767,10 @@
             "named": true
           },
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "single_type",
             "named": true
           }
@@ -777,6 +797,10 @@
             "named": true
           },
           {
+            "type": "function_import",
+            "named": true
+          },
+          {
             "type": "grouped_expression",
             "named": true
           },
@@ -789,19 +813,15 @@
             "named": true
           },
           {
-            "type": "re_assignment",
-            "named": true
-          },
-          {
             "type": "string",
             "named": true
           },
           {
-            "type": "struct",
+            "type": "struct_expression",
             "named": true
           },
           {
-            "type": "struct_expression",
+            "type": "struct_initialization",
             "named": true
           },
           {
@@ -824,7 +844,7 @@
           "named": true
         },
         {
-          "type": "struct",
+          "type": "struct_initialization",
           "named": true
         }
       ]
@@ -901,11 +921,11 @@
           "named": true
         },
         {
-          "type": "single_type",
+          "type": "self_method",
           "named": true
         },
         {
-          "type": "struct_expression",
+          "type": "single_type",
           "named": true
         },
         {
@@ -948,10 +968,6 @@
           "named": true
         },
         {
-          "type": "re_assignment",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -961,29 +977,6 @@
         },
         {
           "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "re_assignment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -1002,6 +995,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1011,6 +1008,21 @@
         },
         {
           "type": "viewer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "self_method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1038,7 +1050,19 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "assert",
+          "named": true
+        },
+        {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "body",
           "named": true
         },
         {
@@ -1059,6 +1083,14 @@
         },
         {
           "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "generic_type",
           "named": true
         },
         {
@@ -1094,7 +1126,7 @@
           "named": true
         },
         {
-          "type": "re_assignment",
+          "type": "self_method",
           "named": true
         },
         {
@@ -1106,11 +1138,15 @@
           "named": true
         },
         {
-          "type": "struct",
+          "type": "struct_definition",
           "named": true
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
           "named": true
         },
         {
@@ -1125,7 +1161,7 @@
     }
   },
   {
-    "type": "struct",
+    "type": "struct_definition",
     "named": true,
     "fields": {},
     "children": {
@@ -1138,6 +1174,10 @@
         },
         {
           "type": "generic",
+          "named": true
+        },
+        {
+          "type": "generic_type",
           "named": true
         },
         {
@@ -1165,7 +1205,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
@@ -1180,22 +1220,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "array",
+          "type": "array_type",
           "named": true
         },
         {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "character",
-          "named": true
-        },
-        {
-          "type": "grouped_expression",
+          "type": "generic_type",
           "named": true
         },
         {
@@ -1207,19 +1239,11 @@
           "named": true
         },
         {
-          "type": "re_assignment",
+          "type": "single_type",
           "named": true
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "struct_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1278,10 +1302,6 @@
         },
         {
           "type": "integer",
-          "named": true
-        },
-        {
-          "type": "re_assignment",
           "named": true
         },
         {

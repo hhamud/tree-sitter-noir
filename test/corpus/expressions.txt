@@ -120,7 +120,7 @@ let Animal { hands, legs: feet, eyes } = get_octopus();
 ----------------------------------------------------------------
 
 (source_file
-    (struct
+    (struct_definition
     (identifier)
     (identifier)
     (single_type)
@@ -130,7 +130,7 @@ let Animal { hands, legs: feet, eyes } = get_octopus();
     (single_type))
     (let_declaration
     (identifier)
-    (struct
+    (struct_initialization
         (identifier)
         (identifier)
         (integer)
@@ -138,7 +138,7 @@ let Animal { hands, legs: feet, eyes } = get_octopus();
         (integer)
         (identifier)))
     (let_declaration
-    (struct
+    (struct_initialization
         (identifier)
         (identifier)
         (identifier)
@@ -222,7 +222,7 @@ if a == 0 {
             (identifier)
             (integer))))
     (body
-        (re_assignment
+        (binary_expression
         (identifier)
         (integer))))
     (if_exp
@@ -236,7 +236,7 @@ if a == 0 {
             (identifier)
             (integer))))
     (body
-        (re_assignment
+        (binary_expression
         (identifier)
         (integer))))
     (if_exp
@@ -249,17 +249,17 @@ if a == 0 {
             (identifier)
             (integer))
         (body
-            (re_assignment
+            (binary_expression
             (identifier)
             (integer))))
         (else_exp
         (body
-            (re_assignment
+            (binary_expression
             (identifier)
             (integer))))))
     (else_exp
     (body
-        (re_assignment
+        (binary_expression
         (identifier)
         (integer)))))
 
@@ -293,7 +293,7 @@ impl RepeatedValue {
 ----------------------------------------------------------------
 
 (source_file
-    (struct
+    (struct_definition
     (identifier)
     (identifier)
     (single_type)
@@ -312,7 +312,6 @@ impl RepeatedValue {
             (single_type))
         (body
             (struct_initialization
-            (identifier)
             (identifier)
             (identifier)
             (integer))))
@@ -334,13 +333,14 @@ impl RepeatedValue {
         (function_definition
         (identifier)
         (parameter
-            (struct_expression))
+            (self_method))
         (body
             (for_loop
             (identifier)
             (range
                 (integer)
                 (struct_expression
+                (identifier)
                 (identifier)))
             (body
                 (function_import
@@ -351,7 +351,7 @@ impl RepeatedValue {
                 (function_call
                     (identifier)
                     (parameter
-                    (struct_expression
+                    (self_method
                         (identifier))))))))))))
 
 
@@ -386,7 +386,7 @@ impl<T> RepeatedValue<T> {
 ----------------------------------------------------------------
 
 (source_file
-    (struct
+    (struct_definition
     (identifier)
     (generic
         (identifier))
@@ -413,7 +413,6 @@ impl<T> RepeatedValue<T> {
             (struct_initialization
             (identifier)
             (identifier)
-            (identifier)
             (integer))))
         (function_definition
         (identifier)
@@ -433,13 +432,14 @@ impl<T> RepeatedValue<T> {
         (function_definition
         (identifier)
         (parameter
-            (struct_expression))
+            (self_method))
         (body
             (for_loop
             (identifier)
             (range
                 (integer)
                 (struct_expression
+                (identifier)
                 (identifier)))
             (body
                 (function_import
@@ -450,5 +450,5 @@ impl<T> RepeatedValue<T> {
                 (function_call
                     (identifier)
                     (parameter
-                    (struct_expression
+                    (self_method
                         (identifier))))))))))))

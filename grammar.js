@@ -2,8 +2,6 @@
 // @ts-check
 
 const PREC = {
-  high: 20,
-  low: 10,
   range: 15,
   call: 14,
   field: 13,
@@ -52,11 +50,12 @@ module.exports = grammar({
 
   extras: ($) => [/\s|\\\r?\n/, $.comment],
   conflicts: ($) => [
-    [
-      $.struct_initialization,
-      $._expression,
-      $.struct_expression,
-    ],
+    [$.struct_initialization, $.single_type],
+    [$.generic_type, $._expression],
+    [$.function_call, $._expression],
+    [$._expression, $.struct_initialization],
+    [$.module],
+    [$.let_declaration, $.function_import],
   ],
 
   rules: {
@@ -64,22 +63,45 @@ module.exports = grammar({
 
     _definition: ($) =>
       choice(
+        $._statement,
+        $._expression,
+        $.module,
+        $.as_identifier,
+        $.import,
+        $.body,
+        $.for_loop,
+        $._if_else_exp,
+        $.struct_initialization,
+        $._function,
+        $.assert,
         $.comment,
-        $._expression_statement,
         $.let_declaration,
         $._type,
-        $.function_definition,
-        $.module,
         $.import,
         $.macro,
-        $.struct,
-        $.struct_method,
-        $.for_loop,
-        $._if_else_exp
+        $.struct_definition,
+        $.self_method,
+        $.struct_method
       ),
 
+    _statement: ($) =>
+      seq(
+        choice(
+          $._expression,
+          $.let_declaration,
+          $.import,
+          $.struct_definition,
+          $.module,
+          $.assert,
+          $._function
+        ),
+        ";"
+      ),
+
+    //expressions
     binary_expression: ($) => {
       const table = [
+        [PREC.assign, "="],
         [PREC.and, "&&"],
         [PREC.or, "||"],
         [PREC.bitand, "&"],
@@ -114,45 +136,34 @@ module.exports = grammar({
         seq(choice("-", "*", "!"), $._expression)
       ),
 
-    _expression_statement: ($) => seq($._expression, ";"),
-
-    re_assignment: ($) =>
-      seq($.identifier, "=", choice($.integer, $.string)),
-
     grouped_expression: ($) => seq("(", $._expression, ")"),
 
     _expression: ($) =>
-      prec(
-        PREC.high,
-        choice(
-          $.binary_expression,
-          $.unary_expression,
-          $.re_assignment,
-          $.identifier,
-          $.integer,
-          $.string,
-          $.character,
-          $.array,
-          $.grouped_expression,
-          $.struct_expression
-        )
+      choice(
+        $.binary_expression,
+        $.unary_expression,
+        $.identifier,
+        $.integer,
+        $.string,
+        $.character,
+        $.array,
+        $.grouped_expression,
+        $.struct_expression
       ),
 
     // primitives
-    empty_expression: ($) => ";",
-
     integer: ($) => /(\d+_?)+/,
 
     generic: ($) => seq("<", commaSep($.identifier), ">"),
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    as_identifier: ($) =>
-      seq($.identifier, "as", $.identifier),
-
     string: ($) => /b?"(\\.|[^"\\])*"/,
 
     character: ($) => /'(\\.|[^'\\])*'/,
+
+    as_identifier: ($) =>
+      seq($.identifier, "as", $.identifier),
 
     range: ($) => seq($._expression, "..", $._expression),
 
@@ -194,11 +205,16 @@ module.exports = grammar({
         "]"
       ),
 
-    generic_type: ($) => seq($.identifier, $.generic),
+    generic_type: ($) =>
+      seq(optional($.identifier), $.generic),
 
-    _type: ($) => choice($.single_type, $.array_type),
+    _type: ($) =>
+      choice($.single_type, $.array_type, $.generic_type),
 
     // functions
+    _function: ($) =>
+      choice($.function_definition, $.function_import),
+
     function_definition: ($) =>
       seq(
         "fn",
@@ -216,7 +232,7 @@ module.exports = grammar({
         "(",
         optional(
           choice(
-            $.struct_expression,
+            $.self_method,
             seq(
               repeat(
                 seq(
@@ -224,11 +240,7 @@ module.exports = grammar({
                   $.identifier,
                   ":",
                   optional($.viewer),
-                  choice(
-                    $._type,
-                    $.identifier,
-                    $.generic_type
-                  ),
+                  choice($._type, $.identifier),
                   optional(",")
                 )
               )
@@ -241,25 +253,7 @@ module.exports = grammar({
     body: ($) =>
       seq(
         "{",
-        optional(
-          repeat(
-            choice(
-              $._expression,
-              $._expression_statement,
-              $.module,
-              $.as_identifier,
-              $.import,
-              $.body,
-              ",",
-              $.for_loop,
-              $._if_else_exp,
-              $.function_definition,
-              $.struct_initialization,
-              $.function_import,
-              $.assert
-            )
-          )
-        ),
+        optional(repeat(choice($._definition, ","))),
         "}"
       ),
 
@@ -270,31 +264,17 @@ module.exports = grammar({
         choice($._type, $.identifier)
       ),
 
-    struct_expression: ($) =>
-      prec(
-        PREC.field,
-        seq(
-          choice("self", $.identifier),
-          repeat(seq(".", $.identifier))
-        )
-      ),
-
     // modules
     module: ($) =>
-      prec(
-        PREC.high,
-        choice(
-          // If the body is present, the semicolon is optional
-          seq(
-            optional($.viewer),
-            "mod",
-            $.identifier,
-            $.body,
-            optional(";")
-          ),
-          // If the body is not present, the semicolon is required
-          seq(optional($.viewer), "mod", $.identifier, ";")
-        )
+      choice(
+        seq(
+          optional($.viewer),
+          "mod",
+          $.identifier,
+          $.body
+        ),
+
+        seq(optional($.viewer), "mod", $.identifier)
       ),
 
     // imports
@@ -310,8 +290,7 @@ module.exports = grammar({
           $.import_body,
           "*",
           $.as_identifier
-        ),
-        ";"
+        )
       ),
 
     import_body: ($) =>
@@ -333,14 +312,7 @@ module.exports = grammar({
       ),
 
     function_import: ($) =>
-      prec(
-        PREC.high,
-        seq(
-          repeat($.import_identifier),
-          $.function_call,
-          optional(";")
-        )
-      ),
+      seq(repeat($.import_identifier), $.function_call),
 
     // macros
     macro: ($) =>
@@ -357,35 +329,28 @@ module.exports = grammar({
     _literal: ($) => choice($.integer, $.string),
 
     // structs
-    //
-    struct: ($) =>
-      prec(
-        PREC.low, // Lower precedence
-        seq(
-          optional("struct"),
-          $.identifier,
-          optional($.generic),
-          "{",
-          repeat($._field),
-          "}"
-        )
+    struct_definition: ($) =>
+      seq(
+        "struct",
+        $.identifier,
+        optional($.generic),
+        "{",
+        repeat($._field),
+        "}"
       ),
 
     struct_initialization: ($) =>
-      prec(
-        PREC.high, // Higher precedence
-        seq(
-          $.identifier,
-          "{",
-          commaSep(
-            seq(
-              $.identifier,
-              optional(seq(":", $._expression))
-            )
-          ),
-          "}"
-        )
+      seq(
+        choice($.identifier, "Self"),
+        "{",
+        repeat($._field),
+        "}"
       ),
+
+    struct_expression: ($) => dotSep($.identifier),
+
+    self_method: ($) =>
+      seq("self", optional(repeat(seq(".", $.identifier)))),
 
     _field: ($) =>
       seq(
@@ -435,7 +400,7 @@ module.exports = grammar({
       seq(
         "let",
         optional($.mutable),
-        choice($.struct, $.identifier),
+        choice($.struct_initialization, $.identifier),
         optional(seq(":", field("type", $._type))),
         optional(
           seq(
@@ -444,8 +409,9 @@ module.exports = grammar({
               "value",
               choice(
                 $._expression,
-                $.struct,
-                $.function_call
+                $.struct_initialization,
+                $.function_call,
+                $.function_import
               )
             )
           )
@@ -454,10 +420,20 @@ module.exports = grammar({
       ),
 
     assert: ($) =>
-      seq("assert", "(", $._expression, ")", ";"),
+      seq(
+        "assert",
+        "(",
+        choice($._expression, $.function_call),
+        ")"
+      ),
   },
 })
 
+// custom functions
 function commaSep(rule) {
   return optional(seq(rule, repeat(seq(",", rule))))
+}
+
+function dotSep(rule) {
+  return seq(rule, repeat1(seq(".", rule)))
 }

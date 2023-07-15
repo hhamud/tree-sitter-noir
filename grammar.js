@@ -45,11 +45,21 @@ const primitve_types = [
   "Self",
 ]
 
+
 module.exports = grammar({
   name: "noir",
 
   extras: ($) => [/\s|\\\r?\n/, $.comment],
+
+  externals: ($) => [
+    $.float,
+  ],
+
   conflicts: ($) => [
+    [$._definition, $._expression],
+    [$._statement, $._expression],
+    [$.struct_function, $.struct_expression],
+    [$.struct_function, $._expression],
     [$.struct_initialization, $.single_type],
     [$.generic_type, $._expression],
     [$.function_call, $._expression],
@@ -81,7 +91,8 @@ module.exports = grammar({
         $.macro,
         $.struct_definition,
         $.self_method,
-        $.struct_method
+        $.struct_method,
+        $.struct_function
       ),
 
     _statement: ($) =>
@@ -140,6 +151,7 @@ module.exports = grammar({
 
     _expression: ($) =>
       choice(
+        $.float,
         $.binary_expression,
         $.unary_expression,
         $.identifier,
@@ -147,12 +159,17 @@ module.exports = grammar({
         $.string,
         $.character,
         $.array,
+        $.boolean,
         $.grouped_expression,
-        $.struct_expression
+        $.struct_expression,
+        $._function,
+        $.struct_function
       ),
 
     // primitives
     integer: ($) => /(\d+_?)+/,
+
+    boolean: ($) => choice("true", "false"),
 
     generic: ($) => seq("<", commaSep($.identifier), ">"),
 
@@ -233,12 +250,13 @@ module.exports = grammar({
         optional(
           choice(
             $.self_method,
+            commaSep($.identifier),
             seq(
               repeat(
                 seq(
                   optional($.mutable),
                   $.identifier,
-                  ":",
+                  optional(":"),
                   optional($.viewer),
                   choice($._type, $.identifier),
                   optional(",")
@@ -312,7 +330,7 @@ module.exports = grammar({
       ),
 
     function_import: ($) =>
-      seq(repeat($.import_identifier), $.function_call),
+    seq($.import_identifier, repeat($.import_identifier), $.function_call),
 
     // macros
     macro: ($) =>
@@ -348,6 +366,13 @@ module.exports = grammar({
       ),
 
     struct_expression: ($) => dotSep($.identifier),
+
+    struct_function: ($) =>
+      seq(
+        $.identifier,
+        repeat(seq(".", $.identifier, ".")),
+        $.function_call
+      ),
 
     self_method: ($) =>
       seq("self", optional(repeat(seq(".", $.identifier)))),
@@ -410,8 +435,6 @@ module.exports = grammar({
               choice(
                 $._expression,
                 $.struct_initialization,
-                $.function_call,
-                $.function_import
               )
             )
           )
@@ -423,7 +446,7 @@ module.exports = grammar({
       seq(
         "assert",
         "(",
-        choice($._expression, $.function_call),
+          $._expression,
         ")"
       ),
   },

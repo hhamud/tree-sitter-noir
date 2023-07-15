@@ -86,6 +86,10 @@
         {
           "type": "SYMBOL",
           "name": "struct_method"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "struct_function"
         }
       ]
     },
@@ -582,6 +586,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
           "name": "binary_expression"
         },
         {
@@ -610,17 +618,42 @@
         },
         {
           "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
           "name": "grouped_expression"
         },
         {
           "type": "SYMBOL",
           "name": "struct_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "struct_function"
         }
       ]
     },
     "integer": {
       "type": "PATTERN",
       "value": "(\\d+_?)+"
+    },
+    "boolean": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "true"
+        },
+        {
+          "type": "STRING",
+          "value": "false"
+        }
+      ]
     },
     "generic": {
       "type": "SEQ",
@@ -1156,6 +1189,39 @@
                   "name": "self_method"
                 },
                 {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "identifier"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
                   "type": "SEQ",
                   "members": [
                     {
@@ -1180,8 +1246,16 @@
                             "name": "identifier"
                           },
                           {
-                            "type": "STRING",
-                            "value": ":"
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ":"
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
                           },
                           {
                             "type": "CHOICE",
@@ -1487,6 +1561,10 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "import_identifier"
+        },
+        {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
@@ -1664,6 +1742,39 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "struct_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "STRING",
+                "value": "."
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call"
         }
       ]
     },
@@ -1965,14 +2076,6 @@
                       {
                         "type": "SYMBOL",
                         "name": "struct_initialization"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "function_call"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "function_import"
                       }
                     ]
                   }
@@ -2002,17 +2105,8 @@
           "value": "("
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "function_call"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_expression"
         },
         {
           "type": "STRING",
@@ -2032,15 +2126,54 @@
     }
   ],
   "conflicts": [
-    ["struct_initialization", "single_type"],
-    ["generic_type", "_expression"],
-    ["function_call", "_expression"],
-    ["_expression", "struct_initialization"],
-    ["module"],
-    ["let_declaration", "function_import"]
+    [
+      "_definition",
+      "_expression"
+    ],
+    [
+      "_statement",
+      "_expression"
+    ],
+    [
+      "struct_function",
+      "struct_expression"
+    ],
+    [
+      "struct_function",
+      "_expression"
+    ],
+    [
+      "struct_initialization",
+      "single_type"
+    ],
+    [
+      "generic_type",
+      "_expression"
+    ],
+    [
+      "function_call",
+      "_expression"
+    ],
+    [
+      "_expression",
+      "struct_initialization"
+    ],
+    [
+      "module"
+    ],
+    [
+      "let_declaration",
+      "function_import"
+    ]
   ],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "float"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }
+

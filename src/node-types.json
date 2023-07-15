@@ -69,11 +69,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
           "named": true
         },
         {
-          "type": "function_call",
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -94,6 +106,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -120,7 +136,23 @@
             "named": true
           },
           {
+            "type": "boolean",
+            "named": true
+          },
+          {
             "type": "character",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_definition",
+            "named": true
+          },
+          {
+            "type": "function_import",
             "named": true
           },
           {
@@ -141,6 +173,10 @@
           },
           {
             "type": "struct_expression",
+            "named": true
+          },
+          {
+            "type": "struct_function",
             "named": true
           },
           {
@@ -252,7 +288,23 @@
             "named": true
           },
           {
+            "type": "boolean",
+            "named": true
+          },
+          {
             "type": "character",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_definition",
+            "named": true
+          },
+          {
+            "type": "function_import",
             "named": true
           },
           {
@@ -273,6 +325,10 @@
           },
           {
             "type": "struct_expression",
+            "named": true
+          },
+          {
+            "type": "struct_function",
             "named": true
           },
           {
@@ -316,6 +372,10 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
           "named": true
         },
@@ -325,6 +385,10 @@
         },
         {
           "type": "else_exp",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -396,6 +460,10 @@
           "named": true
         },
         {
+          "type": "struct_function",
+          "named": true
+        },
+        {
           "type": "struct_initialization",
           "named": true
         },
@@ -409,6 +477,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "else_exp",
@@ -446,7 +519,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -471,6 +560,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -600,7 +693,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -621,6 +730,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -651,7 +764,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -672,6 +801,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -789,11 +922,19 @@
             "named": true
           },
           {
+            "type": "boolean",
+            "named": true
+          },
+          {
             "type": "character",
             "named": true
           },
           {
-            "type": "function_call",
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_definition",
             "named": true
           },
           {
@@ -818,6 +959,10 @@
           },
           {
             "type": "struct_expression",
+            "named": true
+          },
+          {
+            "type": "struct_function",
             "named": true
           },
           {
@@ -952,7 +1097,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -973,6 +1134,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -1066,6 +1231,10 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
           "named": true
         },
@@ -1075,6 +1244,10 @@
         },
         {
           "type": "else_exp",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -1146,6 +1319,10 @@
           "named": true
         },
         {
+          "type": "struct_function",
+          "named": true
+        },
+        {
           "type": "struct_initialization",
           "named": true
         },
@@ -1207,6 +1384,25 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -1289,7 +1485,23 @@
           "named": true
         },
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -1310,6 +1522,10 @@
         },
         {
           "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
           "named": true
         },
         {
@@ -1496,6 +1712,14 @@
     "named": false
   },
   {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": true
+  },
+  {
     "type": "fn",
     "named": false
   },
@@ -1569,6 +1793,10 @@
   },
   {
     "type": "struct",
+    "named": false
+  },
+  {
+    "type": "true",
     "named": false
   },
   {

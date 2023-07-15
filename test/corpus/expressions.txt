@@ -355,7 +355,8 @@ impl RepeatedValue {
         (function_definition
         (identifier)
         (parameter
-            (self_method))
+            (self_method
+              (self)))
         (body
             (for_loop
             (identifier)
@@ -374,6 +375,7 @@ impl RepeatedValue {
                     (identifier)
                     (parameter
                     (self_method
+                        (self)
                         (identifier))))))))))))
 
 
@@ -454,7 +456,8 @@ impl<T> RepeatedValue<T> {
         (function_definition
         (identifier)
         (parameter
-            (self_method))
+            (self_method
+            (self)))
         (body
             (for_loop
             (identifier)
@@ -473,4 +476,5 @@ impl<T> RepeatedValue<T> {
                     (identifier)
                     (parameter
                     (self_method
+                        (self)
                         (identifier))))))))))))

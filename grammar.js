@@ -381,8 +381,10 @@ module.exports = grammar({
         $.function_call
       ),
 
+    self: ($) => "self",
+
     self_method: ($) =>
-      seq("self", optional(repeat(seq(".", $.identifier)))),
+      seq($.self, optional(repeat(seq(".", $.identifier)))),
 
     _field: ($) =>
       seq(

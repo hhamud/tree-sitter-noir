@@ -1256,10 +1256,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "self",
           "named": true
         }
       ]
@@ -1788,14 +1792,6 @@
     "named": false
   },
   {
-    "type": "f32",
-    "named": false
-  },
-  {
-    "type": "f64",
-    "named": false
-  },
-  {
     "type": "false",
     "named": false
   },
@@ -1852,10 +1848,6 @@
     "named": true
   },
   {
-    "type": "isize",
-    "named": false
-  },
-  {
     "type": "let",
     "named": false
   },
@@ -1869,7 +1861,7 @@
   },
   {
     "type": "self",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
@@ -1905,10 +1897,6 @@
   },
   {
     "type": "use",
-    "named": false
-  },
-  {
-    "type": "usize",
     "named": false
   },
   {

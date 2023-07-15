@@ -911,22 +911,6 @@
         },
         {
           "type": "STRING",
-          "value": "isize"
-        },
-        {
-          "type": "STRING",
-          "value": "usize"
-        },
-        {
-          "type": "STRING",
-          "value": "f32"
-        },
-        {
-          "type": "STRING",
-          "value": "f64"
-        },
-        {
-          "type": "STRING",
           "value": "Field"
         },
         {
@@ -996,22 +980,6 @@
             {
               "type": "STRING",
               "value": "i128"
-            },
-            {
-              "type": "STRING",
-              "value": "isize"
-            },
-            {
-              "type": "STRING",
-              "value": "usize"
-            },
-            {
-              "type": "STRING",
-              "value": "f32"
-            },
-            {
-              "type": "STRING",
-              "value": "f64"
             },
             {
               "type": "STRING",
@@ -1791,12 +1759,16 @@
         }
       ]
     },
+    "self": {
+      "type": "STRING",
+      "value": "self"
+    },
     "self_method": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "self"
+          "type": "SYMBOL",
+          "name": "self"
         },
         {
           "type": "CHOICE",

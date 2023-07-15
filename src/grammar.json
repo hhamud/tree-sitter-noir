@@ -25,10 +25,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "as_identifier"
-        },
-        {
-          "type": "SYMBOL",
           "name": "import"
         },
         {
@@ -635,6 +631,10 @@
         {
           "type": "SYMBOL",
           "name": "struct_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "as_identifier"
         }
       ]
     },
@@ -725,8 +725,17 @@
           "value": "as"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "single_type"
+            }
+          ]
         }
       ]
     },
@@ -1110,6 +1119,10 @@
         {
           "type": "SYMBOL",
           "name": "function_import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call"
         }
       ]
     },
@@ -1753,14 +1766,14 @@
           "name": "identifier"
         },
         {
+          "type": "STRING",
+          "value": "."
+        },
+        {
           "type": "REPEAT",
           "content": {
             "type": "SEQ",
             "members": [
-              {
-                "type": "STRING",
-                "value": "."
-              },
               {
                 "type": "SYMBOL",
                 "name": "identifier"
@@ -2126,45 +2139,17 @@
     }
   ],
   "conflicts": [
-    [
-      "_definition",
-      "_expression"
-    ],
-    [
-      "_statement",
-      "_expression"
-    ],
-    [
-      "struct_function",
-      "struct_expression"
-    ],
-    [
-      "struct_function",
-      "_expression"
-    ],
-    [
-      "struct_initialization",
-      "single_type"
-    ],
-    [
-      "generic_type",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "_expression"
-    ],
-    [
-      "_expression",
-      "struct_initialization"
-    ],
-    [
-      "module"
-    ],
-    [
-      "let_declaration",
-      "function_import"
-    ]
+    ["function_call", "struct_expression"],
+    ["_definition", "_expression"],
+    ["_statement", "_expression"],
+    ["struct_function", "struct_expression"],
+    ["struct_function", "_expression"],
+    ["struct_initialization", "single_type"],
+    ["generic_type", "_expression"],
+    ["function_call", "_expression"],
+    ["_expression", "struct_initialization"],
+    ["module"],
+    ["let_declaration", "function_import"]
   ],
   "precedences": [],
   "externals": [
@@ -2176,4 +2161,3 @@
   "inline": [],
   "supertypes": []
 }
-

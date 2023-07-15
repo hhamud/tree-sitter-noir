@@ -2,15 +2,17 @@
 Function Call
 ============================================
 
-get_octopus()
+let x = get_octopus();
 
 
 -------------------------------------------------------------------------------
 
 (source_file
-  (function_call
-   (identifier)
-   (parameter)))
+    (let_declaration
+    (identifier)
+    (function_call
+        (identifier)
+        (parameter))))
 
 ============================================
 Empty Function

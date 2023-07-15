@@ -48,6 +48,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
         }
       ]
     }
@@ -65,6 +69,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -78,6 +86,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -132,6 +144,10 @@
             "named": true
           },
           {
+            "type": "as_identifier",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -145,6 +161,10 @@
           },
           {
             "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_call",
             "named": true
           },
           {
@@ -284,6 +304,10 @@
             "named": true
           },
           {
+            "type": "as_identifier",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -297,6 +321,10 @@
           },
           {
             "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_call",
             "named": true
           },
           {
@@ -393,6 +421,10 @@
         },
         {
           "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -511,6 +543,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -528,6 +564,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -689,6 +729,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -702,6 +746,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -756,6 +804,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -773,6 +825,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -918,6 +974,10 @@
             "named": true
           },
           {
+            "type": "as_identifier",
+            "named": true
+          },
+          {
             "type": "binary_expression",
             "named": true
           },
@@ -931,6 +991,10 @@
           },
           {
             "type": "float",
+            "named": true
+          },
+          {
+            "type": "function_call",
             "named": true
           },
           {
@@ -1093,6 +1157,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1106,6 +1174,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -1252,6 +1324,10 @@
         },
         {
           "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -1481,6 +1557,10 @@
           "named": true
         },
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -1494,6 +1574,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {

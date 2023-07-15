@@ -1,0 +1,107 @@
+================================================================================
+Basic Program
+================================================================================
+
+
+use dep::std;
+
+mod secp256k1;
+
+fn ecrecover(
+    pub_key_x: [u8; 32],
+    pub_key_y: [u8; 32],
+    signature: [u8; 64], // clip v value
+    hashed_message: [u8; 32]
+) -> pub Field {
+    let key = secp256k1::PubKey::from_xy(pub_key_x, pub_key_y);
+
+    assert(key.verify_sig(signature, hashed_message));
+    let addr = key.to_eth_address();
+
+    addr
+}
+
+#[test]
+fn test_ecrecover() {
+
+    let addr = ecrecover(pub_key_x, pub_key_y, signature, hashed_message);
+    assert(addr == "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266");
+}
+
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (import
+    (import_identifier
+        (identifier))
+    (identifier))
+    (module
+    (identifier))
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (array_type
+        (integer))
+        (identifier)
+        (array_type
+        (integer))
+        (identifier)
+        (array_type
+        (integer))
+        (comment)
+        (identifier)
+        (array_type
+        (integer)))
+    (return_type
+        (viewer)
+        (single_type))
+    (body
+        (let_declaration
+        (identifier)
+        (function_import
+            (import_identifier
+            (identifier))
+            (import_identifier
+            (identifier))
+            (function_call
+            (identifier)
+            (parameter
+                (identifier)
+                (identifier)))))
+        (assert
+        (struct_function
+            (identifier)
+            (function_call
+            (identifier)
+            (parameter
+                (identifier)
+                (identifier)))))
+        (let_declaration
+        (identifier)
+        (struct_function
+            (identifier)
+            (function_call
+            (identifier)
+            (parameter))))
+        (identifier)))
+    (macro
+    (identifier))
+    (function_definition
+    (identifier)
+    (parameter)
+    (body
+        (let_declaration
+        (identifier)
+        (function_call
+            (identifier)
+            (parameter
+            (identifier)
+            (identifier)
+            (identifier)
+            (identifier))))
+        (assert
+        (binary_expression
+            (identifier)
+            (string))))))

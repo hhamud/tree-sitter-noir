@@ -98,13 +98,24 @@ Statement
 ============================================
 
 let a = 2;
+let z = x as u32 + y;
 
 ----------------------------------------------------------------
 
+
 (source_file
- (let_declaration
-  (identifier)
-  (integer)))
+    (let_declaration
+    (identifier)
+    (integer))
+    (let_declaration
+    (identifier)
+    (binary_expression
+        (as_identifier
+            (identifier)
+            (single_type))
+        (identifier))))
+
+
 
 ============================================
 Array Statement

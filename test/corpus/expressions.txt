@@ -86,21 +86,19 @@ let z = x as u32 + y;
 
 ----------------------------------------------------------------
 
-
-(source_file
-    (let_declaration
-    (identifier)
-    (integer))
-    (let_declaration
-    (identifier)
-    (binary_expression
-        (as_identifier
-            (identifier)
-            (single_type))
-        (identifier))))
-
-
-
+ (source_file
+      (let_declaration
+        (binary_expression
+          (identifier)
+          (integer)))
+      (let_declaration
+        (binary_expression
+          (identifier)
+          (binary_expression
+            (as_identifier
+              (identifier)
+              (single_type))
+            (identifier)))))
 ============================================
 Array Statement
 ============================================
@@ -110,16 +108,15 @@ let x = [163, 117, 178, 149];
 
 ----------------------------------------------------------------
 
-(source_file
-    (let_declaration
-    (identifier)
-    (array
-        (integer)
-        (integer)
-        (integer)
-        (integer))))
-
-
+ (source_file
+      (let_declaration
+        (binary_expression
+          (identifier)
+          (array
+            (integer)
+            (integer)
+            (integer)
+            (integer)))))
 
 ============================================
 Structs
@@ -140,36 +137,36 @@ let dog = Animal {
 let Animal { hands, legs: feet, eyes } = get_octopus();
 
 ----------------------------------------------------------------
-
-(source_file
-    (struct_definition
-    (identifier)
-    (identifier)
-    (single_type)
-    (identifier)
-    (single_type)
-    (identifier)
-    (single_type))
-    (let_declaration
-    (identifier)
-    (struct_initialization
+ (source_file
+      (struct_definition
         (identifier)
         (identifier)
-        (integer)
+        (single_type)
         (identifier)
-        (integer)
-        (identifier)))
-    (let_declaration
-    (struct_initialization
+        (single_type)
         (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier))
-    (function_call
-        (identifier)
-        (parameter))))
-
+        (single_type))
+      (let_declaration
+        (binary_expression
+          (identifier)
+          (struct_initialization
+            (identifier)
+            (identifier)
+            (integer)
+            (identifier)
+            (integer)
+            (identifier))))
+      (let_declaration
+        (binary_expression
+          (struct_initialization
+            (identifier)
+            (identifier)
+            (identifier)
+            (identifier)
+            (identifier))
+          (function_call
+            (identifier)
+            (parameter)))))
 
 ============================================
 For loop
@@ -183,28 +180,51 @@ for i in 0..8 {
     i + 10;
 }
 
+for i in 0..8 {
+    arr[i] = price>>(56 - (8 * i)) & "0xff"
+    
+}
+
 ----------------------------------------------------------------
 
-
-
-
-(source_file
-    (for_loop
-    (identifier)
-    (identifier)
-    (body
-        (binary_expression
+ (source_file
+      (for_loop
         (identifier)
-        (integer))))
-    (for_loop
-    (identifier)
-    (range
-        (integer)
-        (integer))
-    (body
-        (binary_expression
         (identifier)
-        (integer)))))
+        (body
+          (binary_expression
+            (identifier)
+            (integer))))
+      (for_loop
+        (identifier)
+        (range
+          (integer)
+          (integer))
+        (body
+          (binary_expression
+            (identifier)
+            (integer))))
+      (for_loop
+        (identifier)
+        (range
+          (integer)
+          (integer))
+        (body
+          (binary_expression
+            (array_identifier
+              (identifier)
+              (identifier))
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (grouped_expression
+                  (binary_expression
+                    (integer)
+                    (grouped_expression
+                      (binary_expression
+                        (integer)
+                        (identifier))))))
+              (string))))))
 
 
 ============================================
@@ -287,6 +307,22 @@ if a == 0 {
 
 
 ============================================
+Globals
+============================================
+
+global N: Field = 5;
+
+
+----------------------------------------------------------------
+
+(source_file
+  (global
+    (binary_expression
+      (identifier)
+      (single_type)
+      (integer))))
+
+============================================
 Impl Structs
 ============================================
 
@@ -315,68 +351,68 @@ impl RepeatedValue {
 ----------------------------------------------------------------
 
 (source_file
-    (struct_definition
-    (identifier)
-    (identifier)
-    (single_type)
-    (identifier)
-    (single_type)
-    (identifier))
-    (struct_method
-    (identifier)
-    (body
-        (function_definition
+      (struct_definition
         (identifier)
-        (parameter
-            (identifier)
-            (single_type))
-        (return_type
-            (single_type))
-        (body
-            (struct_initialization
-            (identifier)
-            (identifier)
-            (integer))))
-        (function_definition
         (identifier)
-        (parameter
-            (mutable)
-            (identifier)
-            (single_type))
-        (return_type
-            (single_type))
-        (body
-            (binary_expression
-            (struct_expression
-                (identifier)
-                (identifier))
-            (integer))
-            (identifier)))
-        (function_definition
+        (single_type)
         (identifier)
-        (parameter
-            (self_method
-              (self)))
+        (comptime)
+        (single_type))
+      (struct_method
+        (identifier)
         (body
-            (for_loop
+          (function_definition
             (identifier)
-            (range
-                (integer)
-                (struct_expression
-                (identifier)
-                (identifier)))
+            (parameter
+              (identifier)
+              (single_type))
+            (return_type
+              (single_type))
             (body
-                (function_import
-                (import_identifier
-                    (identifier))
-                (import_identifier
-                    (identifier))
-                (function_call
-                    (identifier)
-                    (parameter
-                    (self_method
-                        (self)
-                        (identifier))))))))))))
+              (struct_initialization
+                (identifier)
+                (identifier)
+                (integer))))
+          (function_definition
+            (identifier)
+            (parameter
+              (mutable)
+              (identifier)
+              (single_type))
+            (return_type
+              (single_type))
+            (body
+              (binary_expression
+                (struct_expression
+                  (identifier)
+                  (identifier))
+                (integer))
+              (identifier)))
+          (function_definition
+            (identifier)
+            (parameter
+              (self_method
+                (self)))
+            (body
+              (for_loop
+                (identifier)
+                (range
+                  (integer)
+                  (self_method
+                    (self)
+                    (identifier)))
+                (body
+                  (function_import
+                    (import_identifier
+                      (identifier))
+                    (import_identifier
+                      (identifier))
+                    (function_call
+                      (identifier)
+                      (parameter
+                        (self_method
+                          (self)
+                          (identifier))))))))))))
 
 
 
@@ -417,8 +453,8 @@ impl<T> RepeatedValue<T> {
     (identifier)
     (identifier)
     (identifier)
-    (single_type)
-    (identifier))
+    (comptime)
+    (single_type))
     (struct_method
     (generic
         (identifier))
@@ -463,9 +499,9 @@ impl<T> RepeatedValue<T> {
             (identifier)
             (range
                 (integer)
-                (struct_expression
-                (identifier)
-                (identifier)))
+                (self_method
+                    (self)
+                    (identifier)))
             (body
                 (function_import
                 (import_identifier

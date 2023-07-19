@@ -12,23 +12,23 @@
 
 ;; functions
 (function_definition
-    name: (identifier) @function)
+    (identifier) @function)
 (function_call
-  name: (identifier) @function)
+  (identifier) @function)
 
 
 ;; let
 (let_declaration
-    name: (identifier) @variable)
+    (identifier) @variable)
 
 
 ;; structs
 (struct_definition
-    name: (identifier) @type)
+    (identifier) @type)
 
 ;; imports
 (import
-    path: (import_identifier) @include)
+    (import_identifier) @include)
 
 ;; comments
 (comment) @comment
@@ -56,10 +56,7 @@
 (parameter (identifier) @variable.parameter)
 
 "as" @keyword
-;;"break" @keyword
-;;"const" @keyword
-;;"global" @keyword
-;;"continue" @keyword
+"global" @keyword
 "else" @keyword
 "fn" @keyword
 "for" @keyword
@@ -68,12 +65,12 @@
 "in" @keyword
 "let" @keyword
 "mod" @keyword
-;;"return" @keyword
 "struct" @keyword
 "use" @keyword
 
 (mutable) @keyword
 (viewer) @keyword
+(return) @keyword
 
 (self) @variable.builtin
 
@@ -87,4 +84,3 @@
 
 "*" @operator
 "&" @operator
-;;"'" @operator

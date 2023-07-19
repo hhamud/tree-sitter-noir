@@ -33,13 +33,7 @@ const numeric_types = [
   "i128",
 ]
 
-const primitve_types = [
-  "Field",
-  "bool",
-  "String",
-  "comptime",
-  "Self",
-]
+const primitve_types = ["Field", "bool", "String", "Self"]
 
 module.exports = grammar({
   name: "noir",
@@ -49,6 +43,8 @@ module.exports = grammar({
   externals: ($) => [$.float],
 
   conflicts: ($) => [
+    [$.generic_type, $._typed_identifier],
+    [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],
     [$._definition, $._expression],
     [$._statement, $._expression],
@@ -59,6 +55,8 @@ module.exports = grammar({
     [$.function_call, $._expression],
     [$._expression, $.struct_initialization],
     [$.module],
+    [$._type],
+    [$.function_import],
     [$.let_declaration, $.function_import],
   ],
 
@@ -76,7 +74,6 @@ module.exports = grammar({
         $._if_else_exp,
         $.struct_initialization,
         $._function,
-        $.assert,
         $.comment,
         $.let_declaration,
         $._type,
@@ -85,7 +82,9 @@ module.exports = grammar({
         $.struct_definition,
         $.self_method,
         $.struct_method,
-        $.struct_function
+        $.struct_function,
+        $.return,
+        $.global
       ),
 
     _statement: ($) =>
@@ -142,6 +141,8 @@ module.exports = grammar({
 
     grouped_expression: ($) => seq("(", $._expression, ")"),
 
+    global: ($) => seq("global", $._statement),
+
     _expression: ($) =>
       choice(
         $.float,
@@ -157,7 +158,12 @@ module.exports = grammar({
         $.struct_expression,
         $._function,
         $.struct_function,
-        $.as_identifier
+        $.as_identifier,
+        $.self_method,
+        $._typed_identifier,
+        $.struct_initialization,
+        $.array_identifier,
+        $._import_var
       ),
 
     // primitives
@@ -168,6 +174,26 @@ module.exports = grammar({
     generic: ($) => seq("<", commaSep($.identifier), ">"),
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
+
+    array_identifier: ($) =>
+      seq(
+        $.identifier,
+        "[",
+        choice($.identifier, $.integer, $.string),
+        "]"
+      ),
+
+    _typed_identifier: ($) =>
+      seq(
+        optional($.mutable),
+        $.identifier,
+        ":",
+        seq(
+          optional($.viewer),
+          optional($.comptime),
+          choice($._type, $.identifier)
+        )
+      ),
 
     string: ($) => /b?"(\\.|[^"\\])*"/,
 
@@ -206,7 +232,11 @@ module.exports = grammar({
     //specifiers
     mutable: ($) => "mut",
 
+    comptime: ($) => "comptime",
+
     viewer: ($) => "pub",
+
+    return: ($) => "return",
 
     //types
     single_type: ($) =>
@@ -224,7 +254,10 @@ module.exports = grammar({
       seq(optional($.identifier), $.generic),
 
     _type: ($) =>
-      choice($.single_type, $.array_type, $.generic_type),
+      seq(
+        optional($.comptime),
+        choice($.single_type, $.array_type, $.generic_type)
+      ),
 
     // functions
     _function: ($) =>
@@ -246,29 +279,16 @@ module.exports = grammar({
 
     function_call: ($) => seq($.identifier, $.parameter),
 
+    //()
+    //(n: Field)
+    // (self)
+    // (self, n: Field)
+    // ([pky, pkx])
+    // (sm[i].signature)
+    // (sm[i].signature)
+
     parameter: ($) =>
-      seq(
-        "(",
-        optional(
-          choice(
-            $.self_method,
-            commaSep($.identifier),
-            seq(
-              repeat(
-                seq(
-                  optional($.mutable),
-                  $.identifier,
-                  optional(":"),
-                  optional($.viewer),
-                  choice($._type, $.identifier),
-                  optional(",")
-                )
-              )
-            )
-          )
-        ),
-        ")"
-      ),
+      seq("(", optional(commaSep($._expression)), ")"),
 
     body: ($) =>
       seq(
@@ -299,6 +319,9 @@ module.exports = grammar({
 
     // imports
     import_identifier: ($) => seq($.identifier, "::"),
+
+    _import_var: ($) =>
+      seq(repeat1($.import_identifier), $.identifier),
 
     import: ($) =>
       seq(
@@ -344,13 +367,16 @@ module.exports = grammar({
         "#",
         "[",
         repeat(
-          choice($.identifier, $._punctuation, $._literal)
+          choice(
+            $.identifier,
+            $._punctuation,
+            choice($.integer, $.string)
+          )
         ),
         "]"
       ),
 
     _punctuation: (_) => token(choice(..."(),")),
-    _literal: ($) => choice($.integer, $.string),
 
     // structs
     struct_definition: ($) =>
@@ -430,24 +456,9 @@ module.exports = grammar({
       seq($.if_exp, optional($.else_exp)),
 
     // declarations
-    let_declaration: ($) =>
-      seq(
-        "let",
-        optional($.mutable),
-        choice($.struct_initialization, $.identifier),
-        optional(seq(":", field("type", $._type))),
-        optional(
-          seq(
-            "=",
-            field(
-              "value",
-              choice($._expression, $.struct_initialization)
-            )
-          )
-        ),
-        ";"
-      ),
+    let_declaration: ($) => seq("let", $._expression, ";"),
 
+    // identifier class
     assert: ($) => seq("assert", "(", $._expression, ")"),
   },
 })

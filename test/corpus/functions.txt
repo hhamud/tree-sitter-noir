@@ -8,11 +8,12 @@ let x = get_octopus();
 -------------------------------------------------------------------------------
 
 (source_file
-    (let_declaration
-    (identifier)
-    (function_call
+      (let_declaration
+        (binary_expression
         (identifier)
-        (parameter))))
+          (function_call
+            (identifier)
+            (parameter)))))
 
 ============================================
 Empty Function
@@ -104,7 +105,7 @@ Generic Functions
 ============================================
 
 fn id<T>(x: T) -> T  {
-    x
+    return x;
 }
 
 
@@ -122,4 +123,5 @@ fn id<T>(x: T) -> T  {
     (return_type
         (identifier))
     (body
+        (return)
         (identifier))))

@@ -19,6 +19,29 @@
     }
   },
   {
+    "type": "array_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "array_type",
     "named": true,
     "fields": {},
@@ -61,11 +84,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
           "named": true
         },
         {
@@ -85,6 +116,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -101,6 +136,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -109,7 +148,23 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -125,7 +180,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -136,11 +199,23 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_identifier",
+            "named": true
+          },
+          {
+            "type": "array_type",
             "named": true
           },
           {
@@ -160,6 +235,10 @@
             "named": true
           },
           {
+            "type": "comptime",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -176,6 +255,10 @@
             "named": true
           },
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "grouped_expression",
             "named": true
           },
@@ -184,7 +267,23 @@
             "named": true
           },
           {
+            "type": "import_identifier",
+            "named": true
+          },
+          {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "mutable",
+            "named": true
+          },
+          {
+            "type": "self_method",
+            "named": true
+          },
+          {
+            "type": "single_type",
             "named": true
           },
           {
@@ -200,7 +299,15 @@
             "named": true
           },
           {
+            "type": "struct_initialization",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "viewer",
             "named": true
           }
         ]
@@ -296,11 +403,23 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_identifier",
+            "named": true
+          },
+          {
+            "type": "array_type",
             "named": true
           },
           {
@@ -320,6 +439,10 @@
             "named": true
           },
           {
+            "type": "comptime",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -336,6 +459,10 @@
             "named": true
           },
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "grouped_expression",
             "named": true
           },
@@ -344,7 +471,23 @@
             "named": true
           },
           {
+            "type": "import_identifier",
+            "named": true
+          },
+          {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "mutable",
+            "named": true
+          },
+          {
+            "type": "self_method",
+            "named": true
+          },
+          {
+            "type": "single_type",
             "named": true
           },
           {
@@ -360,7 +503,15 @@
             "named": true
           },
           {
+            "type": "struct_initialization",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "viewer",
             "named": true
           }
         ]
@@ -377,6 +528,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
           "named": true
         },
         {
@@ -412,6 +567,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "else_exp",
           "named": true
         },
@@ -440,6 +599,10 @@
           "named": true
         },
         {
+          "type": "global",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -456,6 +619,10 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -469,6 +636,14 @@
         },
         {
           "type": "module",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -505,6 +680,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -543,6 +722,14 @@
           "named": true
         },
         {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
           "type": "as_identifier",
           "named": true
         },
@@ -563,6 +750,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -579,6 +770,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -587,11 +782,27 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
+          "type": "mutable",
+          "named": true
+        },
+        {
           "type": "range",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -607,7 +818,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -717,11 +936,11 @@
     }
   },
   {
-    "type": "grouped_expression",
+    "type": "global",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -729,7 +948,19 @@
           "named": true
         },
         {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
           "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "assert",
           "named": true
         },
         {
@@ -742,6 +973,10 @@
         },
         {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "comptime",
           "named": true
         },
         {
@@ -761,6 +996,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -769,7 +1008,154 @@
           "named": true
         },
         {
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "module",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct_definition",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grouped_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -785,7 +1171,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -801,6 +1195,14 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
           "named": true
         },
         {
@@ -824,6 +1226,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -840,6 +1246,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -848,7 +1258,23 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -864,7 +1290,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -946,106 +1380,77 @@
   {
     "type": "let_declaration",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "generic_type",
-            "named": true
-          },
-          {
-            "type": "single_type",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "as_identifier",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "character",
-            "named": true
-          },
-          {
-            "type": "float",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "function_definition",
-            "named": true
-          },
-          {
-            "type": "function_import",
-            "named": true
-          },
-          {
-            "type": "grouped_expression",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
-            "type": "struct_function",
-            "named": true
-          },
-          {
-            "type": "struct_initialization",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -1053,7 +1458,35 @@
           "named": true
         },
         {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
+          "named": true
+        },
+        {
           "type": "struct_initialization",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -1114,7 +1547,51 @@
       "required": false,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
           "named": true
         },
         {
@@ -1122,7 +1599,19 @@
           "named": true
         },
         {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -1135,6 +1624,26 @@
         },
         {
           "type": "single_type",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         },
         {
@@ -1157,6 +1666,14 @@
           "named": true
         },
         {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
           "type": "as_identifier",
           "named": true
         },
@@ -1170,6 +1687,10 @@
         },
         {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "comptime",
           "named": true
         },
         {
@@ -1189,6 +1710,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -1197,7 +1722,23 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -1213,7 +1754,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -1229,6 +1778,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "comptime",
           "named": true
         },
         {
@@ -1287,6 +1840,10 @@
           "named": true
         },
         {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
           "type": "array_type",
           "named": true
         },
@@ -1319,6 +1876,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "else_exp",
           "named": true
         },
@@ -1347,6 +1908,10 @@
           "named": true
         },
         {
+          "type": "global",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -1363,6 +1928,10 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -1376,6 +1945,14 @@
         },
         {
           "type": "module",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -1413,6 +1990,10 @@
         {
           "type": "unary_expression",
           "named": true
+        },
+        {
+          "type": "viewer",
+          "named": true
         }
       ]
     }
@@ -1427,6 +2008,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "comptime",
           "named": true
         },
         {
@@ -1503,6 +2088,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "generic_type",
           "named": true
         },
@@ -1553,11 +2142,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_type",
           "named": true
         },
         {
@@ -1577,6 +2174,10 @@
           "named": true
         },
         {
+          "type": "comptime",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -1593,6 +2194,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "grouped_expression",
           "named": true
         },
@@ -1601,7 +2206,23 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         },
         {
@@ -1617,7 +2238,15 @@
           "named": true
         },
         {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "viewer",
           "named": true
         }
       ]
@@ -1785,7 +2414,7 @@
   },
   {
     "type": "comptime",
-    "named": false
+    "named": true
   },
   {
     "type": "else",
@@ -1805,6 +2434,10 @@
   },
   {
     "type": "for",
+    "named": false
+  },
+  {
+    "type": "global",
     "named": false
   },
   {
@@ -1857,6 +2490,10 @@
   },
   {
     "type": "mutable",
+    "named": true
+  },
+  {
+    "type": "return",
     "named": true
   },
   {

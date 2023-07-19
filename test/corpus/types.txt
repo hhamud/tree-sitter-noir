@@ -6,12 +6,13 @@ let a: u32 = 2;
 
 ----------------------------------------------------------------
 
-(source_file
- (let_declaration
-  (identifier)
-  (single_type)
-  (integer)))
 
+(source_file
+    (let_declaration
+    (binary_expression
+        (identifier)
+        (single_type)
+        (integer))))
 
 ============================================
 declaration with type

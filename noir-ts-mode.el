@@ -44,12 +44,27 @@
   :safe 'integerp
   :group 'noir)
 
-;; You need to update the syntax table, indent rules, keywords, operators, and 
-;; other related language-specific settings to match the Noir language based on
-;; the grammar you provided. The example above does not provide enough information
-;; to generate these settings.
+(defvar noir-ts-mode--syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?+   "."      table)
+    (modify-syntax-entry ?-   "."      table)
+    (modify-syntax-entry ?=   "."      table)
+    (modify-syntax-entry ?%   "."      table)
+    (modify-syntax-entry ?&   "."      table)
+    (modify-syntax-entry ?|   "."      table)
+    (modify-syntax-entry ?^   "."      table)
+    (modify-syntax-entry ?!   "."      table)
+    (modify-syntax-entry ?@   "."      table)
+    (modify-syntax-entry ?~   "."      table)
+    (modify-syntax-entry ?<   "."      table)
+    (modify-syntax-entry ?>   "."      table)
+    (modify-syntax-entry ?/   ". 124b" table)
+    (modify-syntax-entry ?*   ". 23"   table)
+    (modify-syntax-entry ?\n  "> b"    table)
+    (modify-syntax-entry ?\^m "> b"    table)
+    table)
+  "Syntax table for `noir-ts-mode'.")
 
-;; ...
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.noir\\'" . noir-ts-mode))
@@ -58,7 +73,6 @@
 (define-derived-mode noir-ts-mode prog-mode "Noir"
   "Major mode for editing Noir, powered by tree-sitter."
   :group 'noir
-  ;; Replace `rust-ts-mode--syntax-table` with your syntax table.
   :syntax-table noir-ts-mode--syntax-table
 
   (when (treesit-ready-p 'noir)

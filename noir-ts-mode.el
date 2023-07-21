@@ -7,20 +7,20 @@
 ;; Created    : July 2023
 ;; Keywords   : noir languages tree-sitter
 
-;; This file is part of GNU Emacs.
+;; This file is not part of GNU Emacs.
 
-;; GNU Emacs is free software: you can redistribute it and/or modify
+;; Noir-ts-mode is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
-;; GNU Emacs is distributed in the hope that it will be useful,
+;; Noir-ts-mode is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
+;; along with Noir-ts-mode.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
@@ -67,9 +67,12 @@
 
 
 (defvar noir-ts-mode--keywords
-  '("keyword1" "keyword2" "keyword3")
+  '("as" "break" "const" "continue" "else"
+    "fn" "for" "if" "impl" "in" "let"
+    "mod" "return" "struct" "type"
+    "use" "while" (assert) (self) 
+    (mutable) (viewer))
   "Noir keywords for tree-sitter font-locking.")
-
 
 (defvar noir-ts-mode--operators
   '("!"  "!=" "%" "%=" "&" "&=" "&&" "*" "*=" "+" "+=" "," "-" "-="
@@ -83,18 +86,13 @@
    :feature 'bracket
    '((["(" ")" "[" "]" "{" "}"]) @font-lock-bracket-face)
 
-
-   ((identifier) @font-lock-type-face)
-
    :language 'noir
    :feature 'comment
    '((comment) @font-lock-comment-face)
 
    :language 'noir
    :feature 'constant
-   `((boolean) @font-lock-constant-face
-     ((identifier) @font-lock-constant-face
-      (:match "^[A-Z][A-Z\\d_]*$" @font-lock-constant-face)))
+   '((boolean) @font-lock-constant-face)
 
    :language 'noir
    :feature 'delimiter
@@ -111,6 +109,11 @@
    :language 'noir
    :feature 'operator
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
+
+   ;;TODO: types
+   ;;TODO: functions
+   ;;TODO: structs
+   ;;TODO: variables
 
    :language 'noir
    :feature 'string

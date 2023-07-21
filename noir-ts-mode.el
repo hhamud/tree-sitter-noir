@@ -66,8 +66,62 @@
   "Syntax table for `noir-ts-mode'.")
 
 
+(defvar noir-ts-mode--keywords
+  '("keyword1" "keyword2" "keyword3")
+  "Noir keywords for tree-sitter font-locking.")
+
+
+(defvar noir-ts-mode--operators
+  '("!"  "!=" "%" "%=" "&" "&=" "&&" "*" "*=" "+" "+=" "," "-" "-="
+    "->" "."  ".."  "..=" "..."  "/" "/=" ":" ";" "<<" "<<=" "<" "<="
+    "=" "==" "=>" ">" ">=" ">>" ">>=" "@" "^" "^=" "|" "|=" "||" "?")
+  "Noir operators for tree-sitter font-locking.")
+
+(defvar noir-ts-mode--font-lock-settings
+  (treesit-font-lock-rules
+   :language 'noir
+   :feature 'bracket
+   '((["(" ")" "[" "]" "{" "}"]) @font-lock-bracket-face)
+
+
+   ((identifier) @font-lock-type-face)
+
+   :language 'noir
+   :feature 'comment
+   '((comment) @font-lock-comment-face)
+
+   :language 'noir
+   :feature 'constant
+   `((boolean) @font-lock-constant-face
+     ((identifier) @font-lock-constant-face
+      (:match "^[A-Z][A-Z\\d_]*$" @font-lock-constant-face)))
+
+   :language 'noir
+   :feature 'delimiter
+   '((["," "." ";" ":" "::"]) @font-lock-delimiter-face)
+
+   :language 'noir
+   :feature 'keyword
+   `([,@noir-ts-mode--keywords] @font-lock-keyword-face)
+
+   :language 'noir
+   :feature 'number
+   '((integer) @font-lock-number-face)
+
+   :language 'noir
+   :feature 'operator
+   `([,@noir-ts-mode--operators] @font-lock-operator-face)
+
+   :language 'noir
+   :feature 'string
+   '([(char)
+      (string)] @font-lock-string-face))
+
+  "Tree-sitter font-lock settings for `noir-ts-mode'.")
+
+
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.noir\\'" . noir-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.nr\\'" . noir-ts-mode))
 
 ;;;###autoload
 (define-derived-mode noir-ts-mode prog-mode "Noir"
@@ -85,23 +139,8 @@
     (setq-local comment-end-skip (rx (or "\n" "*/")))
 
 
- ;; Font-lock.
-    (setq-local font-lock-defaults
-                '(noir-font-lock-keywords nil nil nil nil
-                  (font-lock-syntactic-face-function
-                   . noir-font-lock-syntactic-face-function)))
-
-    ;; Imenu.
-(setq-local imenu-generic-expression
-            '((nil "^\\s-*def\\s-+\\(.*\\)" 1)))
-
-    ;; Indent.
-(setq-local indent-line-function 'indent-relative)
-
-
- ;; Navigation.
-(setq-local beginning-of-defun-function 'noir-beginning-of-defun)
-(setq-local end-of-defun-function 'noir-end-of-defun)
+ ;; Font-lock
+ (setq-local treesit-font-lock-settings noir-ts-mode--font-lock-settings)
 
     (treesit-major-mode-setup)))
 

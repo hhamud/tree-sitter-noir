@@ -12,7 +12,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -35,7 +35,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -168,7 +168,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -287,7 +287,7 @@
             "named": true
           },
           {
-            "type": "string",
+            "type": "string_literal",
             "named": true
           },
           {
@@ -491,7 +491,7 @@
             "named": true
           },
           {
-            "type": "string",
+            "type": "string_literal",
             "named": true
           },
           {
@@ -655,7 +655,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -806,7 +806,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1040,7 +1040,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1159,7 +1159,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1278,7 +1278,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1466,7 +1466,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1509,7 +1509,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -1627,7 +1627,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1742,7 +1742,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -1964,7 +1964,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -2035,7 +2035,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -2108,7 +2108,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -2226,7 +2226,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "string_literal",
           "named": true
         },
         {
@@ -2377,7 +2377,7 @@
     "named": false
   },
   {
-    "type": "String",
+    "type": "String_Literal",
     "named": false
   },
   {
@@ -2501,7 +2501,7 @@
     "named": true
   },
   {
-    "type": "string",
+    "type": "string_literal",
     "named": true
   },
   {

@@ -33,7 +33,12 @@ const numeric_types = [
   "i128",
 ]
 
-const primitve_types = ["Field", "bool", "String", "Self"]
+const primitve_types = [
+  "Field",
+  "bool",
+  "String_Literal",
+  "Self",
+]
 
 module.exports = grammar({
   name: "noir",
@@ -150,7 +155,7 @@ module.exports = grammar({
         $.unary_expression,
         $.identifier,
         $.integer,
-        $.string,
+        $.string_literal,
         $.character,
         $.array,
         $.boolean,
@@ -179,7 +184,7 @@ module.exports = grammar({
       seq(
         $.identifier,
         "[",
-        choice($.identifier, $.integer, $.string),
+        choice($.identifier, $.integer, $.string_literal),
         "]"
       ),
 
@@ -195,7 +200,7 @@ module.exports = grammar({
         )
       ),
 
-    string: ($) => /b?"(\\.|[^"\\])*"/,
+    string_literal: ($) => /b?"(\\.|[^"\\])*"/,
 
     character: ($) => /'(\\.|[^'\\])*'/,
 
@@ -213,8 +218,10 @@ module.exports = grammar({
         "[",
         optional(
           seq(
-            choice($.integer, $.string),
-            repeat(seq(",", choice($.integer, $.string)))
+            choice($.integer, $.string_literal),
+            repeat(
+              seq(",", choice($.integer, $.string_literal))
+            )
           )
         ),
         "]"
@@ -370,7 +377,7 @@ module.exports = grammar({
           choice(
             $.identifier,
             $._punctuation,
-            choice($.integer, $.string)
+            choice($.integer, $.string_literal)
           )
         ),
         "]"
@@ -421,7 +428,7 @@ module.exports = grammar({
             choice(
               $._type,
               $.integer,
-              $.string,
+              $.string_literal,
               $.identifier
             )
           )

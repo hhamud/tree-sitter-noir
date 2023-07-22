@@ -40,7 +40,7 @@ false;
  (boolean))
 
 ============================================
-String Literals
+String_Literal Literals
 ============================================
 
 "";
@@ -52,12 +52,12 @@ b"foo\nbar";
 
 ----------------------------------------------------------------
 (source_file
- (string)
- (string)
- (string)
- (string)
- (string)
- (string))
+ (string_literal)
+ (string_literal)
+ (string_literal)
+ (string_literal)
+ (string_literal)
+ (string_literal))
 
 ============================================
 Character literals
@@ -224,7 +224,7 @@ for i in 0..8 {
                       (binary_expression
                         (integer)
                         (identifier))))))
-              (string))))))
+              (string_literal))))))
 
 
 ============================================

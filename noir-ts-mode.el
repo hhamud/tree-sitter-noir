@@ -67,9 +67,9 @@
 
 
 (defvar noir-ts-mode--keywords
-  '("as" "break" "const" "continue" "else"
-    "fn" "for" "if" "impl" "in" "let"
-    "mod" "return" "struct" "type"
+  '("as" "else" "fn" "for" "if"
+    "impl" "in" "let" "mod"
+    "return" "struct" "type"
     "use" "while" (assert) (self) 
     (mutable) (viewer))
   "Noir keywords for tree-sitter font-locking.")
@@ -82,6 +82,7 @@
 
 (defvar noir-ts-mode--font-lock-settings
   (treesit-font-lock-rules
+
    :language 'noir
    :feature 'bracket
    '((["(" ")" "[" "]" "{" "}"]) @font-lock-bracket-face)
@@ -110,10 +111,14 @@
    :feature 'operator
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
 
-   ;;TODO: types
-   ;;TODO: functions
-   ;;TODO: structs
-   ;;TODO: variables
+   :language 'noir
+   :feature 'type
+   '((generic) @font-lock-type-face)
+
+   :language 'noir
+   :feature 'variable
+   '((identifier) @font-lock-variable-name-face)
+
 
    :language 'noir
    :feature 'string
@@ -123,11 +128,17 @@
   "Tree-sitter font-lock settings for `noir-ts-mode'.")
 
 
+(defun noir-ts-mode--indent-rules ()
+  "Tree-sitter indent rules for `noir-ts-mode'")
+
+(defun noir-ts-mode--imenu ()
+  "Return Imenu alist for current buffer.")
+
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.nr\\'" . noir-ts-mode))
 
 ;;;###autoload
-(define-derived-mode noir-ts-mode prog-mode "Noir"
+(define-derived-mode noir-ts-mode prog-mode "Noir-treesitter"
   "Major mode for editing Noir, powered by tree-sitter."
   :group 'noir
   :syntax-table noir-ts-mode--syntax-table
@@ -141,9 +152,21 @@
     (setq-local comment-start-skip (rx (or "//" "/*")))
     (setq-local comment-end-skip (rx (or "\n" "*/")))
 
+    (setq-local imenu-create-index-function #'noir-ts-mode--imenu)
+    (setq-local which-func-functions nil)
 
- ;; Font-lock
- (setq-local treesit-font-lock-settings noir-ts-mode--font-lock-settings)
+    ;;;; Indent.
+    ;;(setq-local treesit-simple-indent-rules noir-ts-mode--indent-rules)
+
+    ;; Font-lock
+    (setq-local treesit-font-lock-settings noir-ts-mode--font-lock-settings)
+    (setq-local treesit-font-lock-feature-list
+                '((comment)
+                  (keyword string)
+                  (number constant variable type)
+                  (bracket delimiter operator)))
+    
+
 
     (treesit-major-mode-setup)))
 

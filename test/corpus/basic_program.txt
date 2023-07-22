@@ -107,7 +107,7 @@ fn test_ecrecover() {
         (assert
         (binary_expression
             (identifier)
-            (string))))))
+            (string_literal))))))
 
 ================================================================================
 Global Program

@@ -71,7 +71,7 @@
     "impl" "in" "let" "mod"
     "return" "struct" "type"
     "use" "while" (assert) (self) 
-    (mutable) (viewer))
+    (mutable) (viewer) (global))
   "Noir keywords for tree-sitter font-locking.")
 
 (defvar noir-ts-mode--operators
@@ -80,65 +80,72 @@
     "=" "==" "=>" ">" ">=" ">>" ">>=" "@" "^" "^=" "|" "|=" "||" "?")
   "Noir operators for tree-sitter font-locking.")
 
+
 (defvar noir-ts-mode--font-lock-settings
   (treesit-font-lock-rules
 
-   :language 'noir
    :feature 'bracket
+   :language 'noir
    '((["(" ")" "[" "]" "{" "}"]) @font-lock-bracket-face)
 
-   :language 'noir
    :feature 'comment
+   :language 'noir
    '((comment) @font-lock-comment-face)
 
-   :language 'noir
    :feature 'constant
+   :language 'noir
    '((boolean) @font-lock-constant-face)
 
-   :language 'noir
    :feature 'delimiter
+   :language 'noir
    '((["," "." ";" ":" "::"]) @font-lock-delimiter-face)
 
-   :language 'noir
    :feature 'keyword
+   :language 'noir
    `([,@noir-ts-mode--keywords] @font-lock-keyword-face)
 
-   :language 'noir
    :feature 'number
+   :language 'noir
    '((integer) @font-lock-number-face)
 
-   :language 'noir
    :feature 'operator
+   :language 'noir
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
 
-   :language 'noir
    :feature 'type
+   :language 'noir
    '((generic) @font-lock-type-face)
 
-   :language 'noir
    :feature 'variable
+   :language 'noir
    '((identifier) @font-lock-variable-name-face)
 
-
-   :language 'noir
    :feature 'string
-   '([(char)
-      (string)] @font-lock-string-face))
+   :language 'noir
+   '((string_literal) @font-lock-string-face))
 
   "Tree-sitter font-lock settings for `noir-ts-mode'.")
 
+(defvar noir-ts-mode--indent-rules
+  `((noir
+     ((node-is ")") parent-bol 0)
+     ((node-is "]") parent-bol 0)
+     ((node-is "}") (and parent parent-bol) 0)
+     ((parent-is "array") parent-bol noir-ts-mode-indent-offset)
+     ((parent-is "binary_expression") parent-bol noir-ts-mode-indent-offset)
+     ((parent-is "body") parent-bol noir-ts-mode-indent-offset)
+     ((parent-is "_expression") parent-bol noir-ts-mode-indent-offset)
+     ((parent-is "let_declaration") parent-bol noir-ts-mode-indent-offset)
+     ((parent-is "parameters") parent-bol noir-ts-mode-indent-offset)))
+  "Tree-sitter indent rules for `noir-ts-mode'.")
 
-(defun noir-ts-mode--indent-rules ()
-  "Tree-sitter indent rules for `noir-ts-mode'")
 
-(defun noir-ts-mode--imenu ()
-  "Return Imenu alist for current buffer.")
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.nr\\'" . noir-ts-mode))
 
 ;;;###autoload
-(define-derived-mode noir-ts-mode prog-mode "Noir-treesitter"
+(define-derived-mode noir-ts-mode prog-mode "Noir"
   "Major mode for editing Noir, powered by tree-sitter."
   :group 'noir
   :syntax-table noir-ts-mode--syntax-table
@@ -146,26 +153,32 @@
   (when (treesit-ready-p 'noir)
     (treesit-parser-create 'noir)
 
+    ;; Set the level of syntax highlighting detail
+    (setq-local treesit-font-lock-level 4)
+
     ;; Comments.
     (setq-local comment-start "// ")
     (setq-local comment-end "")
     (setq-local comment-start-skip (rx (or "//" "/*")))
     (setq-local comment-end-skip (rx (or "\n" "*/")))
 
-    (setq-local imenu-create-index-function #'noir-ts-mode--imenu)
-    (setq-local which-func-functions nil)
-
-    ;;;; Indent.
-    ;;(setq-local treesit-simple-indent-rules noir-ts-mode--indent-rules)
+    ;; Indent.
+    (setq-local indent-tabs-mode nil
+                treesit-simple-indent-rules noir-ts-mode--indent-rules)
 
     ;; Font-lock
     (setq-local treesit-font-lock-settings noir-ts-mode--font-lock-settings)
     (setq-local treesit-font-lock-feature-list
                 '((comment)
                   (keyword string)
-                  (number constant variable type)
+                  (constant variable type)
                   (bracket delimiter operator)))
-    
+
+    ;; Navigation.
+    (setq-local treesit-defun-type-regexp
+                (regexp-opt '("function_definition"
+                              "struct_method"
+                              "struct_definition")))
 
 
     (treesit-major-mode-setup)))
@@ -173,3 +186,4 @@
 (provide 'noir-ts-mode)
 
 ;;; noir-ts-mode.el ends here
+

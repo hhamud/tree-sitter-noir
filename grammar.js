@@ -33,12 +33,7 @@ const numeric_types = [
   "i128",
 ]
 
-const primitve_types = [
-  "Field",
-  "bool",
-  "String_Literal",
-  "Self",
-]
+const primitve_types = ["Field", "bool", "Self"]
 
 module.exports = grammar({
   name: "noir",
@@ -48,6 +43,7 @@ module.exports = grammar({
   externals: ($) => [$.float],
 
   conflicts: ($) => [
+    [$.array_type, $.array],
     [$.generic_type, $._typed_identifier],
     [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],
@@ -218,7 +214,11 @@ module.exports = grammar({
         "[",
         optional(
           seq(
-            choice($.integer, $.string_literal),
+            choice(
+              $.integer,
+              $.string_literal,
+              $.identifier
+            ),
             repeat(
               seq(",", choice($.integer, $.string_literal))
             )
@@ -252,8 +252,16 @@ module.exports = grammar({
     array_type: ($) =>
       seq(
         "[",
-        choice(...numeric_types, ...primitve_types),
-        optional(seq(";", choice($.integer, $.identifier))),
+        seq(
+          choice(
+            $.identifier,
+            ...numeric_types,
+            ...primitve_types
+          ),
+          optional(
+            seq(";", choice($.integer, $.identifier))
+          )
+        ),
         "]"
       ),
 
@@ -279,6 +287,7 @@ module.exports = grammar({
         "fn",
         $.identifier,
         optional($.generic),
+        optional($.array_type),
         $.parameter,
         optional($.return_type),
         $.body
@@ -292,7 +301,8 @@ module.exports = grammar({
     // (self, n: Field)
     // ([pky, pkx])
     // (sm[i].signature)
-    // (sm[i].signature)
+    // self, f: fn(T, T) -> T
+    // TODO: rewrite to add a recursive solution for HOF, (higher order functions)
 
     parameter: ($) =>
       seq("(", optional(commaSep($._expression)), ")"),
@@ -404,7 +414,8 @@ module.exports = grammar({
         "}"
       ),
 
-    struct_expression: ($) => dotSep($.identifier),
+    struct_expression: ($) =>
+      dotSep(choice($.identifier, $.array)),
 
     struct_function: ($) =>
       seq(
@@ -440,7 +451,8 @@ module.exports = grammar({
       seq(
         "impl",
         optional($.generic),
-        $.identifier,
+        optional($.identifier),
+        optional($.array_type),
         optional($.generic),
         $.body
       ),

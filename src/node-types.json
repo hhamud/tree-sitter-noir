@@ -8,6 +8,10 @@
       "required": false,
       "types": [
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -46,7 +50,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
@@ -859,6 +863,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "array_type",
+          "named": true
+        },
         {
           "type": "body",
           "named": true
@@ -2050,6 +2058,10 @@
       "required": true,
       "types": [
         {
+          "type": "array",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         }
@@ -2122,6 +2134,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "array_type",
+          "named": true
+        },
         {
           "type": "body",
           "named": true
@@ -2374,10 +2390,6 @@
   },
   {
     "type": "Self",
-    "named": false
-  },
-  {
-    "type": "String_Literal",
     "named": false
   },
   {

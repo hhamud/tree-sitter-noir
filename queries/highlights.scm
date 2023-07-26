@@ -75,7 +75,7 @@
 (self) @variable.builtin
 
 (character) @string
-(string) @string
+(string_literal) @string
 
 (boolean) @constant.builtin
 (integer) @constant.builtin

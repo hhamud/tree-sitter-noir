@@ -43,6 +43,8 @@ module.exports = grammar({
   externals: ($) => [$.float],
 
   conflicts: ($) => [
+    [$.function_call, $.self_method],
+    [$.return_type, $.generic_type],
     [$.array_type, $.array],
     [$.generic_type, $._typed_identifier],
     [$.array_identifier, $._expression],
@@ -57,6 +59,8 @@ module.exports = grammar({
     [$._expression, $.struct_initialization],
     [$.module],
     [$._type],
+    [$._typed_identifier],
+    [$.self_method],
     [$.function_import],
     [$.let_declaration, $.function_import],
   ],
@@ -113,7 +117,16 @@ module.exports = grammar({
         [PREC.bitxor, "^"],
         [
           PREC.comparative,
-          choice("==", "!=", "<", "<=", ">", ">="),
+          choice(
+            "==",
+            "!=",
+            "<",
+            "<=",
+            ">",
+            ">=",
+            "|=",
+            "&="
+          ),
         ],
         [PREC.shift, choice("<<", ">>")],
         [PREC.additive, choice("+", "-", "+=", "-=")],
@@ -212,16 +225,13 @@ module.exports = grammar({
     array: ($) =>
       seq(
         "[",
-        optional(
-          seq(
-            choice(
-              $.integer,
-              $.string_literal,
-              $.identifier
-            ),
+        seq(
+          choice($.integer, $.string_literal, $.identifier),
+          choice(
             repeat(
               seq(",", choice($.integer, $.string_literal))
-            )
+            ),
+            seq(";", $.identifier)
           )
         ),
         "]"
@@ -271,7 +281,12 @@ module.exports = grammar({
     _type: ($) =>
       seq(
         optional($.comptime),
-        choice($.single_type, $.array_type, $.generic_type)
+        choice(
+          $.single_type,
+          $.array_type,
+          $.generic_type,
+          $.function_type
+        )
       ),
 
     // functions
@@ -302,7 +317,6 @@ module.exports = grammar({
     // ([pky, pkx])
     // (sm[i].signature)
     // self, f: fn(T, T) -> T
-    // TODO: rewrite to add a recursive solution for HOF, (higher order functions)
 
     parameter: ($) =>
       seq("(", optional(commaSep($._expression)), ")"),
@@ -320,6 +334,9 @@ module.exports = grammar({
         optional($.viewer),
         choice($._type, $.identifier)
       ),
+
+    function_type: ($) =>
+      seq("fn", $.parameter, $.return_type),
 
     // modules
     module: ($) =>
@@ -428,7 +445,20 @@ module.exports = grammar({
     self: ($) => "self",
 
     self_method: ($) =>
-      seq($.self, optional(repeat(seq(".", $.identifier)))),
+      seq(
+        $.self,
+        optional(
+          choice(
+            $.array,
+            repeat(
+              seq(
+                ".",
+                choice($.identifier, $.function_call)
+              )
+            )
+          )
+        )
+      ),
 
     _field: ($) =>
       seq(
@@ -475,7 +505,8 @@ module.exports = grammar({
       seq($.if_exp, optional($.else_exp)),
 
     // declarations
-    let_declaration: ($) => seq("let", $._expression, ";"),
+    let_declaration: ($) =>
+      seq("let", optional($.mutable), $._expression, ";"),
 
     // identifier class
     assert: ($) => seq("assert", "(", $._expression, ")"),

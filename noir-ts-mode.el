@@ -65,19 +65,17 @@
     table)
   "Syntax table for `noir-ts-mode'.")
 
-
-(defvar noir-ts-mode--keywords
+ (defvar noir-ts-mode--keywords
   '("as" "else" "fn" "for" "if"
     "impl" "in" "let" "mod"
-    "return" "struct" "type"
-    "use" "while" (assert) (self) 
+    "struct" "use" (assert) (self)
     (mutable) (viewer) (global))
-  "Noir keywords for tree-sitter font-locking.")
+   "Noir keywords for tree-sitter font-locking.")
 
 (defvar noir-ts-mode--operators
-  '("!"  "!=" "%" "%=" "&" "&=" "&&" "*" "*=" "+" "+=" "," "-" "-="
-    "->" "."  ".."  "..=" "..."  "/" "/=" ":" ";" "<<" "<<=" "<" "<="
-    "=" "==" "=>" ">" ">=" ">>" ">>=" "@" "^" "^=" "|" "|=" "||" "?")
+  '("!"  "!=" "%" "&" "&=" "&&" "*" "+" "+=" "," "-" "-="
+    "->" "."  ".." "/" ":" ";" "<<" "<" "<="
+    "=" "==" ">" ">=" ">>" "^" "|" "|=" "||")
   "Noir operators for tree-sitter font-locking.")
 
 

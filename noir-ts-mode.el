@@ -68,7 +68,7 @@
  (defvar noir-ts-mode--keywords
   '("as" "else" "fn" "for" "if"
     "impl" "in" "let" "mod"
-    "struct" "use" (assert) (self)
+    "struct" "use" (return) (assert) (self)
     (mutable) (viewer) (global))
    "Noir keywords for tree-sitter font-locking.")
 
@@ -106,13 +106,19 @@
    :language 'noir
    '((integer) @font-lock-number-face)
 
+   :feature 'function-name
+   :language 'noir
+   '((function_definition
+      (identifier) @font-lock-function-name-face))
+
+
    :feature 'operator
    :language 'noir
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
 
    :feature 'type
    :language 'noir
-   '((generic) @font-lock-type-face)
+   '([(generic) (single_type) (array_type)] @font-lock-type-face)
 
    :feature 'variable
    :language 'noir
@@ -120,7 +126,7 @@
 
    :feature 'string
    :language 'noir
-   '((string_literal) @font-lock-string-face))
+   '([(char) (string_literal)] @font-lock-string-face))
 
   "Tree-sitter font-lock settings for `noir-ts-mode'.")
 
@@ -136,7 +142,6 @@
      ((parent-is "let_declaration") parent-bol noir-ts-mode-indent-offset)
      ((parent-is "parameters") parent-bol noir-ts-mode-indent-offset)))
   "Tree-sitter indent rules for `noir-ts-mode'.")
-
 
 
 ;;;###autoload
@@ -169,7 +174,7 @@
     (setq-local treesit-font-lock-feature-list
                 '((comment)
                   (keyword string)
-                  (constant variable type)
+                  (constant variable type function-name)
                   (bracket delimiter operator)))
 
     ;; Navigation.

@@ -46,8 +46,10 @@ module.exports = grammar({
   conflicts: ($) => [
     [$.function_call, $.self_method],
     [$.return_type, $.generic_type],
+    [$._type, $.generic_type],
     [$.array_type, $.array],
     [$.generic_type, $._typed_identifier],
+    [$.array_identifier, $._expression, $._type],
     [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],
     [$._definition, $._expression],
@@ -55,9 +57,12 @@ module.exports = grammar({
     [$.struct_function, $.struct_expression],
     [$.struct_function, $._expression],
     [$.struct_initialization, $.single_type],
-    [$.generic_type, $._expression],
+    [$.generic_type, $._type, $._expression],
+    [$.function_call, $._type, $._expression],
+    [$._type, $._expression],
     [$.function_call, $._expression],
     [$._expression, $.struct_initialization],
+    [$._type, $._expression, $.struct_initialization],
     [$.module],
     [$._type],
     [$._typed_identifier],
@@ -206,7 +211,7 @@ module.exports = grammar({
         seq(
           optional($.viewer),
           optional($.comptime),
-          choice($._type, $.identifier)
+          $._type
         )
       ),
 
@@ -290,7 +295,8 @@ module.exports = grammar({
           $.single_type,
           $.array_type,
           $.generic_type,
-          $.function_type
+          $.function_type,
+          field("type", $.identifier)
         )
       ),
 
@@ -334,11 +340,7 @@ module.exports = grammar({
       ),
 
     return_type: ($) =>
-      seq(
-        "->",
-        optional($.viewer),
-        choice($._type, $.identifier)
-      ),
+      seq("->", optional($.viewer), $._type),
 
     function_type: ($) =>
       seq("fn", $.parameter, $.return_type),
@@ -472,12 +474,7 @@ module.exports = grammar({
         optional(
           seq(
             ":",
-            choice(
-              $._type,
-              $.integer,
-              $.string_literal,
-              $.identifier
-            )
+            choice($._type, $.integer, $.string_literal)
           )
         ),
         optional(",")

@@ -835,17 +835,8 @@
               ]
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_type"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_type"
             }
           ]
         }
@@ -1262,6 +1253,14 @@
             {
               "type": "SYMBOL",
               "name": "function_type"
+            },
+            {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
             }
           ]
         }
@@ -1465,17 +1464,8 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_type"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_type"
         }
       ]
     },
@@ -2020,10 +2010,6 @@
                     {
                       "type": "SYMBOL",
                       "name": "string_literal"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "identifier"
                     }
                   ]
                 }
@@ -2258,8 +2244,10 @@
   "conflicts": [
     ["function_call", "self_method"],
     ["return_type", "generic_type"],
+    ["_type", "generic_type"],
     ["array_type", "array"],
     ["generic_type", "_typed_identifier"],
+    ["array_identifier", "_expression", "_type"],
     ["array_identifier", "_expression"],
     ["function_call", "struct_expression"],
     ["_definition", "_expression"],
@@ -2267,9 +2255,12 @@
     ["struct_function", "struct_expression"],
     ["struct_function", "_expression"],
     ["struct_initialization", "single_type"],
-    ["generic_type", "_expression"],
+    ["generic_type", "_type", "_expression"],
+    ["function_call", "_type", "_expression"],
+    ["_type", "_expression"],
     ["function_call", "_expression"],
     ["_expression", "struct_initialization"],
+    ["_type", "_expression", "struct_initialization"],
     ["module"],
     ["_type"],
     ["_typed_identifier"],

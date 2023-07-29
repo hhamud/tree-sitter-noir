@@ -68,7 +68,7 @@
  (defvar noir-ts-mode--keywords
   '("as" "else" "fn" "for" "if"
     "impl" "in" "let" "mod"
-    "struct" "use" (return) (assert) (self)
+    "struct" "use" (crate) (super) (return) (assert) (self)
     (mutable) (viewer) (global) (comptime))
    "Noir keywords for tree-sitter font-locking.")
 
@@ -126,11 +126,14 @@
    :feature 'type
    :override t
    :language 'noir
-   '((generic) @font-lock-type-face
+   '((generic (identifier)) @font-lock-type-face
      (single_type) @font-lock-type-face
      (array_type (identifier) @font-lock-type-face)
-     (module (identifier) @font-lock-type-face))
+     (module (identifier) @font-lock-type-face)
+     (function_definition (parameter (type: (identifier))) @font-lock-type-face)
+     (return_type (identifier) @font-lock-type-face))
 
+   ;;(treesit-query-validate 'noir '((generic (identifier))))
 
    :feature 'variable
    :language 'noir

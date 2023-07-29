@@ -20,7 +20,6 @@ const PREC = {
   closure: -1,
 }
 
-//@TODO replace numeric types with something better
 const numeric_types = [
   "u8",
   "i8",
@@ -207,7 +206,7 @@ module.exports = grammar({
     _typed_identifier: ($) =>
       seq(
         optional($.mutable),
-        $.identifier,
+        field("var", $.identifier),
         ":",
         seq(
           optional($.viewer),
@@ -343,8 +342,10 @@ module.exports = grammar({
     return_type: ($) =>
       seq(
         "->",
-        optional($.viewer),
-        choice(seq("(", commaSep($._type), ")"), $._type)
+        choice(
+          seq("(", commaSep($._type), ")"),
+          seq(optional($.viewer), $._type)
+        )
       ),
 
     function_type: ($) =>

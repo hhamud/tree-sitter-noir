@@ -67,9 +67,9 @@
 
  (defvar noir-ts-mode--keywords
   '("as" "else" "fn" "for" "if"
-    "impl" "in" "let" "mod"
+    "impl" "in" "let" "mod" "global"
     "struct" "use" (crate) (super) (return) (assert) (self)
-    (mutable) (viewer) (global) (comptime))
+    (mutable) (viewer)  (comptime))
    "Noir keywords for tree-sitter font-locking.")
 
 (defvar noir-ts-mode--operators
@@ -92,7 +92,11 @@
 
    :feature 'constant
    :language 'noir
-   '((boolean) @font-lock-constant-face)
+   '((boolean) @font-lock-constant-face
+     (parameter (identifier) @font-lock-constant-face)
+     ;;TODO: fix
+     (global (binary_expression left: (identifier)) @font-lock-constant-face))
+
 
    :feature 'delimiter
    :language 'noir
@@ -112,7 +116,7 @@
    '((function_definition
       (identifier) @font-lock-function-name-face)
      (function_call
-        (identifier) @font-lock-function-name-face))
+        (identifier) @font-lock-function-call-face))
 
    :feature 'builtin
    :override t
@@ -123,6 +127,7 @@
    :language 'noir
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
 
+
    :feature 'type
    :override t
    :language 'noir
@@ -131,13 +136,12 @@
      (array_type (identifier) @font-lock-type-face)
      (module (identifier) @font-lock-type-face)
      (function_definition (parameter type: (identifier)) @font-lock-type-face)
-     (return_type (identifier) @font-lock-type-face))
-
-   ;;(treesit-query-validate 'noir '((function_definition (parameter type: (identifier)))))
+     (return_type (identifier) @font-lock-type-face)
+     (struct_definition (identifier) @font-lock-type-face))
 
    :feature 'variable
    :language 'noir
-   '((identifier) @font-lock-variable-name-face)
+   '((let_declation (identifier)) @font-lock-variable-name-face)
 
    :feature 'string
    :language 'noir
@@ -189,7 +193,7 @@
     (setq-local treesit-font-lock-feature-list
                 '((comment)
                   (keyword string)
-                  (constant variable type function-name builtin)
+                  (constant variable type function-name builtin number)
                   (bracket delimiter operator)))
 
     ;; Navigation.

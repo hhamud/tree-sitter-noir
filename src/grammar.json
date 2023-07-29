@@ -1403,8 +1403,33 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "_expression"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_typed_identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "self_method"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "array"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_function"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "array_identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        }
+                      ]
                     },
                     {
                       "type": "REPEAT",
@@ -1416,8 +1441,33 @@
                             "value": ","
                           },
                           {
-                            "type": "SYMBOL",
-                            "name": "_expression"
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "_typed_identifier"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "self_method"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "array"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "_function"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "array_identifier"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "identifier"
+                              }
+                            ]
                           }
                         ]
                       }
@@ -2331,105 +2381,31 @@
     }
   ],
   "conflicts": [
-    [
-      "function_call",
-      "self_method"
-    ],
-    [
-      "return_type",
-      "generic_type"
-    ],
-    [
-      "_type",
-      "generic_type"
-    ],
-    [
-      "array_type",
-      "array"
-    ],
-    [
-      "generic_type",
-      "_typed_identifier"
-    ],
-    [
-      "array_identifier",
-      "_expression",
-      "_type"
-    ],
-    [
-      "array_identifier",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "struct_expression"
-    ],
-    [
-      "_definition",
-      "_expression"
-    ],
-    [
-      "_statement",
-      "_expression"
-    ],
-    [
-      "struct_function",
-      "struct_expression"
-    ],
-    [
-      "struct_function",
-      "_expression"
-    ],
-    [
-      "struct_initialization",
-      "single_type"
-    ],
-    [
-      "generic_type",
-      "_type",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "_type",
-      "_expression"
-    ],
-    [
-      "_type",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "_expression"
-    ],
-    [
-      "_expression",
-      "struct_initialization"
-    ],
-    [
-      "_type",
-      "_expression",
-      "struct_initialization"
-    ],
-    [
-      "module"
-    ],
-    [
-      "_type"
-    ],
-    [
-      "_typed_identifier"
-    ],
-    [
-      "self_method"
-    ],
-    [
-      "function_import"
-    ],
-    [
-      "let_declaration",
-      "function_import"
-    ]
+    ["function_call", "self_method"],
+    ["return_type", "generic_type"],
+    ["_type", "generic_type"],
+    ["array_type", "array"],
+    ["generic_type", "_typed_identifier"],
+    ["array_identifier", "_expression", "_type"],
+    ["array_identifier", "_expression"],
+    ["function_call", "struct_expression"],
+    ["_definition", "_expression"],
+    ["_statement", "_expression"],
+    ["struct_function", "struct_expression"],
+    ["struct_function", "_expression"],
+    ["struct_initialization", "single_type"],
+    ["generic_type", "_type", "_expression"],
+    ["function_call", "_type", "_expression"],
+    ["_type", "_expression"],
+    ["function_call", "_expression"],
+    ["_expression", "struct_initialization"],
+    ["_type", "_expression", "struct_initialization"],
+    ["module"],
+    ["_type"],
+    ["_typed_identifier"],
+    ["self_method"],
+    ["function_import"],
+    ["let_declaration", "function_import"]
   ],
   "precedences": [],
   "externals": [
@@ -2441,4 +2417,3 @@
   "inline": [],
   "supertypes": []
 }
-

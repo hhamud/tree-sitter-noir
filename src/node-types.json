@@ -1857,27 +1857,7 @@
           "named": true
         },
         {
-          "type": "as_identifier",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "character",
-          "named": true
-        },
-        {
           "type": "comptime",
-          "named": true
-        },
-        {
-          "type": "float",
           "named": true
         },
         {
@@ -1901,19 +1881,7 @@
           "named": true
         },
         {
-          "type": "grouped_expression",
-          "named": true
-        },
-        {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "import_identifier",
-          "named": true
-        },
-        {
-          "type": "integer",
           "named": true
         },
         {
@@ -1926,26 +1894,6 @@
         },
         {
           "type": "single_type",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "struct_expression",
-          "named": true
-        },
-        {
-          "type": "struct_function",
-          "named": true
-        },
-        {
-          "type": "struct_initialization",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         },
         {

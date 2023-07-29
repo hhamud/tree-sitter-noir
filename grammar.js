@@ -330,7 +330,22 @@ module.exports = grammar({
     // self, f: fn(T, T) -> T
 
     parameter: ($) =>
-      seq("(", optional(commaSep($._expression)), ")"),
+      seq(
+        "(",
+        optional(
+          commaSep(
+            choice(
+              $._typed_identifier,
+              $.self_method,
+              $.array,
+              $._function,
+              $.array_identifier,
+              $.identifier
+            )
+          )
+        ),
+        ")"
+      ),
 
     body: ($) =>
       seq(

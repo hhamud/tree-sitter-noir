@@ -127,3 +127,62 @@ impl<N> BigInt<N> {
                 (identifier)
                 (identifier))))
             (identifier))))))
+
+
+
+=====================================
+Tuple Types
+============================================
+
+fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
+    ((trip / constants::U96_POW_2_64) as u32, ((trip * constants::U96_POW_2_32) / constants::U96_POW_2_64) as u32, ((trip * constants::U96_POW_2_64) / constants::U96_POW_2_64) as u32)
+}
+
+----------------------------------------------------------------
+
+(source_file
+      (function_definition
+        (identifier)
+        (parameter
+          (identifier)
+          (identifier))
+        (return_type
+          (single_type)
+          (single_type)
+          (single_type))
+        (body
+          (grouped_expression
+            (as_identifier
+              (grouped_expression
+                (binary_expression
+                  (identifier)
+                  (import_identifier
+                    (identifier))
+                  (identifier)))
+              (single_type))
+            (as_identifier
+              (grouped_expression
+                (binary_expression
+                  (grouped_expression
+                    (binary_expression
+                      (identifier)
+                      (import_identifier
+                        (identifier))
+                      (identifier)))
+                  (import_identifier
+                    (identifier))
+                  (identifier)))
+              (single_type))
+            (as_identifier
+              (grouped_expression
+                (binary_expression
+                  (grouped_expression
+                    (binary_expression
+                      (identifier)
+                      (import_identifier
+                        (identifier))
+                      (identifier)))
+                  (import_identifier
+                    (identifier))
+                  (identifier)))
+              (single_type))))))

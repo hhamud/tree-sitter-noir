@@ -1,3 +1,127 @@
-optional(rule: RuleOrLiteral): ChoiceRule
-Creates a rule that matches zero or one occurrence of a given rule.
-It is analogous to the [x] (square bracket) syntax in EBNF notation.
+============================================
+Function Call
+============================================
+
+let x = get_octopus();
+
+
+-------------------------------------------------------------------------------
+
+(source_file
+      (let_declaration
+        (binary_expression
+        (identifier)
+          (function_call
+            (identifier)
+            (parameter)))))
+
+============================================
+Empty Function
+============================================
+
+fn foo() {}
+
+
+-------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+   (identifier)
+   (parameter)
+   (body)))
+
+
+
+============================================
+Function with inputs
+============================================
+
+fn foo(x : Field, y : pub Field){}
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (single_type)
+        (identifier)
+        (viewer)
+        (single_type))
+    (body)))
+
+============================================
+Function with inputs and return body
+============================================
+
+fn foo(x : Field, y : pub Field) -> pub Field {
+   x + y;
+}
+
+-------------------------------------------------------------------------------
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (single_type)
+        (identifier)
+        (viewer)
+        (single_type))
+    (return_type
+        (viewer)
+        (single_type))
+        (body
+          (binary_expression
+            (identifier)
+            (identifier)))))
+
+=====================================
+Array Function
+============================================
+
+fn sha256(_input : [u8]) -> [u8; 32]{}
+
+-------------------------------------------------------------------------------
+
+
+(source_file
+    (function_definition
+    (identifier)
+    (parameter
+        (identifier)
+        (array_type))
+    (return_type
+        (array_type
+            (integer)))
+        (body)))
+
+
+
+=====================================
+Generic Functions
+============================================
+
+fn id<T>(x: T) -> T  {
+    return x;
+}
+
+
+-------------------------------------------------------------------------------
+
+
+(source_file
+    (function_definition
+    (identifier)
+    (generic
+        (identifier))
+    (parameter
+        (identifier)
+        (identifier))
+    (return_type
+        (identifier))
+    (body
+        (return)
+        (identifier))))

@@ -130,10 +130,10 @@
      (single_type) @font-lock-type-face
      (array_type (identifier) @font-lock-type-face)
      (module (identifier) @font-lock-type-face)
-     (function_definition (parameter (type: (identifier))) @font-lock-type-face)
+     (function_definition (parameter type: (identifier)) @font-lock-type-face)
      (return_type (identifier) @font-lock-type-face))
 
-   ;;(treesit-query-validate 'noir '((generic (identifier))))
+   ;;(treesit-query-validate 'noir '((function_definition (parameter type: (identifier)))))
 
    :feature 'variable
    :language 'noir

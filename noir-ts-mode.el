@@ -93,10 +93,9 @@
    :feature 'constant
    :language 'noir
    '((boolean) @font-lock-constant-face
-     (parameter (identifier) @font-lock-constant-face)
-     ;;TODO: fix
-     (global (binary_expression left: (identifier)) @font-lock-constant-face))
+     (parameter (identifier) @font-lock-constant-face))
 
+   ;;(global (binary_expression left: (var: identifier)) @font-lock-constant-face)
 
    :feature 'delimiter
    :language 'noir

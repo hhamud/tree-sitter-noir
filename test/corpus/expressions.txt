@@ -320,7 +320,8 @@ global N: Field = 5;
     (binary_expression
       (identifier)
       (single_type)
-      (integer))))
+      (integer))
+      ))
 
 ============================================
 Impl Structs

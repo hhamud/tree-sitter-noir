@@ -20,6 +20,7 @@ const PREC = {
   closure: -1,
 }
 
+//@TODO replace numeric types with something better
 const numeric_types = [
   "u8",
   "i8",
@@ -255,6 +256,10 @@ module.exports = grammar({
 
     return: ($) => "return",
 
+    crate: ($) => "crate",
+
+    super: ($) => "super",
+
     //types
     single_type: ($) =>
       choice(...numeric_types, ...primitve_types),
@@ -352,7 +357,8 @@ module.exports = grammar({
       ),
 
     // imports
-    import_identifier: ($) => seq($.identifier, "::"),
+    import_identifier: ($) =>
+      seq(choice($.crate, $.super, $.identifier), "::"),
 
     _import_var: ($) =>
       seq(repeat1($.import_identifier), $.identifier),

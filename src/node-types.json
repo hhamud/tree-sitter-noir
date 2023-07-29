@@ -1438,7 +1438,15 @@
       "required": true,
       "types": [
         {
+          "type": "crate",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "super",
           "named": true
         }
       ]
@@ -2532,6 +2540,10 @@
     "named": true
   },
   {
+    "type": "crate",
+    "named": true
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -2622,6 +2634,10 @@
   {
     "type": "struct",
     "named": false
+  },
+  {
+    "type": "super",
+    "named": true
   },
   {
     "type": "true",

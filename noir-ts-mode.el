@@ -69,7 +69,7 @@
   '("as" "else" "fn" "for" "if"
     "impl" "in" "let" "mod"
     "struct" "use" (return) (assert) (self)
-    (mutable) (viewer) (global))
+    (mutable) (viewer) (global) (comptime))
    "Noir keywords for tree-sitter font-locking.")
 
 (defvar noir-ts-mode--operators
@@ -99,6 +99,7 @@
    '((["," "." ";" ":" "::"]) @font-lock-delimiter-face)
 
    :feature 'keyword
+   :override t
    :language 'noir
    `([,@noir-ts-mode--keywords] @font-lock-keyword-face)
 
@@ -109,16 +110,27 @@
    :feature 'function-name
    :language 'noir
    '((function_definition
-      (identifier) @font-lock-function-name-face))
+      (identifier) @font-lock-function-name-face)
+     (function_call
+        (identifier) @font-lock-function-name-face))
 
+   :feature 'builtin
+   :override t
+   :language 'noir
+   '((macro) @font-lock-builtin-face)
 
    :feature 'operator
    :language 'noir
    `([,@noir-ts-mode--operators] @font-lock-operator-face)
 
    :feature 'type
+   :override t
    :language 'noir
-   '([(generic) (single_type) (array_type)] @font-lock-type-face)
+   '((generic) @font-lock-type-face
+     (single_type) @font-lock-type-face
+     (array_type (identifier) @font-lock-type-face)
+     (module (identifier) @font-lock-type-face))
+
 
    :feature 'variable
    :language 'noir
@@ -174,7 +186,7 @@
     (setq-local treesit-font-lock-feature-list
                 '((comment)
                   (keyword string)
-                  (constant variable type function-name)
+                  (constant variable type function-name builtin)
                   (bracket delimiter operator)))
 
     ;; Navigation.

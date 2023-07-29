@@ -1034,6 +1034,14 @@
       "type": "STRING",
       "value": "return"
     },
+    "crate": {
+      "type": "STRING",
+      "value": "crate"
+    },
+    "super": {
+      "type": "STRING",
+      "value": "super"
+    },
     "single_type": {
       "type": "CHOICE",
       "members": [
@@ -1551,8 +1559,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "crate"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "super"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          ]
         },
         {
           "type": "STRING",

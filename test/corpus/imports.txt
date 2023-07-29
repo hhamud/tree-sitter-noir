@@ -129,3 +129,29 @@ use my::{*};
     (import_identifier
         (identifier))
     (import_body)))
+
+
+================================================================================
+Use crate and super
+================================================================================
+
+use crate::{ dot::{one, four} };
+use super::{ some::* };
+
+-------------------------------------------------------------------------------
+(source_file
+      (import
+        (import_identifier
+          (crate))
+        (import_body
+          (import_identifier
+            (identifier))
+          (import_body
+            (identifier)
+            (identifier))))
+      (import
+        (import_identifier
+          (super))
+        (import_body
+          (import_identifier
+            (identifier)))))

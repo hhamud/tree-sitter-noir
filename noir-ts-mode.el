@@ -67,8 +67,8 @@
 
  (defvar noir-ts-mode--keywords
   '("as" "else" "fn" "for" "if"
-    "impl" "in" "let" "mod" "global"
-    "struct" "use" (crate) (super) (return) (assert) (self)
+    "impl" "in" "let" "mod" "global" "assert" "constrain"
+    "struct" "use" (crate) (super) (return) (self)
     (mutable) (viewer)  (comptime))
    "Noir keywords for tree-sitter font-locking.")
 
@@ -91,11 +91,10 @@
    '((comment) @font-lock-comment-face)
 
    :feature 'constant
+   :override t
    :language 'noir
    '((boolean) @font-lock-constant-face
      (parameter (identifier) @font-lock-constant-face))
-
-   ;;(global (binary_expression left: (var: identifier)) @font-lock-constant-face)
 
    :feature 'delimiter
    :language 'noir
@@ -130,17 +129,19 @@
    :feature 'type
    :override t
    :language 'noir
-   '((generic (identifier)) @font-lock-type-face
+   '((generic_type (identifier) @font-lock-type-face)
+     (generic (identifier) @font-lock-type-face)
+     (generic (identifier) @font-lock-type-face)
      (single_type) @font-lock-type-face
      (array_type (identifier) @font-lock-type-face)
      (module (identifier) @font-lock-type-face)
-     (function_definition (parameter type: (identifier)) @font-lock-type-face)
+     (function_definition (parameter type: (identifier) @font-lock-type-face))
      (return_type (identifier) @font-lock-type-face)
-     (struct_definition (identifier) @font-lock-type-face))
+     (struct_definition type: (identifier) @font-lock-type-face))
 
    :feature 'variable
    :language 'noir
-   '((let_declation (identifier)) @font-lock-variable-name-face)
+   '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face)))
 
    :feature 'string
    :language 'noir

@@ -206,7 +206,7 @@ module.exports = grammar({
     _typed_identifier: ($) =>
       seq(
         optional($.mutable),
-        field("var", $.identifier),
+        $.identifier,
         ":",
         seq(
           optional($.viewer),
@@ -340,7 +340,8 @@ module.exports = grammar({
               $.array,
               $._function,
               $.array_identifier,
-              $.identifier
+              $.identifier,
+              $.grouped_expression
             )
           )
         ),
@@ -533,7 +534,13 @@ module.exports = grammar({
       seq("let", optional($.mutable), $._expression, ";"),
 
     // identifier class
-    assert: ($) => seq("assert", "(", $._expression, ")"),
+    assert: ($) =>
+      seq(
+        choice("assert", "constrain"),
+        "(",
+        $._expression,
+        ")"
+      ),
   },
 })
 

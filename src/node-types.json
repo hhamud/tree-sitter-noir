@@ -127,21 +127,11 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -601,16 +591,6 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     }
   },
@@ -619,16 +599,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": true,
         "required": false,
         "types": [
@@ -835,16 +805,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1117,21 +1077,11 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1277,16 +1227,6 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -1409,16 +1349,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1642,21 +1572,11 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1828,16 +1748,6 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -1881,6 +1791,10 @@
           "named": true
         },
         {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1916,21 +1830,11 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -2126,16 +2030,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": true,
         "required": false,
         "types": [
@@ -2507,21 +2401,11 @@
             "named": true
           }
         ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -2797,6 +2681,10 @@
   {
     "type": "comptime",
     "named": true
+  },
+  {
+    "type": "constrain",
+    "named": false
   },
   {
     "type": "crate",

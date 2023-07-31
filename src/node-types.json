@@ -117,31 +117,10 @@
   {
     "type": "assert",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -149,10 +128,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -172,10 +147,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -189,14 +160,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -216,15 +179,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -244,11 +199,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -263,19 +218,11 @@
         "required": true,
         "types": [
           {
-            "type": ":",
-            "named": false
-          },
-          {
             "type": "array",
             "named": true
           },
           {
             "type": "array_identifier",
-            "named": true
-          },
-          {
-            "type": "array_type",
             "named": true
           },
           {
@@ -295,10 +242,6 @@
             "named": true
           },
           {
-            "type": "comptime",
-            "named": true
-          },
-          {
             "type": "float",
             "named": true
           },
@@ -312,14 +255,6 @@
           },
           {
             "type": "function_import",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "generic_type",
             "named": true
           },
           {
@@ -339,15 +274,7 @@
             "named": true
           },
           {
-            "type": "mutable",
-            "named": true
-          },
-          {
             "type": "self_method",
-            "named": true
-          },
-          {
-            "type": "single_type",
             "named": true
           },
           {
@@ -367,11 +294,11 @@
             "named": true
           },
           {
-            "type": "unary_expression",
+            "type": "typed_identifier",
             "named": true
           },
           {
-            "type": "viewer",
+            "type": "unary_expression",
             "named": true
           }
         ]
@@ -479,19 +406,11 @@
         "required": true,
         "types": [
           {
-            "type": ":",
-            "named": false
-          },
-          {
             "type": "array",
             "named": true
           },
           {
             "type": "array_identifier",
-            "named": true
-          },
-          {
-            "type": "array_type",
             "named": true
           },
           {
@@ -511,10 +430,6 @@
             "named": true
           },
           {
-            "type": "comptime",
-            "named": true
-          },
-          {
             "type": "float",
             "named": true
           },
@@ -528,14 +443,6 @@
           },
           {
             "type": "function_import",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "generic_type",
             "named": true
           },
           {
@@ -555,15 +462,7 @@
             "named": true
           },
           {
-            "type": "mutable",
-            "named": true
-          },
-          {
             "type": "self_method",
-            "named": true
-          },
-          {
-            "type": "single_type",
             "named": true
           },
           {
@@ -583,31 +482,11 @@
             "named": true
           },
           {
-            "type": "unary_expression",
+            "type": "typed_identifier",
             "named": true
           },
           {
-            "type": "viewer",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
+            "type": "unary_expression",
             "named": true
           }
         ]
@@ -619,16 +498,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": true,
         "required": false,
         "types": [
@@ -760,10 +629,6 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "return",
           "named": true
         },
@@ -800,11 +665,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -833,28 +698,7 @@
   {
     "type": "for_loop",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -865,10 +709,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -892,10 +732,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -909,14 +745,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -936,19 +764,11 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "range",
           "named": true
         },
         {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -968,11 +788,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1107,31 +927,10 @@
   {
     "type": "global",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1139,10 +938,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -1166,10 +961,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -1183,14 +974,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -1222,15 +1005,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -1254,11 +1029,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1267,28 +1042,7 @@
   {
     "type": "grouped_expression",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
@@ -1299,10 +1053,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -1322,10 +1072,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -1339,14 +1085,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -1366,15 +1104,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -1394,11 +1124,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1407,28 +1137,7 @@
   {
     "type": "if_exp",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -1439,10 +1148,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -1466,10 +1171,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -1483,14 +1184,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -1510,15 +1203,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -1538,11 +1223,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1632,31 +1317,10 @@
   {
     "type": "let_declaration",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1664,10 +1328,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -1687,10 +1347,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -1704,14 +1360,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -1739,10 +1387,6 @@
           "named": true
         },
         {
-          "type": "single_type",
-          "named": true
-        },
-        {
           "type": "string_literal",
           "named": true
         },
@@ -1759,11 +1403,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -1818,28 +1462,7 @@
   {
     "type": "parameter",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
@@ -1850,14 +1473,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
-          "named": true
-        },
-        {
-          "type": "comptime",
           "named": true
         },
         {
@@ -1873,14 +1488,6 @@
           "named": true
         },
         {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
-          "named": true
-        },
-        {
           "type": "grouped_expression",
           "named": true
         },
@@ -1889,19 +1496,11 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
           "named": true
         },
         {
-          "type": "single_type",
-          "named": true
-        },
-        {
-          "type": "viewer",
+          "type": "typed_identifier",
           "named": true
         }
       ]
@@ -1910,31 +1509,10 @@
   {
     "type": "range",
     "named": true,
-    "fields": {
-      "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1942,10 +1520,6 @@
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -1965,10 +1539,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -1982,14 +1552,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -2009,15 +1571,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -2037,11 +1591,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -2130,16 +1684,6 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "var": {
         "multiple": true,
         "required": false,
         "types": [
@@ -2271,10 +1815,6 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "return",
           "named": true
         },
@@ -2311,11 +1851,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -2529,7 +2069,7 @@
     }
   },
   {
-    "type": "unary_expression",
+    "type": "typed_identifier",
     "named": true,
     "fields": {
       "type": {
@@ -2544,7 +2084,7 @@
       },
       "var": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
@@ -2558,15 +2098,50 @@
       "required": false,
       "types": [
         {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "mutable",
+          "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
+        },
+        {
+          "type": "viewer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
           "type": "array",
           "named": true
         },
         {
           "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "array_type",
           "named": true
         },
         {
@@ -2586,10 +2161,6 @@
           "named": true
         },
         {
-          "type": "comptime",
-          "named": true
-        },
-        {
           "type": "float",
           "named": true
         },
@@ -2603,14 +2174,6 @@
         },
         {
           "type": "function_import",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -2630,15 +2193,7 @@
           "named": true
         },
         {
-          "type": "mutable",
-          "named": true
-        },
-        {
           "type": "self_method",
-          "named": true
-        },
-        {
-          "type": "single_type",
           "named": true
         },
         {
@@ -2658,11 +2213,11 @@
           "named": true
         },
         {
-          "type": "unary_expression",
+          "type": "typed_identifier",
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "unary_expression",
           "named": true
         }
       ]

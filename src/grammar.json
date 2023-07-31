@@ -696,7 +696,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_typed_identifier"
+          "name": "typed_identifier"
         },
         {
           "type": "SYMBOL",
@@ -813,7 +813,7 @@
         }
       ]
     },
-    "_typed_identifier": {
+    "typed_identifier": {
       "type": "SEQ",
       "members": [
         {
@@ -1407,7 +1407,7 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "_typed_identifier"
+                          "name": "typed_identifier"
                         },
                         {
                           "type": "SYMBOL",
@@ -1449,7 +1449,7 @@
                             "members": [
                               {
                                 "type": "SYMBOL",
-                                "name": "_typed_identifier"
+                                "name": "typed_identifier"
                               },
                               {
                                 "type": "SYMBOL",
@@ -2432,7 +2432,7 @@
     ],
     [
       "generic_type",
-      "_typed_identifier"
+      "typed_identifier"
     ],
     [
       "array_identifier",
@@ -2501,7 +2501,7 @@
       "_type"
     ],
     [
-      "_typed_identifier"
+      "typed_identifier"
     ],
     [
       "self_method"

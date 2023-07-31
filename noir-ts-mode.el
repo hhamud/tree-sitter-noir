@@ -140,19 +140,18 @@
      (function_definition (parameter type: (identifier) @font-lock-type-face))
      (return_type (identifier) @font-lock-type-face)
      (struct_definition type: (identifier) @font-lock-type-face)
-     (struct_definition name: (identifier) @font-lock-type-face))
-
-   (treesit-query-validate 'noir '((final:(identifier))))
+     (struct_definition name: (identifier) @font-lock-type-face)
+     (global (binary_expression right: (identifier) @font-lock-type-face)))
 
    :feature 'variable
    :language 'noir
    '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face))
      (struct_definition var: (identifier) @font-lock-variable-name-face)
-     (global (binary_expression (identifier) @font-lock-variable-name-face)))
+     (global (binary_expression left: (identifier) @font-lock-variable-name-face)))
 
    :feature 'string
    :language 'noir
-   '([(char) (string_literal)] @font-lock-string-face))
+   '([(character) (string_literal)] @font-lock-string-face))
 
   "Tree-sitter font-lock settings for `noir-ts-mode'.")
 

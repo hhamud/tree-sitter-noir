@@ -47,7 +47,7 @@ module.exports = grammar({
     [$.return_type, $.generic_type],
     [$._type, $.generic_type],
     [$.array_type, $.array],
-    [$.generic_type, $._typed_identifier],
+    [$.generic_type, $.typed_identifier],
     [$.array_identifier, $._expression, $._type],
     [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],
@@ -64,7 +64,7 @@ module.exports = grammar({
     [$._type, $._expression, $.struct_initialization],
     [$.module],
     [$._type],
-    [$._typed_identifier],
+    [$.typed_identifier],
     [$.self_method],
     [$.function_import],
     [$.let_declaration, $.function_import],
@@ -180,7 +180,7 @@ module.exports = grammar({
         $.struct_function,
         $.as_identifier,
         $.self_method,
-        $._typed_identifier,
+        $.typed_identifier,
         $.struct_initialization,
         $.array_identifier,
         $._import_var
@@ -203,7 +203,7 @@ module.exports = grammar({
         "]"
       ),
 
-    _typed_identifier: ($) =>
+    typed_identifier: ($) =>
       seq(
         optional($.mutable),
         field("var", $.identifier),
@@ -335,7 +335,7 @@ module.exports = grammar({
         optional(
           commaSep(
             choice(
-              $._typed_identifier,
+              $.typed_identifier,
               $.self_method,
               $.array,
               $._function,

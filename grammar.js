@@ -492,7 +492,7 @@ module.exports = grammar({
 
     _field: ($) =>
       seq(
-        $.identifier,
+        field("var",$.identifier),
         optional(
           seq(
             ":",

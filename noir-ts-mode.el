@@ -95,7 +95,7 @@
    :language 'noir
    '((boolean) @font-lock-constant-face
      (parameter (identifier) @font-lock-constant-face)
-     (import_indentifier (identifier) @font-lock-constant-face))
+     (import_identifier (identifier) @font-lock-constant-face))
 
    :feature 'delimiter
    :language 'noir
@@ -108,8 +108,8 @@
 
    :feature 'number
    :language 'noir
-   '((integer) @font-lock-number-face
-     (import_indentifier final: (identifier) @font-lock-number-face)))
+   '((integer) @font-lock-constant-face)
+
 
    :feature 'function-name
    :language 'noir
@@ -146,7 +146,8 @@
    :feature 'variable
    :language 'noir
    '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face))
-     (struct_definition var: (identifier) @font-lock-variable-name-face))
+     (struct_definition var: (identifier) @font-lock-variable-name-face)
+     (global (binary_expression (identifier) @font-lock-variable-name-face)))
 
 
    :feature 'string

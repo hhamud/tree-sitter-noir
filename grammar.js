@@ -206,7 +206,7 @@ module.exports = grammar({
     _typed_identifier: ($) =>
       seq(
         optional($.mutable),
-        $.identifier,
+        field("var", $.identifier),
         ":",
         seq(
           optional($.viewer),

@@ -462,7 +462,7 @@ module.exports = grammar({
       ),
 
     struct_expression: ($) =>
-      dotSep(choice($.identifier, $.array)),
+    dotSep(choice($.identifier, $.array, $.integer)),
 
     struct_function: ($) =>
       seq(

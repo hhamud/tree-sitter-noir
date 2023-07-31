@@ -2008,6 +2008,10 @@
             {
               "type": "SYMBOL",
               "name": "array"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "integer"
             }
           ]
         },
@@ -2030,6 +2034,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "array"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "integer"
                   }
                 ]
               }

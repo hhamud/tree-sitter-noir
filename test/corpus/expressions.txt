@@ -515,3 +515,25 @@ impl<T> RepeatedValue<T> {
                     (self_method
                         (self)
                         (identifier))))))))))))
+
+
+============================================
+Integer methods
+============================================
+
+straight_div_result.2;
+straight_div_result.1;
+straight_div_result.0;
+
+
+----------------------------------------------------------------
+(source_file
+      (struct_expression
+        (identifier)
+        (integer))
+      (struct_expression
+        (identifier)
+        (integer))
+      (struct_expression
+        (identifier)
+        (integer)))

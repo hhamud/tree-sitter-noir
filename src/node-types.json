@@ -2215,7 +2215,27 @@
     "type": "struct_definition",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "var": {
         "multiple": true,
         "required": false,
         "types": [
@@ -2228,7 +2248,7 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "array_type",
@@ -2248,10 +2268,6 @@
         },
         {
           "type": "generic_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -2312,6 +2328,16 @@
     "named": true,
     "fields": {
       "type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "var": {
         "multiple": true,
         "required": false,
         "types": [

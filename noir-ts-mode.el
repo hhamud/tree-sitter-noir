@@ -137,11 +137,16 @@
      (module (identifier) @font-lock-type-face)
      (function_definition (parameter type: (identifier) @font-lock-type-face))
      (return_type (identifier) @font-lock-type-face)
-     (struct_definition type: (identifier) @font-lock-type-face))
+     (struct_definition type: (identifier) @font-lock-type-face)
+     (struct definition (name: identifier) @font-lock-type-face)
+     )
 
    :feature 'variable
    :language 'noir
-   '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face)))
+   '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face))
+     (struct_definition (var: identifier) @font-lock-variable-name-face)
+     )
+
 
    :feature 'string
    :language 'noir

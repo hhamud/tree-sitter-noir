@@ -446,7 +446,7 @@ module.exports = grammar({
     struct_definition: ($) =>
       seq(
         "struct",
-        $.identifier,
+        field("name", $.identifier),
         optional($.generic),
         "{",
         repeat($._field),
@@ -492,7 +492,7 @@ module.exports = grammar({
 
     _field: ($) =>
       seq(
-        field("var",$.identifier),
+        field("var", $.identifier),
         optional(
           seq(
             ":",

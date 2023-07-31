@@ -385,7 +385,10 @@ module.exports = grammar({
       seq(choice($.crate, $.super, $.identifier), "::"),
 
     _import_var: ($) =>
-      seq(repeat1($.import_identifier), $.identifier),
+      seq(
+        repeat1($.import_identifier),
+        field("final", $.identifier)
+      ),
 
     import: ($) =>
       seq(
@@ -462,7 +465,7 @@ module.exports = grammar({
       ),
 
     struct_expression: ($) =>
-    dotSep(choice($.identifier, $.array, $.integer)),
+      dotSep(choice($.identifier, $.array, $.integer)),
 
     struct_function: ($) =>
       seq(

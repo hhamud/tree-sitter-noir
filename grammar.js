@@ -387,7 +387,7 @@ module.exports = grammar({
     _import_var: ($) =>
       seq(
         repeat1($.import_identifier),
-        field("final", $.identifier)
+         $.identifier
       ),
 
     import: ($) =>

@@ -142,13 +142,13 @@
      (struct_definition type: (identifier) @font-lock-type-face)
      (struct_definition name: (identifier) @font-lock-type-face))
 
+   (treesit-query-validate 'noir '((final:(identifier))))
 
    :feature 'variable
    :language 'noir
    '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face))
      (struct_definition var: (identifier) @font-lock-variable-name-face)
      (global (binary_expression (identifier) @font-lock-variable-name-face)))
-
 
    :feature 'string
    :language 'noir

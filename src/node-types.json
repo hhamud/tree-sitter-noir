@@ -2093,7 +2093,7 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {

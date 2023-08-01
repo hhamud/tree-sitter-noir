@@ -159,7 +159,11 @@ module.exports = grammar({
       ),
 
     grouped_expression: ($) =>
-    seq("(", commaSep(seq(optional($.mutable),$._expression)), ")"),
+      seq(
+        "(",
+        commaSep(seq(optional($.mutable), $._expression)),
+        ")"
+      ),
 
     global: ($) => seq("global", $._statement),
 
@@ -211,7 +215,7 @@ module.exports = grammar({
         seq(
           optional($.viewer),
           optional($.comptime),
-          $._type
+          choice($._tuple_type, $._type)
         )
       ),
 
@@ -221,7 +225,11 @@ module.exports = grammar({
 
     as_identifier: ($) =>
       seq(
-        choice($.identifier, $.grouped_expression, $.integer),
+        choice(
+          $.identifier,
+          $.grouped_expression,
+          $.integer
+        ),
         "as",
         $._type
       ),
@@ -232,7 +240,12 @@ module.exports = grammar({
       seq(
         "[",
         seq(
-          choice($.integer, $.string_literal, $.identifier, $.as_identifier),
+          choice(
+            $.integer,
+            $.string_literal,
+            $.identifier,
+            $.as_identifier
+          ),
           choice(
             repeat(
               seq(",", choice($.integer, $.string_literal))
@@ -273,10 +286,7 @@ module.exports = grammar({
       seq(
         "[",
         seq(
-          choice(
-            $.identifier,
-            $.single_type
-          ),
+          choice($.identifier, $.single_type),
           optional(
             seq(";", choice($.integer, $.identifier))
           )
@@ -355,11 +365,13 @@ module.exports = grammar({
         "}"
       ),
 
+    _tuple_type: ($) => seq("(", commaSep($._type), ")"),
+
     return_type: ($) =>
       seq(
         "->",
         choice(
-          seq("(", commaSep($._type), ")"),
+          $._tuple_type,
           seq(optional($.viewer), $._type)
         )
       ),
@@ -385,10 +397,7 @@ module.exports = grammar({
       seq(choice($.crate, $.super, $.identifier), "::"),
 
     _import_var: ($) =>
-      seq(
-        repeat1($.import_identifier),
-         $.identifier
-      ),
+      seq(repeat1($.import_identifier), $.identifier),
 
     import: ($) =>
       seq(

@@ -95,7 +95,9 @@
    :language 'noir
    '((boolean) @font-lock-constant-face
      (parameter (identifier) @font-lock-constant-face)
-     (import_identifier (identifier) @font-lock-constant-face))
+     (import_identifier (identifier) @font-lock-constant-face)
+     (parameter (as_identifier (identifier) @font-lock-constant-face)))
+
 
    :feature 'delimiter
    :language 'noir

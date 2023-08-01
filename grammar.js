@@ -275,8 +275,7 @@ module.exports = grammar({
         seq(
           choice(
             $.identifier,
-            ...numeric_types,
-            ...primitve_types
+            $.single_type
           ),
           optional(
             seq(";", choice($.integer, $.identifier))

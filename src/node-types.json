@@ -55,7 +55,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
@@ -63,6 +63,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "single_type",
           "named": true
         }
       ]
@@ -109,6 +113,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {

@@ -88,15 +88,18 @@ Array Function
 fn sha256(_input : [u8]) -> [u8; 32]{}
 
 -------------------------------------------------------------------------------
+
 (source_file
       (function_definition
         (identifier)
         (parameter
           (typed_identifier
             (identifier)
-            (array_type)))
+            (array_type
+              (single_type))))
         (return_type
           (array_type
+            (single_type)
             (integer)))
         (body)))
 

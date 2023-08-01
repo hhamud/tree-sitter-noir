@@ -930,6 +930,10 @@
             {
               "type": "SYMBOL",
               "name": "grouped_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "integer"
             }
           ]
         },
@@ -1179,56 +1183,8 @@
                   "name": "identifier"
                 },
                 {
-                  "type": "STRING",
-                  "value": "u8"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i8"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u16"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i16"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u32"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i32"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u64"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i64"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u128"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i128"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Field"
-                },
-                {
-                  "type": "STRING",
-                  "value": "bool"
-                },
-                {
-                  "type": "STRING",
-                  "value": "Self"
+                  "type": "SYMBOL",
+                  "name": "single_type"
                 }
               ]
             },

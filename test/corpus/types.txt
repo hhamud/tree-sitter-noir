@@ -36,11 +36,13 @@ declaration with array type
 let a: [u32];
 
 ----------------------------------------------------------------
-  (source_file
+
+(source_file
       (let_declaration
         (typed_identifier
           (identifier)
-          (array_type))))
+          (array_type
+            (single_type)))))
 
 ============================================
 Struct With Generic type
@@ -64,6 +66,7 @@ impl<N> BigInt<N> {
 }
 
 ----------------------------------------------------------------
+
 (source_file
       (struct_definition
         (identifier)
@@ -71,6 +74,7 @@ impl<N> BigInt<N> {
           (identifier))
         (identifier)
         (array_type
+          (single_type)
           (identifier)))
       (struct_method
         (generic
@@ -131,7 +135,6 @@ impl<N> BigInt<N> {
                     (identifier)
                     (identifier))))
               (identifier))))))
-
 
 
 =====================================

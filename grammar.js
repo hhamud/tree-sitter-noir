@@ -221,7 +221,7 @@ module.exports = grammar({
 
     as_identifier: ($) =>
       seq(
-        choice($.identifier, $.grouped_expression),
+        choice($.identifier, $.grouped_expression, $.integer),
         "as",
         $._type
       ),

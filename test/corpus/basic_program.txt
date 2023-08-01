@@ -31,7 +31,7 @@ fn test_ecrecover() {
 
 -------------------------------------------------------------------------------
 
-(source_file
+   (source_file
       (import
         (import_identifier
           (identifier))
@@ -44,19 +44,23 @@ fn test_ecrecover() {
           (typed_identifier
             (identifier)
             (array_type
+              (single_type)
               (integer)))
           (typed_identifier
             (identifier)
             (array_type
+              (single_type)
               (integer)))
           (typed_identifier
             (identifier)
             (array_type
+              (single_type)
               (integer)))
           (comment)
           (typed_identifier
             (identifier)
             (array_type
+              (single_type)
               (integer))))
         (return_type
           (viewer)
@@ -158,6 +162,7 @@ mod mysubmodule {
           (typed_identifier
             (identifier)
             (array_type
+              (single_type)
               (identifier))))
         (body
           (let_declaration

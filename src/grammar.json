@@ -973,6 +973,31 @@
         }
       ]
     },
+    "_array_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "as_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_identifier"
+        }
+      ]
+    },
     "array": {
       "type": "SEQ",
       "members": [
@@ -984,25 +1009,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "integer"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "string_literal"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "as_identifier"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_array_parameter"
             },
             {
               "type": "CHOICE",
@@ -1017,17 +1025,8 @@
                         "value": ","
                       },
                       {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "integer"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "string_literal"
-                          }
-                        ]
+                        "type": "SYMBOL",
+                        "name": "_array_parameter"
                       }
                     ]
                   }
@@ -1041,7 +1040,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "identifier"
+                      "name": "_array_parameter"
                     }
                   ]
                 }
@@ -2426,6 +2425,7 @@
   "conflicts": [
     ["function_call", "self_method"],
     ["return_type", "generic_type"],
+    ["_array_parameter", "_type"],
     ["_type", "generic_type"],
     ["_type", "array"],
     ["_type", "function_import"],

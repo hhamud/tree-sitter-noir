@@ -45,6 +45,7 @@ module.exports = grammar({
   conflicts: ($) => [
     [$.function_call, $.self_method],
     [$.return_type, $.generic_type],
+    [$._array_parameter, $._type],
     [$._type, $.generic_type],
     [$._type, $.array],
     [$._type, $.function_import],
@@ -238,21 +239,23 @@ module.exports = grammar({
 
     range: ($) => seq($._expression, "..", $._expression),
 
+    _array_parameter: ($) =>
+      choice(
+        $.integer,
+        $.string_literal,
+        $.identifier,
+        $.as_identifier,
+        $.import_identifier
+      ),
+
     array: ($) =>
       seq(
         "[",
         seq(
+          $._array_parameter,
           choice(
-            $.integer,
-            $.string_literal,
-            $.identifier,
-            $.as_identifier
-          ),
-          choice(
-            repeat(
-              seq(",", choice($.integer, $.string_literal))
-            ),
-            seq(";", $.identifier)
+            repeat(seq(",", $._array_parameter)),
+            seq(";", $._array_parameter)
           )
         ),
         "]"

@@ -143,7 +143,8 @@
      (struct_definition name: (identifier) @font-lock-type-face)
      (struct_definition type: (identifier) @font-lock-type-face)
      (typed_identifier type: (identifier) @font-lock-type-face)
-     (struct_method (identifier) @font-lock-type-face)))
+     (struct_method (identifier) @font-lock-type-face))
+
 
    :feature 'variable
    :language 'noir

@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "import_identifier",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },

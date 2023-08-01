@@ -131,23 +131,22 @@
    :feature 'type
    :override t
    :language 'noir
-   '((generic_type (identifier) @font-lock-type-face)
-     (generic (identifier) @font-lock-type-face)
+   '(
+     (generic_type (identifier) @font-lock-type-face)
      (generic (identifier) @font-lock-type-face)
      (single_type) @font-lock-type-face
      (array_type (identifier) @font-lock-type-face)
      (module (identifier) @font-lock-type-face)
-     (function_definition (parameter type: (identifier) @font-lock-type-face))
      (return_type (identifier) @font-lock-type-face)
-     (struct_definition type: (identifier) @font-lock-type-face)
      (struct_definition name: (identifier) @font-lock-type-face)
-     (global (binary_expression right: (identifier) @font-lock-type-face)))
+     (struct_definition type: (identifier) @font-lock-type-face)
+     (typed_identifier type: (identifier) @font-lock-type-face))
 
    :feature 'variable
    :language 'noir
    '((let_declaration (binary_expression left: (identifier) @font-lock-variable-name-face))
      (struct_definition var: (identifier) @font-lock-variable-name-face)
-     (global (binary_expression left: (identifier) @font-lock-variable-name-face)))
+     (typed_identifier var: (identifier) @font-lock-variable-name-face))
 
    :feature 'string
    :language 'noir

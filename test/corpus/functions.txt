@@ -41,15 +41,17 @@ fn foo(x : Field, y : pub Field){}
 -------------------------------------------------------------------------------
 
 (source_file
-    (function_definition
-    (identifier)
-    (parameter
+      (function_definition
         (identifier)
-        (single_type)
-        (identifier)
-        (viewer)
-        (single_type))
-    (body)))
+        (parameter
+          (typed_identifier
+            (identifier)
+            (single_type))
+          (typed_identifier
+            (identifier)
+            (viewer)
+            (single_type)))
+        (body)))
 
 ============================================
 Function with inputs and return body
@@ -60,19 +62,20 @@ fn foo(x : Field, y : pub Field) -> pub Field {
 }
 
 -------------------------------------------------------------------------------
-
 (source_file
-    (function_definition
-    (identifier)
-    (parameter
+      (function_definition
         (identifier)
-        (single_type)
-        (identifier)
-        (viewer)
-        (single_type))
-    (return_type
-        (viewer)
-        (single_type))
+        (parameter
+          (typed_identifier
+            (identifier)
+            (single_type))
+          (typed_identifier
+            (identifier)
+            (viewer)
+            (single_type)))
+        (return_type
+          (viewer)
+          (single_type))
         (body
           (binary_expression
             (identifier)
@@ -85,16 +88,15 @@ Array Function
 fn sha256(_input : [u8]) -> [u8; 32]{}
 
 -------------------------------------------------------------------------------
-
-
 (source_file
-    (function_definition
-    (identifier)
-    (parameter
+      (function_definition
         (identifier)
-        (array_type))
-    (return_type
-        (array_type
+        (parameter
+          (typed_identifier
+            (identifier)
+            (array_type)))
+        (return_type
+          (array_type
             (integer)))
         (body)))
 
@@ -111,17 +113,17 @@ fn id<T>(x: T) -> T  {
 
 -------------------------------------------------------------------------------
 
-
-(source_file
-    (function_definition
-    (identifier)
-    (generic
-        (identifier))
-    (parameter
+ (source_file
+      (function_definition
         (identifier)
-        (identifier))
-    (return_type
-        (identifier))
-    (body
-        (return)
-        (identifier))))
+        (generic
+          (identifier))
+        (parameter
+          (typed_identifier
+            (identifier)
+            (identifier)))
+        (return_type
+          (identifier))
+        (body
+          (return)
+          (identifier))))

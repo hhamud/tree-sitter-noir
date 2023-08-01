@@ -159,7 +159,7 @@ module.exports = grammar({
       ),
 
     grouped_expression: ($) =>
-      seq("(", commaSep($._expression), ")"),
+    seq("(", commaSep(seq(optional($.mutable),$._expression)), ")"),
 
     global: ($) => seq("global", $._statement),
 
@@ -232,7 +232,7 @@ module.exports = grammar({
       seq(
         "[",
         seq(
-          choice($.integer, $.string_literal, $.identifier),
+          choice($.integer, $.string_literal, $.identifier, $.as_identifier),
           choice(
             repeat(
               seq(",", choice($.integer, $.string_literal))
@@ -341,7 +341,8 @@ module.exports = grammar({
               $._function,
               $.array_identifier,
               $.identifier,
-              $.grouped_expression
+              $.grouped_expression,
+              $.as_identifier
             )
           )
         ),

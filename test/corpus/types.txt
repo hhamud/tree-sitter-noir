@@ -6,13 +6,13 @@ let a: u32 = 2;
 
 ----------------------------------------------------------------
 
-
 (source_file
-    (let_declaration
-    (binary_expression
-        (identifier)
-        (single_type)
-        (integer))))
+      (let_declaration
+        (binary_expression
+          (typed_identifier
+            (identifier)
+            (single_type))
+          (integer))))
 
 ============================================
 declaration with type
@@ -23,9 +23,10 @@ let a: u32;
 ----------------------------------------------------------------
 
 (source_file
- (let_declaration
-  (identifier)
-  (single_type)))
+      (let_declaration
+        (typed_identifier
+          (identifier)
+          (single_type))))
 
 
 ============================================
@@ -35,11 +36,11 @@ declaration with array type
 let a: [u32];
 
 ----------------------------------------------------------------
-
-(source_file
- (let_declaration
-  (identifier)
-  (array_type)))
+  (source_file
+      (let_declaration
+        (typed_identifier
+          (identifier)
+          (array_type))))
 
 ============================================
 Struct With Generic type
@@ -63,70 +64,73 @@ impl<N> BigInt<N> {
 }
 
 ----------------------------------------------------------------
-
 (source_file
-    (struct_definition
-    (identifier)
-    (generic
-        (identifier))
-    (identifier)
-    (array_type
-        (identifier)))
-    (struct_method
-    (generic
-        (identifier))
-    (identifier)
-    (generic
-        (identifier))
-    (body
-        (comment)
-        (function_definition
+      (struct_definition
         (identifier)
-        (parameter
-            (identifier)
-            (generic_type
-            (identifier)
-            (generic
-                (identifier)))
-            (identifier)
-            (generic_type
-            (identifier)
-            (generic
-                (identifier))))
-        (return_type
-            (single_type))
-        (body
-            (assert
-            (binary_expression
-                (struct_expression
-                (identifier)
-                (identifier))
-                (struct_expression
-                (identifier)
-                (identifier))))
-            (identifier)))
-        (function_definition
+        (generic
+          (identifier))
         (identifier)
-        (parameter
-            (identifier)
-            (generic_type
-            (identifier)
-            (generic
-                (identifier)))
-            (identifier)
-            (single_type))
-        (return_type
-            (single_type))
+        (array_type
+          (identifier)))
+      (struct_method
+        (generic
+          (identifier))
+        (identifier)
+        (generic
+          (identifier))
         (body
-            (assert
-            (binary_expression
-                (struct_expression
+          (comment)
+          (function_definition
+            (identifier)
+            (parameter
+              (typed_identifier
                 (identifier)
-                (identifier))
-                (struct_expression
+                (generic_type
+                  (identifier)
+                  (generic
+                    (identifier))))
+              (typed_identifier
                 (identifier)
-                (identifier))))
-            (identifier))))))
+                (generic_type
+                  (identifier)
+                  (generic
+                    (identifier)))))
+            (return_type
+              (single_type))
+            (body
+              (assert
+                (binary_expression
+                  (struct_expression
+                    (identifier)
+                    (identifier))
+                  (struct_expression
+                    (identifier)
+                    (identifier))))
+              (identifier)))
+          (function_definition
+            (identifier)
+            (parameter
+              (typed_identifier
+                (identifier)
+                (generic_type
+                  (identifier)
+                  (generic
+                    (identifier))))
+              (typed_identifier
+                (identifier)
+                (single_type)))
+            (return_type
+              (single_type))
+            (body
+              (assert
+                (binary_expression
+                  (struct_expression
+                    (identifier)
+                    (identifier))
+                  (struct_expression
+                    (identifier)
+                    (identifier))))
+              (identifier))))))
 
 
 
@@ -140,12 +144,13 @@ fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
 
 ----------------------------------------------------------------
 
-(source_file
+ (source_file
       (function_definition
         (identifier)
         (parameter
-          (identifier)
-          (identifier))
+          (typed_identifier
+            (identifier)
+            (identifier)))
         (return_type
           (single_type)
           (single_type)

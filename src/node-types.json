@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1104,6 +1108,10 @@
           "named": true
         },
         {
+          "type": "mutable",
+          "named": true
+        },
+        {
           "type": "self_method",
           "named": true
         },
@@ -1473,6 +1481,10 @@
         },
         {
           "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
           "named": true
         },
         {

@@ -32,34 +32,38 @@ fn test_ecrecover() {
 -------------------------------------------------------------------------------
 
 (source_file
-    (import
-    (import_identifier
+      (import
+        (import_identifier
+          (identifier))
         (identifier))
-    (identifier))
-    (module
-    (identifier))
-    (function_definition
-    (identifier)
-    (parameter
+      (module
+        (identifier))
+      (function_definition
         (identifier)
-        (array_type
-        (integer))
-        (identifier)
-        (array_type
-        (integer))
-        (identifier)
-        (array_type
-        (integer))
-        (comment)
-        (identifier)
-        (array_type
-        (integer)))
-    (return_type
-        (viewer)
-        (single_type))
-    (body
-        (let_declaration
-(binary_expression
+        (parameter
+          (typed_identifier
+            (identifier)
+            (array_type
+              (integer)))
+          (typed_identifier
+            (identifier)
+            (array_type
+              (integer)))
+          (typed_identifier
+            (identifier)
+            (array_type
+              (integer)))
+          (comment)
+          (typed_identifier
+            (identifier)
+            (array_type
+              (integer))))
+        (return_type
+          (viewer)
+          (single_type))
+        (body
+          (let_declaration
+            (binary_expression
               (identifier)
               (function_import
                 (import_identifier
@@ -67,47 +71,47 @@ fn test_ecrecover() {
                 (import_identifier
                   (identifier))
                 (function_call
-                (identifier)
-                (parameter
+                  (identifier)
+                  (parameter
                     (identifier)
                     (identifier))))))
-        (assert
-        (struct_function
-            (identifier)
-            (function_call
-            (identifier)
-            (parameter
-                (identifier)
-                (identifier)))))
-        (let_declaration
-        (binary_expression
-            (identifier)
+          (assert
             (struct_function
-            (identifier)
-            (function_call
-            (identifier)
-            (parameter)))))
-        (identifier)))
-    (macro
-    (identifier))
-    (function_definition
-    (identifier)
-    (parameter)
-    (body
-        (let_declaration
-        (binary_expression
-            (identifier)
-            (function_call
-            (identifier)
-            (parameter
-            (identifier)
-            (identifier)
-            (identifier)
-            (identifier)))))
-        (assert
-        (binary_expression
-            (identifier)
-            (string_literal))))))
+              (identifier)
+              (function_call
+                (identifier)
+                (parameter
+                  (identifier)
+                  (identifier)))))
+          (let_declaration
+            (binary_expression
+              (identifier)
+              (struct_function
+                (identifier)
+                (function_call
+                  (identifier)
+                  (parameter)))))
+          (identifier)))
+      (macro
+        (identifier))
+      (function_definition
+        (identifier)
+        (parameter)
+        (body
+          (let_declaration
+            (binary_expression
+              (identifier)
+              (function_call
+                (identifier)
+                (parameter
+                  (identifier)
+                  (identifier)
+                  (identifier)
+                  (identifier)))))
+          (assert
+            (binary_expression
+              (identifier)
+              (string_literal))))))
 
 ================================================================================
 Global Program
@@ -140,18 +144,21 @@ mod mysubmodule {
 (source_file
       (global
         (binary_expression
-          (identifier)
-          (single_type)
+          (typed_identifier
+            (identifier)
+            (single_type))
           (integer)))
       (comment)
       (function_definition
         (identifier)
         (parameter
-          (identifier)
-          (single_type)
-          (identifier)
-          (array_type
-            (identifier)))
+          (typed_identifier
+            (identifier)
+            (single_type))
+          (typed_identifier
+            (identifier)
+            (array_type
+              (identifier))))
         (body
           (let_declaration
             (binary_expression
@@ -186,8 +193,9 @@ mod mysubmodule {
             (identifier))
           (global
             (binary_expression
-              (identifier)
-              (single_type)
+              (typed_identifier
+                (identifier)
+                (single_type))
               (integer)))
           (function_definition
             (identifier)
@@ -201,7 +209,6 @@ mod mysubmodule {
                   (identifier)
                   (identifier)))
               (identifier))))))
-
 
 ================================================================================
 Array Program
@@ -284,7 +291,7 @@ impl<T, N> [T; N] {
 
 
 -------------------------------------------------------------------------------
-(source_file
+ (source_file
       (struct_method
         (generic
           (identifier)
@@ -299,8 +306,9 @@ impl<T, N> [T; N] {
           (function_definition
             (identifier)
             (parameter
-              (identifier)
-              (single_type))
+              (typed_identifier
+                (identifier)
+                (single_type)))
             (return_type
               (comptime)
               (single_type))
@@ -311,8 +319,9 @@ impl<T, N> [T; N] {
           (function_definition
             (identifier)
             (parameter
-              (identifier)
-              (single_type))
+              (typed_identifier
+                (identifier)
+                (single_type)))
             (return_type
               (single_type))
             (body))
@@ -320,16 +329,18 @@ impl<T, N> [T; N] {
           (function_definition
             (identifier)
             (parameter
-              (mutable)
-              (identifier)
-              (single_type)
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier)
-                  (identifier))
-                (return_type
-                  (single_type))))
+              (typed_identifier
+                (mutable)
+                (identifier)
+                (single_type))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier)
+                    (identifier))
+                  (return_type
+                    (single_type)))))
             (return_type
               (single_type))
             (body
@@ -388,12 +399,13 @@ impl<T, N> [T; N] {
             (parameter
               (self_method
                 (self))
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier))
-                (return_type
-                  (identifier))))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier))
+                  (return_type
+                    (identifier)))))
             (return_type
               (array_type
                 (identifier)
@@ -448,16 +460,18 @@ impl<T, N> [T; N] {
             (parameter
               (self_method
                 (self))
-              (mutable)
-              (identifier)
-              (identifier)
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier)
-                  (identifier))
-                (return_type
-                  (identifier))))
+              (typed_identifier
+                (mutable)
+                (identifier)
+                (identifier))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier)
+                    (identifier))
+                  (return_type
+                    (identifier)))))
             (return_type
               (identifier))
             (body
@@ -482,13 +496,14 @@ impl<T, N> [T; N] {
             (parameter
               (self_method
                 (self))
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier)
-                  (identifier))
-                (return_type
-                  (identifier))))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier)
+                    (identifier))
+                  (return_type
+                    (identifier)))))
             (return_type
               (identifier))
             (body
@@ -527,12 +542,13 @@ impl<T, N> [T; N] {
             (parameter
               (self_method
                 (self))
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier))
-                (return_type
-                  (single_type))))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier))
+                  (return_type
+                    (single_type)))))
             (return_type
               (single_type))
             (body
@@ -559,12 +575,13 @@ impl<T, N> [T; N] {
             (parameter
               (self_method
                 (self))
-              (identifier)
-              (function_type
-                (parameter
-                  (identifier))
-                (return_type
-                  (single_type))))
+              (typed_identifier
+                (identifier)
+                (function_type
+                  (parameter
+                    (identifier))
+                  (return_type
+                    (single_type)))))
             (return_type
               (single_type))
             (body

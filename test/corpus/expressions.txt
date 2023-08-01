@@ -314,13 +314,15 @@ global N: Field = 5;
 
 
 ----------------------------------------------------------------
-
 (source_file
-  (global
-    (binary_expression
-      (identifier)
-      (single_type)
-      (integer))))
+      (global
+        (binary_expression
+          (typed_identifier
+            (identifier)
+            (single_type))
+          (integer))))
+
+
 
 ============================================
 Impl Structs
@@ -350,7 +352,7 @@ impl RepeatedValue {
 
 ----------------------------------------------------------------
 
-(source_file
+ (source_file
       (struct_definition
         (identifier)
         (identifier)
@@ -364,8 +366,9 @@ impl RepeatedValue {
           (function_definition
             (identifier)
             (parameter
-              (identifier)
-              (single_type))
+              (typed_identifier
+                (identifier)
+                (single_type)))
             (return_type
               (single_type))
             (body
@@ -376,9 +379,10 @@ impl RepeatedValue {
           (function_definition
             (identifier)
             (parameter
-              (mutable)
-              (identifier)
-              (single_type))
+              (typed_identifier
+                (mutable)
+                (identifier)
+                (single_type)))
             (return_type
               (single_type))
             (body
@@ -415,7 +419,6 @@ impl RepeatedValue {
                           (identifier))))))))))))
 
 
-
 ============================================
 Generic Structs
 ============================================
@@ -445,76 +448,77 @@ impl<T> RepeatedValue<T> {
 
 ----------------------------------------------------------------
 
-(source_file
-    (struct_definition
-    (identifier)
-    (generic
-        (identifier))
-    (identifier)
-    (identifier)
-    (identifier)
-    (comptime)
-    (single_type))
-    (struct_method
-    (generic
-        (identifier))
-    (identifier)
-    (generic
-        (identifier))
-    (body
-        (function_definition
+  (source_file
+      (struct_definition
         (identifier)
-        (parameter
-            (identifier)
-            (identifier))
-        (return_type
-            (single_type))
-        (body
-            (struct_initialization
-            (identifier)
-            (identifier)
-            (integer))))
-        (function_definition
+        (generic
+          (identifier))
         (identifier)
-        (parameter
-            (mutable)
-            (identifier)
-            (single_type))
-        (return_type
-            (single_type))
+        (identifier)
+        (identifier)
+        (comptime)
+        (single_type))
+      (struct_method
+        (generic
+          (identifier))
+        (identifier)
+        (generic
+          (identifier))
         (body
-            (binary_expression
-            (struct_expression
+          (function_definition
+            (identifier)
+            (parameter
+              (typed_identifier
                 (identifier)
-                (identifier))
-            (integer))
-            (identifier)))
-        (function_definition
-        (identifier)
-        (parameter
-            (self_method
-            (self)))
-        (body
-            (for_loop
+                (identifier)))
+            (return_type
+              (single_type))
+            (body
+              (struct_initialization
+                (identifier)
+                (identifier)
+                (integer))))
+          (function_definition
             (identifier)
-            (range
-                (integer)
-                (self_method
+            (parameter
+              (typed_identifier
+                (mutable)
+                (identifier)
+                (single_type)))
+            (return_type
+              (single_type))
+            (body
+              (binary_expression
+                (struct_expression
+                  (identifier)
+                  (identifier))
+                (integer))
+              (identifier)))
+          (function_definition
+            (identifier)
+            (parameter
+              (self_method
+                (self)))
+            (body
+              (for_loop
+                (identifier)
+                (range
+                  (integer)
+                  (self_method
                     (self)
                     (identifier)))
-            (body
-                (function_import
-                (import_identifier
-                    (identifier))
-                (import_identifier
-                    (identifier))
-                (function_call
-                    (identifier)
-                    (parameter
-                    (self_method
-                        (self)
-                        (identifier))))))))))))
-
+                (body
+                  (function_import
+                    (import_identifier
+                      (identifier))
+                    (import_identifier
+                      (identifier))
+                    (function_call
+                      (identifier)
+                      (parameter
+                        (self_method
+                          (self)
+                          (identifier))))))))))))
 
 ============================================
 Integer methods

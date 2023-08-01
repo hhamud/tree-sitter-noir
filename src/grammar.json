@@ -1433,6 +1433,18 @@
                         {
                           "type": "SYMBOL",
                           "name": "as_identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "integer"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "string_literal"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "character"
                         }
                       ]
                     },
@@ -1479,6 +1491,18 @@
                               {
                                 "type": "SYMBOL",
                                 "name": "as_identifier"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "integer"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "string_literal"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "character"
                               }
                             ]
                           }

@@ -1531,6 +1531,10 @@
           "named": true
         },
         {
+          "type": "character",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -1551,7 +1555,15 @@
           "named": true
         },
         {
+          "type": "integer",
+          "named": true
+        },
+        {
           "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {

@@ -355,7 +355,10 @@ module.exports = grammar({
               $.array_identifier,
               $.identifier,
               $.grouped_expression,
-              $.as_identifier
+              $.as_identifier,
+              $.integer,
+              $.string_literal,
+              $.character
             )
           )
         ),

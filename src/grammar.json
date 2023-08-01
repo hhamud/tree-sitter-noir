@@ -1185,17 +1185,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "single_type"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_type"
             },
             {
               "type": "CHOICE",
@@ -1216,7 +1207,7 @@
                         },
                         {
                           "type": "SYMBOL",
-                          "name": "identifier"
+                          "name": "_type"
                         }
                       ]
                     }
@@ -1289,6 +1280,10 @@
             {
               "type": "SYMBOL",
               "name": "function_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "import_identifier"
             },
             {
               "type": "FIELD",
@@ -2432,6 +2427,8 @@
     ["function_call", "self_method"],
     ["return_type", "generic_type"],
     ["_type", "generic_type"],
+    ["_type", "array"],
+    ["_type", "function_import"],
     ["array_type", "array"],
     ["generic_type", "typed_identifier"],
     ["array_identifier", "_expression", "_type"],

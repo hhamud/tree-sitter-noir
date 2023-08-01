@@ -46,6 +46,8 @@ module.exports = grammar({
     [$.function_call, $.self_method],
     [$.return_type, $.generic_type],
     [$._type, $.generic_type],
+    [$._type, $.array],
+    [$._type, $.function_import],
     [$.array_type, $.array],
     [$.generic_type, $.typed_identifier],
     [$.array_identifier, $._expression, $._type],
@@ -286,10 +288,8 @@ module.exports = grammar({
       seq(
         "[",
         seq(
-          choice($.identifier, $.single_type),
-          optional(
-            seq(";", choice($.integer, $.identifier))
-          )
+          $._type,
+          optional(seq(";", choice($.integer, $._type)))
         ),
         "]"
       ),
@@ -305,6 +305,7 @@ module.exports = grammar({
           $.array_type,
           $.generic_type,
           $.function_type,
+          $.import_identifier,
           field("type", $.identifier)
         )
       ),

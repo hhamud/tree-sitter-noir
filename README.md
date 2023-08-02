@@ -53,7 +53,7 @@ npm i tree-sitter-noir
 
 ## Usage
 
-Once `noir-mode.el` is installed, it will automatically be enabled when you open a `.nr` file. The major mode will provide syntax highlighting for editing Noir code.
+Once `noir-ts-mode.el` is installed, it will automatically be enabled when you open a `.nr` file. The major mode will provide syntax highlighting for editing Noir code.
 
 ## Examples
 You can view a few examples of the syntax highlighting and of `treesit-explore-mode` using `noir-ts-mode.el` in images.

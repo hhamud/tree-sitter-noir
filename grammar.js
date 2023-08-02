@@ -334,13 +334,6 @@ module.exports = grammar({
 
     function_call: ($) => seq($.identifier, $.parameter),
 
-    //()
-    //(n: Field)
-    // (self)
-    // (self, n: Field)
-    // ([pky, pkx])
-    // (sm[i].signature)
-    // self, f: fn(T, T) -> T
 
     parameter: ($) =>
       seq(

@@ -166,7 +166,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -218,7 +218,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -261,7 +261,7 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -313,7 +313,7 @@
             "named": true
           },
           {
-            "type": "import_identifier",
+            "type": "import_variable",
             "named": true
           },
           {
@@ -449,7 +449,7 @@
         ]
       },
       "right": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -501,7 +501,7 @@
             "named": true
           },
           {
-            "type": "import_identifier",
+            "type": "import_variable",
             "named": true
           },
           {
@@ -660,6 +660,10 @@
           "named": true
         },
         {
+          "type": "import_variable",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
@@ -803,7 +807,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -976,7 +980,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1036,7 +1040,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1143,7 +1147,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1246,7 +1250,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1366,6 +1370,32 @@
     }
   },
   {
+    "type": "import_variable",
+    "named": true,
+    "fields": {
+      "": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "import_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "let_declaration",
     "named": true,
     "fields": {},
@@ -1422,7 +1452,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1630,7 +1660,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1867,6 +1897,10 @@
         },
         {
           "type": "import_identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
           "named": true
         },
         {
@@ -2216,7 +2250,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -2268,7 +2302,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {

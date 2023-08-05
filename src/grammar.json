@@ -742,7 +742,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_import_var"
+          "name": "import_variable"
         }
       ]
     },
@@ -1751,7 +1751,7 @@
         }
       ]
     },
-    "_import_var": {
+    "import_variable": {
       "type": "SEQ",
       "members": [
         {
@@ -1762,8 +1762,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },
@@ -2447,117 +2451,34 @@
     }
   ],
   "conflicts": [
-    [
-      "function_call",
-      "self_method"
-    ],
-    [
-      "return_type",
-      "generic_type"
-    ],
-    [
-      "_array_parameter",
-      "_type"
-    ],
-    [
-      "_type",
-      "generic_type"
-    ],
-    [
-      "_type",
-      "array"
-    ],
-    [
-      "_type",
-      "function_import"
-    ],
-    [
-      "array_type",
-      "array"
-    ],
-    [
-      "generic_type",
-      "typed_identifier"
-    ],
-    [
-      "array_identifier",
-      "_expression",
-      "_type"
-    ],
-    [
-      "array_identifier",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "struct_expression"
-    ],
-    [
-      "_definition",
-      "_expression"
-    ],
-    [
-      "_statement",
-      "_expression"
-    ],
-    [
-      "struct_function",
-      "struct_expression"
-    ],
-    [
-      "struct_function",
-      "_expression"
-    ],
-    [
-      "struct_initialization",
-      "single_type"
-    ],
-    [
-      "generic_type",
-      "_type",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "_type",
-      "_expression"
-    ],
-    [
-      "_type",
-      "_expression"
-    ],
-    [
-      "function_call",
-      "_expression"
-    ],
-    [
-      "_expression",
-      "struct_initialization"
-    ],
-    [
-      "_type",
-      "_expression",
-      "struct_initialization"
-    ],
-    [
-      "module"
-    ],
-    [
-      "_type"
-    ],
-    [
-      "typed_identifier"
-    ],
-    [
-      "self_method"
-    ],
-    [
-      "function_import"
-    ],
-    [
-      "let_declaration",
-      "function_import"
-    ]
+    ["function_call", "self_method"],
+    ["return_type", "generic_type"],
+    ["_array_parameter", "_type"],
+    ["_type", "generic_type"],
+    ["_type", "array"],
+    ["_type", "function_import"],
+    ["array_type", "array"],
+    ["generic_type", "typed_identifier"],
+    ["array_identifier", "_expression", "_type"],
+    ["array_identifier", "_expression"],
+    ["function_call", "struct_expression"],
+    ["_definition", "_expression"],
+    ["_statement", "_expression"],
+    ["struct_function", "struct_expression"],
+    ["struct_function", "_expression"],
+    ["struct_initialization", "single_type"],
+    ["generic_type", "_type", "_expression"],
+    ["function_call", "_type", "_expression"],
+    ["_type", "_expression"],
+    ["function_call", "_expression"],
+    ["_expression", "struct_initialization"],
+    ["_type", "_expression", "struct_initialization"],
+    ["module"],
+    ["_type"],
+    ["typed_identifier"],
+    ["self_method"],
+    ["function_import"],
+    ["let_declaration", "function_import"]
   ],
   "precedences": [],
   "externals": [
@@ -2569,4 +2490,3 @@
   "inline": [],
   "supertypes": []
 }
-

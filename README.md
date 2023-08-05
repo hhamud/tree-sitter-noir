@@ -1,7 +1,7 @@
 # Tree-sitter Noir
 
 [![test](https://github.com/hhamud/tree-sitter-noir/actions/workflows/ci.yml/badge.svg)](https://github.com/hhamud/tree-sitter-noir/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/tree-sitter-noir)](https://www.npmjs.com/package/tree-sitter-noir)
+[![npm](https://img.shields.io/npm/v/github-buttons)](https://www.npmjs.com/package/tree-sitter-noir)
 
 
 

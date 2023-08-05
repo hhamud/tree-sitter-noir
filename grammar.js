@@ -190,7 +190,7 @@ module.exports = grammar({
         $.typed_identifier,
         $.struct_initialization,
         $.array_identifier,
-        $._import_var
+        $.import_variable
       ),
 
     // primitives
@@ -334,7 +334,6 @@ module.exports = grammar({
 
     function_call: ($) => seq($.identifier, $.parameter),
 
-
     parameter: ($) =>
       seq(
         "(",
@@ -396,8 +395,11 @@ module.exports = grammar({
     import_identifier: ($) =>
       seq(choice($.crate, $.super, $.identifier), "::"),
 
-    _import_var: ($) =>
-      seq(repeat1($.import_identifier), $.identifier),
+    import_variable: ($) =>
+      seq(
+        repeat1($.import_identifier),
+        field("", $.identifier)
+      ),
 
     import: ($) =>
       seq(

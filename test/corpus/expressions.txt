@@ -528,6 +528,18 @@ straight_div_result.2;
 straight_div_result.1;
 straight_div_result.0;
 
+let verify = std::ecdsa_sep256k1::verify_signatures(pkx, pky, sm[i].signature, sm[i].hashed_message);
+
+
+let straight_div_result = div_wide_allow_overflow(
+    a.limbs[2],
+    a.limbs[1],
+    a.limbs[0],
+    b.limbs[2],
+    b.limbs[1],
+    b.limbs[0]
+);
+
 
 ----------------------------------------------------------------
 (source_file
@@ -539,4 +551,63 @@ straight_div_result.0;
         (integer))
       (struct_expression
         (identifier)
-        (integer)))
+        (integer))
+(let_declaration
+        (binary_expression
+          (identifier)
+          (function_import
+            (import_identifier
+              (identifier))
+            (import_identifier
+              (identifier))
+            (function_call
+              (identifier)
+              (parameter
+                (identifier)
+                (identifier)
+                (struct_expression
+                  (array_identifier
+                    (identifier)
+                    (identifier))
+                  (identifier))
+                (struct_expression
+                  (array_identifier
+                    (identifier)
+                    (identifier))
+                  (identifier)))))))
+      (let_declaration
+        (binary_expression
+          (identifier)
+          (function_call
+            (identifier)
+            (parameter
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer)))
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer)))
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer)))
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer)))
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer)))
+              (struct_expression
+                (identifier)
+                (array_identifier
+                  (identifier)
+                  (integer))))))))

@@ -51,7 +51,7 @@ module.exports = grammar({
     [$._type, $.function_import],
     [$.array_type, $.array],
     [$.generic_type, $.typed_identifier],
-    [$.array_identifier, $.struct_expression],
+    [$.struct_expression, $.array_identifier],
     [$.array_identifier, $._expression, $._type],
     [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],

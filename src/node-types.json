@@ -1593,6 +1593,10 @@
           "named": true
         },
         {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
           "type": "typed_identifier",
           "named": true
         }

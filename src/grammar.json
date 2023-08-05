@@ -1445,6 +1445,10 @@
                         {
                           "type": "SYMBOL",
                           "name": "character"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "struct_expression"
                         }
                       ]
                     },
@@ -1503,6 +1507,10 @@
                               {
                                 "type": "SYMBOL",
                                 "name": "character"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "struct_expression"
                               }
                             ]
                           }

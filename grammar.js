@@ -351,7 +351,8 @@ module.exports = grammar({
               $.as_identifier,
               $.integer,
               $.string_literal,
-              $.character
+              $.character,
+              $.struct_expression
             )
           )
         ),

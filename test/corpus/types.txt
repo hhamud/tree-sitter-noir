@@ -147,7 +147,7 @@ fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
 
 ----------------------------------------------------------------
 
- (source_file
+(source_file
       (function_definition
         (identifier)
         (parameter
@@ -164,9 +164,10 @@ fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
               (grouped_expression
                 (binary_expression
                   (identifier)
-                  (import_identifier
-                    (identifier))
-                  (identifier)))
+                  (import_variable
+                    (import_identifier
+                      (identifier))
+                    : (identifier))))
               (single_type))
             (as_identifier
               (grouped_expression
@@ -174,12 +175,14 @@ fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
                   (grouped_expression
                     (binary_expression
                       (identifier)
-                      (import_identifier
-                        (identifier))
-                      (identifier)))
-                  (import_identifier
-                    (identifier))
-                  (identifier)))
+                      (import_variable
+                        (import_identifier
+                          (identifier))
+                        : (identifier))))
+                  (import_variable
+                    (import_identifier
+                      (identifier))
+                    : (identifier))))
               (single_type))
             (as_identifier
               (grouped_expression
@@ -187,10 +190,12 @@ fn from_triple_limb(trip : u96) -> (u32, u32, u32) {
                   (grouped_expression
                     (binary_expression
                       (identifier)
-                      (import_identifier
-                        (identifier))
-                      (identifier)))
-                  (import_identifier
-                    (identifier))
-                  (identifier)))
+                      (import_variable
+                        (import_identifier
+                          (identifier))
+                        : (identifier))))
+                  (import_variable
+                    (import_identifier
+                      (identifier))
+                    : (identifier))))
               (single_type))))))

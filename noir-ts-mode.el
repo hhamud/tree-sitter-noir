@@ -143,7 +143,8 @@
      (struct_definition name: (identifier) @font-lock-type-face)
      (struct_definition type: (identifier) @font-lock-type-face)
      (typed_identifier type: (identifier) @font-lock-type-face)
-     (struct_method (identifier) @font-lock-type-face))
+     (struct_method (identifier) @font-lock-type-face)
+     ((as_identifier type: (identifier) @font-lock-type-face)))
 
 
    :feature 'variable
@@ -153,8 +154,7 @@
      (let_declaration (binary_expression left: (grouped_expression (identifier) @font-lock-variable-name-face)))
      (struct_definition var: (identifier) @font-lock-variable-name-face)
      (typed_identifier var: (identifier) @font-lock-variable-name-face)
-     (global (binary_expression left: (typed_identifier var: (identifier) @font-lock-variable-name-face)))
-     )
+     (global (binary_expression left: (typed_identifier var: (identifier) @font-lock-variable-name-face))))
 
    :feature 'string
    :language 'noir

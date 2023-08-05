@@ -139,13 +139,13 @@ mod mysubmodule {
 
     fn my_helper() -> comptime Field {
         let x = N;
-        x
+        xantholeucophore
     }
 }
 
 -------------------------------------------------------------------------------
 
-(source_file
+ (source_file
       (global
         (binary_expression
           (typed_identifier
@@ -182,9 +182,10 @@ mod mysubmodule {
               (identifier)
               (binary_expression
                 (identifier)
-                (import_identifier
-                  (identifier))
-                (identifier))))
+                (import_variable
+                  (import_identifier
+                    (identifier))
+                  : (identifier)))))
           (assert
             (binary_expression
               (identifier)

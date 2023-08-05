@@ -49,6 +49,10 @@
         {
           "type": "string_literal",
           "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
         }
       ]
     }

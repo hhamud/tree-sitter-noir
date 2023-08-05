@@ -206,7 +206,12 @@ module.exports = grammar({
       seq(
         $.identifier,
         "[",
-        choice($.identifier, $.integer, $.string_literal),
+        choice(
+          $.identifier,
+          $.integer,
+          $.string_literal,
+          $.struct_expression
+        ),
         "]"
       ),
 

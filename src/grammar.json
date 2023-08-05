@@ -838,10 +838,6 @@
             {
               "type": "SYMBOL",
               "name": "string_literal"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "struct_expression"
             }
           ]
         },
@@ -2048,6 +2044,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "array_identifier"
+            },
+            {
+              "type": "SYMBOL",
               "name": "identifier"
             },
             {
@@ -2072,6 +2072,10 @@
               {
                 "type": "CHOICE",
                 "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "array_identifier"
+                  },
                   {
                     "type": "SYMBOL",
                     "name": "identifier"
@@ -2463,6 +2467,7 @@
     ["_type", "function_import"],
     ["array_type", "array"],
     ["generic_type", "typed_identifier"],
+    ["array_identifier", "struct_expression"],
     ["array_identifier", "_expression", "_type"],
     ["array_identifier", "_expression"],
     ["function_call", "struct_expression"],

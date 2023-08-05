@@ -51,6 +51,7 @@ module.exports = grammar({
     [$._type, $.function_import],
     [$.array_type, $.array],
     [$.generic_type, $.typed_identifier],
+    [$.array_identifier, $.struct_expression],
     [$.array_identifier, $._expression, $._type],
     [$.array_identifier, $._expression],
     [$.function_call, $.struct_expression],
@@ -206,12 +207,7 @@ module.exports = grammar({
       seq(
         $.identifier,
         "[",
-        choice(
-          $.identifier,
-          $.integer,
-          $.string_literal,
-          $.struct_expression
-        ),
+        choice($.identifier, $.integer, $.string_literal),
         "]"
       ),
 
@@ -481,7 +477,14 @@ module.exports = grammar({
       ),
 
     struct_expression: ($) =>
-      dotSep(choice($.identifier, $.array, $.integer)),
+      dotSep(
+        choice(
+          $.array_identifier,
+          $.identifier,
+          $.array,
+          $.integer
+        )
+      ),
 
     struct_function: ($) =>
       seq(

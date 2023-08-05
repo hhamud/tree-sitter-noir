@@ -49,10 +49,6 @@
         {
           "type": "string_literal",
           "named": true
-        },
-        {
-          "type": "struct_expression",
-          "named": true
         }
       ]
     }
@@ -2050,6 +2046,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
           "named": true
         },
         {

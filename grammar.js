@@ -245,7 +245,7 @@ module.exports = grammar({
         $.string_literal,
         $.identifier,
         $.as_identifier,
-        $.import_identifier
+        $.import_variable
       ),
 
     array: ($) =>
@@ -308,7 +308,7 @@ module.exports = grammar({
           $.array_type,
           $.generic_type,
           $.function_type,
-          $.import_identifier,
+          $.import_variable,
           field("type", $.identifier)
         )
       ),

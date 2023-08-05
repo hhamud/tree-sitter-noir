@@ -16,7 +16,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -89,7 +89,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -147,7 +147,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -653,10 +653,6 @@
         },
         {
           "type": "import",
-          "named": true
-        },
-        {
-          "type": "import_identifier",
           "named": true
         },
         {
@@ -1734,7 +1730,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -1896,10 +1892,6 @@
           "named": true
         },
         {
-          "type": "import_identifier",
-          "named": true
-        },
-        {
           "type": "import_variable",
           "named": true
         },
@@ -2026,7 +2018,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -2136,7 +2128,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {
@@ -2227,7 +2219,7 @@
           "named": true
         },
         {
-          "type": "import_identifier",
+          "type": "import_variable",
           "named": true
         },
         {

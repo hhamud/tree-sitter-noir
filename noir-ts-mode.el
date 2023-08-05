@@ -94,9 +94,7 @@
    :override t
    :language 'noir
    '((boolean) @font-lock-constant-face
-     (parameter (identifier) @font-lock-constant-face)
-     (import_identifier (identifier) @font-lock-constant-face)
-     (parameter (as_identifier (identifier) @font-lock-constant-face)))
+     (import_identifier (identifier) @font-lock-constant-face))
 
 
    :feature 'delimiter
@@ -154,6 +152,7 @@
      (let_declaration (binary_expression left: (grouped_expression (identifier) @font-lock-variable-name-face)))
      (struct_definition var: (identifier) @font-lock-variable-name-face)
      (typed_identifier var: (identifier) @font-lock-variable-name-face)
+     (as_identifier (identifier) @font-lock-variable-name-face)
      (global (binary_expression left: (typed_identifier var: (identifier) @font-lock-variable-name-face))))
 
    :feature 'string

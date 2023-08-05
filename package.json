@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-noir",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tree-sitter plugin for noir language",
   "main": "bindings/node",
   "keywords": [

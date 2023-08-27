@@ -4,9 +4,10 @@ description = "noir grammar for the tree-sitter parsing library"
 version = "0.0.1"
 keywords = ["incremental", "parsing", "noir"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-noir"
+repository = "https://github.com/hhamud/tree-sitter-noir"
 edition = "2018"
-license = "MIT"
+license = "gpl-3.0"
+license-file = "LICENSE"
 
 build = "bindings/rust/build.rs"
 include = [

@@ -6,7 +6,6 @@ keywords = ["incremental", "parsing", "noir"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/hhamud/tree-sitter-noir"
 edition = "2018"
-license = "gpl-3.0"
 license-file = "LICENSE"
 
 build = "bindings/rust/build.rs"

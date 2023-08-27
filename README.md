@@ -1,7 +1,9 @@
 # Tree-sitter Noir
 
 [![test](https://github.com/hhamud/tree-sitter-noir/actions/workflows/ci.yml/badge.svg)](https://github.com/hhamud/tree-sitter-noir/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/github-buttons)](https://www.npmjs.com/package/tree-sitter-noir)
+[![npm](https://img.shields.io/npm/v/tree-sitter-noir)](https://www.npmjs.com/package/tree-sitter-noir)
+[![Latest version](https://img.shields.io/crates/v/tree-sitter-noir.svg)](https://crates.io/crates/tree-sitter-noir)
+![gpl-3.0](https://shields.io/badge/gpl-3.0-blue)
 
 
 Noir grammar and parser for [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
@@ -40,12 +42,17 @@ EOF
 ```
 
 ## Other
-To install the grammar from NPM
 
+To install the grammar from NPM
 ```shell
 npm i tree-sitter-noir
 ```
 
+
+To install the grammar from cargo
+```shell
+cargo add tree-sitter-noir
+```
 
 ## References
 

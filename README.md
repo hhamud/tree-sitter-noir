@@ -27,7 +27,8 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.noir = {
     install_info = {
         url = "https://github.com/hhamud/tree-sitter-noir", -- the url for this tree-sitter grammar
-        files = {"src/parser.c", "src/scanner.cc"},
+        files = {"src/parser.c", "src/scanner.c"},
+        branch = "main",
     },
     filetype = "noir", -- if filetype does not agrees with parser name you can define this field
 }

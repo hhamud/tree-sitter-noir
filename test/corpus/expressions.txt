@@ -8,11 +8,12 @@ Integer literals
 100_000_000;
 
 ----------------------------------------------------------------
+
 (source_file
- (integer)
- (integer)
- (integer)
- (integer))
+  (integer)
+  (integer)
+  (integer)
+  (integer))
 
 ============================================
 Identifiers
@@ -22,10 +23,10 @@ abcd;
 EF_G123;
 
 ----------------------------------------------------------------
-(source_file
- (identifier)
- (identifier))
 
+(source_file
+  (identifier)
+  (identifier))
 
 ============================================
 Boolean Literals
@@ -35,9 +36,10 @@ true;
 false;
 
 ----------------------------------------------------------------
+
 (source_file
- (boolean)
- (boolean))
+  (boolean)
+  (boolean))
 
 ============================================
 String_Literal Literals
@@ -51,13 +53,14 @@ b"foo\nbar";
 "foo \x42  \x43 bar";
 
 ----------------------------------------------------------------
+
 (source_file
- (string_literal)
- (string_literal)
- (string_literal)
- (string_literal)
- (string_literal)
- (string_literal))
+  (string_literal)
+  (string_literal)
+  (string_literal)
+  (string_literal)
+  (string_literal)
+  (string_literal))
 
 ============================================
 Character literals
@@ -71,11 +74,10 @@ Character literals
 ----------------------------------------------------------------
 
 (source_file
- (character)
- (character)
- (character)
- (character))
-
+  (character)
+  (character)
+  (character)
+  (character))
 
 ============================================
 Statement
@@ -86,19 +88,20 @@ let z = x as u32 + y;
 
 ----------------------------------------------------------------
 
- (source_file
-      (let_declaration
-        (binary_expression
+(source_file
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (integer)))
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (binary_expression
+        (as_identifier
           (identifier)
-          (integer)))
-      (let_declaration
-        (binary_expression
-          (identifier)
-          (binary_expression
-            (as_identifier
-              (identifier)
-              (single_type))
-            (identifier)))))
+          (single_type))
+        (identifier)))))
+
 ============================================
 Array Statement
 ============================================
@@ -108,15 +111,15 @@ let x = [163, 117, 178, 149];
 
 ----------------------------------------------------------------
 
- (source_file
-      (let_declaration
-        (binary_expression
-          (identifier)
-          (array
-            (integer)
-            (integer)
-            (integer)
-            (integer)))))
+(source_file
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (array
+        (integer)
+        (integer)
+        (integer)
+        (integer)))))
 
 ============================================
 Structs
@@ -137,36 +140,37 @@ let dog = Animal {
 let Animal { hands, legs: feet, eyes } = get_octopus();
 
 ----------------------------------------------------------------
- (source_file
-      (struct_definition
+
+(source_file
+  (struct_definition
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type))
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (struct_initialization
         (identifier)
         (identifier)
-        (single_type)
+        (integer)
         (identifier)
-        (single_type)
+        (integer)
+        (identifier))))
+  (let_declaration
+    (binary_expression
+      (struct_initialization
         (identifier)
-        (single_type))
-      (let_declaration
-        (binary_expression
-          (identifier)
-          (struct_initialization
-            (identifier)
-            (identifier)
-            (integer)
-            (identifier)
-            (integer)
-            (identifier))))
-      (let_declaration
-        (binary_expression
-          (struct_initialization
-            (identifier)
-            (identifier)
-            (identifier)
-            (identifier)
-            (identifier))
-          (function_call
-            (identifier)
-            (parameter)))))
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier))
+      (function_call
+        (identifier)
+        (parameter)))))
 
 ============================================
 For loop
@@ -187,45 +191,44 @@ for i in 0..8 {
 
 ----------------------------------------------------------------
 
- (source_file
-      (for_loop
+(source_file
+  (for_loop
+    (identifier)
+    (identifier)
+    (body
+      (binary_expression
         (identifier)
+        (integer))))
+  (for_loop
+    (identifier)
+    (range
+      (integer)
+      (integer))
+    (body
+      (binary_expression
         (identifier)
-        (body
+        (integer))))
+  (for_loop
+    (identifier)
+    (range
+      (integer)
+      (integer))
+    (body
+      (binary_expression
+        (array_identifier
+          (identifier)
+          (identifier))
+        (binary_expression
           (binary_expression
             (identifier)
-            (integer))))
-      (for_loop
-        (identifier)
-        (range
-          (integer)
-          (integer))
-        (body
-          (binary_expression
-            (identifier)
-            (integer))))
-      (for_loop
-        (identifier)
-        (range
-          (integer)
-          (integer))
-        (body
-          (binary_expression
-            (array_identifier
-              (identifier)
-              (identifier))
-            (binary_expression
+            (grouped_expression
               (binary_expression
-                (identifier)
+                (integer)
                 (grouped_expression
                   (binary_expression
                     (integer)
-                    (grouped_expression
-                      (binary_expression
-                        (integer)
-                        (identifier))))))
-              (string_literal))))))
-
+                    (identifier))))))
+          (string_literal))))))
 
 ============================================
 if else statement
@@ -253,58 +256,57 @@ if a == 0 {
 ----------------------------------------------------------------
 
 (source_file
-    (if_exp
+  (if_exp
     (binary_expression
-        (grouped_expression
+      (grouped_expression
         (binary_expression
-            (identifier)
-            (integer)))
-        (grouped_expression
+          (identifier)
+          (integer)))
+      (grouped_expression
         (binary_expression
-            (identifier)
-            (integer))))
+          (identifier)
+          (integer))))
     (body
-        (binary_expression
+      (binary_expression
         (identifier)
         (integer))))
-    (if_exp
+  (if_exp
     (binary_expression
-        (grouped_expression
+      (grouped_expression
         (binary_expression
-            (identifier)
-            (integer)))
-        (grouped_expression
+          (identifier)
+          (integer)))
+      (grouped_expression
         (binary_expression
-            (identifier)
-            (integer))))
+          (identifier)
+          (integer))))
     (body
-        (binary_expression
+      (binary_expression
         (identifier)
         (integer))))
-    (if_exp
+  (if_exp
     (binary_expression
-        (identifier)
-        (integer))
+      (identifier)
+      (integer))
     (body
-        (if_exp
+      (if_exp
         (binary_expression
-            (identifier)
-            (integer))
+          (identifier)
+          (integer))
         (body
-            (binary_expression
+          (binary_expression
             (identifier)
             (integer))))
-        (else_exp
+      (else_exp
         (body
-            (binary_expression
+          (binary_expression
             (identifier)
             (integer))))))
-    (else_exp
+  (else_exp
     (body
-        (binary_expression
+      (binary_expression
         (identifier)
         (integer)))))
-
 
 ============================================
 Globals
@@ -314,15 +316,14 @@ global N: Field = 5;
 
 
 ----------------------------------------------------------------
+
 (source_file
-      (global
-        (binary_expression
-          (typed_identifier
-            (identifier)
-            (single_type))
-          (integer))))
-
-
+  (global
+    (binary_expression
+      (typed_identifier
+        (identifier)
+        (single_type))
+      (integer))))
 
 ============================================
 Impl Structs
@@ -352,72 +353,71 @@ impl RepeatedValue {
 
 ----------------------------------------------------------------
 
- (source_file
-      (struct_definition
+(source_file
+  (struct_definition
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier)
+    (comptime)
+    (single_type))
+  (impl_block
+    (identifier)
+    (body
+      (function_definition
         (identifier)
-        (identifier)
-        (single_type)
-        (identifier)
-        (comptime)
-        (single_type))
-      (struct_method
-        (identifier)
+        (parameter
+          (typed_identifier
+            (identifier)
+            (single_type)))
+        (return_type
+          (single_type))
         (body
-          (function_definition
+          (struct_initialization
             (identifier)
-            (parameter
-              (typed_identifier
-                (identifier)
-                (single_type)))
-            (return_type
-              (single_type))
-            (body
-              (struct_initialization
-                (identifier)
-                (identifier)
-                (integer))))
-          (function_definition
             (identifier)
-            (parameter
-              (typed_identifier
-                (mutable)
-                (identifier)
-                (single_type)))
-            (return_type
-              (single_type))
-            (body
-              (binary_expression
-                (struct_expression
-                  (identifier)
-                  (identifier))
-                (integer))
-              (identifier)))
-          (function_definition
+            (integer))))
+      (function_definition
+        (identifier)
+        (parameter
+          (typed_identifier
+            (mutable)
             (identifier)
-            (parameter
+            (single_type)))
+        (return_type
+          (single_type))
+        (body
+          (binary_expression
+            (struct_expression
+              (identifier)
+              (identifier))
+            (integer))
+          (identifier)))
+      (function_definition
+        (identifier)
+        (parameter
+          (self_method
+            (self)))
+        (body
+          (for_loop
+            (identifier)
+            (range
+              (integer)
               (self_method
-                (self)))
+                (self)
+                (identifier)))
             (body
-              (for_loop
-                (identifier)
-                (range
-                  (integer)
-                  (self_method
-                    (self)
-                    (identifier)))
-                (body
-                  (function_import
-                    (import_identifier
-                      (identifier))
-                    (import_identifier
-                      (identifier))
-                    (function_call
-                      (identifier)
-                      (parameter
-                        (self_method
-                          (self)
-                          (identifier))))))))))))
-
+              (function_import
+                (import_identifier
+                  (identifier))
+                (import_identifier
+                  (identifier))
+                (function_call
+                  (identifier)
+                  (parameter
+                    (self_method
+                      (self)
+                      (identifier))))))))))))
 
 ============================================
 Generic Structs
@@ -448,77 +448,78 @@ impl<T> RepeatedValue<T> {
 
 ----------------------------------------------------------------
 
-  (source_file
-      (struct_definition
+(source_file
+  (struct_definition
+    (identifier)
+    (generic
+      (identifier))
+    (identifier)
+    (identifier)
+    (identifier)
+    (comptime)
+    (single_type))
+  (impl_block
+    (generic
+      (identifier))
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (identifier)))
+    (body
+      (function_definition
         (identifier)
-        (generic
-          (identifier))
-        (identifier)
-        (identifier)
-        (identifier)
-        (comptime)
-        (single_type))
-      (struct_method
-        (generic
-          (identifier))
-        (identifier)
-        (generic
-          (identifier))
+        (parameter
+          (typed_identifier
+            (identifier)
+            (identifier)))
+        (return_type
+          (single_type))
         (body
-          (function_definition
+          (struct_initialization
             (identifier)
-            (parameter
-              (typed_identifier
-                (identifier)
-                (identifier)))
-            (return_type
-              (single_type))
-            (body
-              (struct_initialization
-                (identifier)
-                (identifier)
-                (integer))))
-          (function_definition
             (identifier)
-            (parameter
-              (typed_identifier
-                (mutable)
-                (identifier)
-                (single_type)))
-            (return_type
-              (single_type))
-            (body
-              (binary_expression
-                (struct_expression
-                  (identifier)
-                  (identifier))
-                (integer))
-              (identifier)))
-          (function_definition
+            (integer))))
+      (function_definition
+        (identifier)
+        (parameter
+          (typed_identifier
+            (mutable)
             (identifier)
-            (parameter
+            (single_type)))
+        (return_type
+          (single_type))
+        (body
+          (binary_expression
+            (struct_expression
+              (identifier)
+              (identifier))
+            (integer))
+          (identifier)))
+      (function_definition
+        (identifier)
+        (parameter
+          (self_method
+            (self)))
+        (body
+          (for_loop
+            (identifier)
+            (range
+              (integer)
               (self_method
-                (self)))
+                (self)
+                (identifier)))
             (body
-              (for_loop
-                (identifier)
-                (range
-                  (integer)
-                  (self_method
-                    (self)
-                    (identifier)))
-                (body
-                  (function_import
-                    (import_identifier
-                      (identifier))
-                    (import_identifier
-                      (identifier))
-                    (function_call
-                      (identifier)
-                      (parameter
-                        (self_method
-                          (self)
-                          (identifier))))))))))))
+              (function_import
+                (import_identifier
+                  (identifier))
+                (import_identifier
+                  (identifier))
+                (function_call
+                  (identifier)
+                  (parameter
+                    (self_method
+                      (self)
+                      (identifier))))))))))))
 
 ============================================
 Integer methods
@@ -542,72 +543,73 @@ let straight_div_result = div_wide_allow_overflow(
 
 
 ----------------------------------------------------------------
+
 (source_file
-      (struct_expression
-        (identifier)
-        (integer))
-      (struct_expression
-        (identifier)
-        (integer))
-      (struct_expression
-        (identifier)
-        (integer))
-(let_declaration
-        (binary_expression
+  (struct_expression
+    (identifier)
+    (integer))
+  (struct_expression
+    (identifier)
+    (integer))
+  (struct_expression
+    (identifier)
+    (integer))
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (function_import
+        (import_identifier
+          (identifier))
+        (import_identifier
+          (identifier))
+        (function_call
           (identifier)
-          (function_import
-            (import_identifier
-              (identifier))
-            (import_identifier
-              (identifier))
-            (function_call
-              (identifier)
-              (parameter
-                (identifier)
-                (identifier)
-                (struct_expression
-                  (array_identifier
-                    (identifier)
-                    (identifier))
-                  (identifier))
-                (struct_expression
-                  (array_identifier
-                    (identifier)
-                    (identifier))
-                  (identifier)))))))
-      (let_declaration
-        (binary_expression
-          (identifier)
-          (function_call
+          (parameter
             (identifier)
-            (parameter
-              (struct_expression
+            (identifier)
+            (struct_expression
+              (array_identifier
                 (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer)))
-              (struct_expression
+                (identifier))
+              (identifier))
+            (struct_expression
+              (array_identifier
                 (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer)))
-              (struct_expression
-                (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer)))
-              (struct_expression
-                (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer)))
-              (struct_expression
-                (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer)))
-              (struct_expression
-                (identifier)
-                (array_identifier
-                  (identifier)
-                  (integer))))))))
+                (identifier))
+              (identifier)))))))
+  (let_declaration
+    (binary_expression
+      (identifier)
+      (function_call
+        (identifier)
+        (parameter
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer)))
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer)))
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer)))
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer)))
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer)))
+          (struct_expression
+            (identifier)
+            (array_identifier
+              (identifier)
+              (integer))))))))

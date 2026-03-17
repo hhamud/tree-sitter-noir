@@ -226,6 +226,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "self_method",
           "named": true
         },
@@ -318,6 +322,10 @@
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "loop_expr",
             "named": true
           },
           {
@@ -509,6 +517,10 @@
             "named": true
           },
           {
+            "type": "loop_expr",
+            "named": true
+          },
+          {
             "type": "self_method",
             "named": true
           },
@@ -592,6 +604,10 @@
           "named": true
         },
         {
+          "type": "break_statement",
+          "named": true
+        },
+        {
           "type": "character",
           "named": true
         },
@@ -601,6 +617,10 @@
         },
         {
           "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
           "named": true
         },
         {
@@ -652,6 +672,10 @@
           "named": true
         },
         {
+          "type": "impl_block",
+          "named": true
+        },
+        {
           "type": "import",
           "named": true
         },
@@ -665,6 +689,10 @@
         },
         {
           "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
           "named": true
         },
         {
@@ -708,7 +736,119 @@
           "named": true
         },
         {
-          "type": "struct_method",
+          "type": "trait_alias",
+          "named": true
+        },
+        {
+          "type": "trait_definition",
+          "named": true
+        },
+        {
+          "type": "typed_identifier",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "while_loop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "break_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
           "named": true
         },
         {
@@ -723,7 +863,7 @@
     }
   },
   {
-    "type": "boolean",
+    "type": "continue_statement",
     "named": true,
     "fields": {}
   },
@@ -811,6 +951,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "range",
           "named": true
         },
@@ -895,6 +1039,18 @@
         {
           "type": "return_type",
           "named": true
+        },
+        {
+          "type": "unconstrained",
+          "named": true
+        },
+        {
+          "type": "visibility_modifier",
+          "named": true
+        },
+        {
+          "type": "where_clause",
+          "named": true
         }
       ]
     }
@@ -948,6 +1104,41 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "trait_bound",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "single_type",
+          "named": true
         }
       ]
     }
@@ -961,7 +1152,7 @@
       "required": true,
       "types": [
         {
-          "type": "generic",
+          "type": "generic_arguments",
           "named": true
         },
         {
@@ -976,7 +1167,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1048,6 +1239,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "module",
           "named": true
         },
@@ -1081,6 +1276,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "visibility_modifier",
           "named": true
         }
       ]
@@ -1148,6 +1347,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
           "named": true
         },
         {
@@ -1254,6 +1457,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "self_method",
           "named": true
         },
@@ -1285,6 +1492,45 @@
     }
   },
   {
+    "type": "impl_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "generic",
+          "named": true
+        },
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        },
+        {
+          "type": "where_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import",
     "named": true,
     "fields": {},
@@ -1309,7 +1555,7 @@
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "visibility_modifier",
           "named": true
         }
       ]
@@ -1456,6 +1702,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "mutable",
           "named": true
         },
@@ -1485,6 +1735,21 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "loop_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
           "named": true
         }
       ]
@@ -1530,7 +1795,7 @@
           "named": true
         },
         {
-          "type": "viewer",
+          "type": "visibility_modifier",
           "named": true
         }
       ]
@@ -1668,6 +1933,10 @@
           "named": true
         },
         {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
           "type": "self_method",
           "named": true
         },
@@ -1783,6 +2052,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {
       "type": {
         "multiple": true,
@@ -1832,6 +2102,10 @@
           "named": true
         },
         {
+          "type": "break_statement",
+          "named": true
+        },
+        {
           "type": "character",
           "named": true
         },
@@ -1841,6 +2115,10 @@
         },
         {
           "type": "comptime",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
           "named": true
         },
         {
@@ -1892,6 +2170,10 @@
           "named": true
         },
         {
+          "type": "impl_block",
+          "named": true
+        },
+        {
           "type": "import",
           "named": true
         },
@@ -1905,6 +2187,10 @@
         },
         {
           "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
           "named": true
         },
         {
@@ -1948,7 +2234,11 @@
           "named": true
         },
         {
-          "type": "struct_method",
+          "type": "trait_alias",
+          "named": true
+        },
+        {
+          "type": "trait_definition",
           "named": true
         },
         {
@@ -1957,6 +2247,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "while_loop",
           "named": true
         }
       ]
@@ -2035,6 +2329,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "visibility_modifier",
           "named": true
         }
       ]
@@ -2150,12 +2448,16 @@
         {
           "type": "string_literal",
           "named": true
+        },
+        {
+          "type": "visibility_modifier",
+          "named": true
         }
       ]
     }
   },
   {
-    "type": "struct_method",
+    "type": "trait_alias",
     "named": true,
     "fields": {},
     "children": {
@@ -2163,11 +2465,72 @@
       "required": true,
       "types": [
         {
-          "type": "array_type",
+          "type": "generic",
           "named": true
         },
         {
-          "type": "body",
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        },
+        {
+          "type": "where_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trait_bound",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trait_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -2176,6 +2539,49 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "trait_function_signature",
+          "named": true
+        },
+        {
+          "type": "where_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trait_function_signature",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "return_type",
+          "named": true
+        },
+        {
+          "type": "where_clause",
           "named": true
         }
       ]
@@ -2307,6 +2713,147 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
+          "named": true
+        },
+        {
+          "type": "self_method",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct_expression",
+          "named": true
+        },
+        {
+          "type": "struct_function",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
+          "type": "typed_identifier",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "visibility_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "crate",
+          "named": true
+        },
+        {
+          "type": "viewer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "where_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "trait_bound",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "while_loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "as_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "function_import",
+          "named": true
+        },
+        {
+          "type": "grouped_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
           "named": true
         },
         {
@@ -2493,12 +3040,17 @@
     "named": false
   },
   {
+    "type": "break",
+    "named": false
+  },
+  {
     "type": "character",
     "named": true
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "comptime",
@@ -2506,6 +3058,10 @@
   },
   {
     "type": "constrain",
+    "named": false
+  },
+  {
+    "type": "continue",
     "named": false
   },
   {
@@ -2581,6 +3137,10 @@
     "named": false
   },
   {
+    "type": "loop",
+    "named": false
+  },
+  {
     "type": "mod",
     "named": false
   },
@@ -2609,6 +3169,10 @@
     "named": true
   },
   {
+    "type": "trait",
+    "named": false
+  },
+  {
     "type": "true",
     "named": false
   },
@@ -2633,12 +3197,24 @@
     "named": false
   },
   {
+    "type": "unconstrained",
+    "named": true
+  },
+  {
     "type": "use",
     "named": false
   },
   {
     "type": "viewer",
     "named": true
+  },
+  {
+    "type": "where",
+    "named": false
+  },
+  {
+    "type": "while",
+    "named": false
   },
   {
     "type": "{",

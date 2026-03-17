@@ -17,22 +17,23 @@ pub mod secp256k1;
 -------------------------------------------------------------------------------
 
 (source_file
-    (module
+  (module
     (identifier))
-    (module
+  (module
     (identifier)
     (body))
-    (module
+  (module
     (identifier)
     (body
-        (module
+      (module
         (identifier)
         (body))
-        (module
+      (module
         (identifier)
         (body))))
-    (module
-    (viewer)
+  (module
+    (visibility_modifier
+      (viewer))
     (identifier)))
 
 ================================================================================
@@ -55,81 +56,81 @@ use my::{*};
 -------------------------------------------------------------------------------
 
 (source_file
-    (import
+  (import
     (identifier))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (identifier))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (identifier))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (as_identifier
-        (identifier)
-        (identifier)))
-    (import
+      (identifier)
+      (identifier)))
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (import_body
-        (identifier)
-        (identifier)))
-    (import
+      (identifier)
+      (identifier)))
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier)))
-    (import
-    (viewer)
+      (identifier)))
+  (import
+    (visibility_modifier
+      (viewer))
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (identifier))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_identifier
-        (identifier))
+      (identifier))
     (import_body
-        (identifier)
-        (as_identifier
+      (identifier)
+      (as_identifier
         (identifier)
         (identifier))
-        (as_identifier
+      (as_identifier
         (identifier)
         (identifier))))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_body
-        (import_identifier
+      (import_identifier
         (identifier))
-        (import_body
+      (import_body
         (identifier)
         (identifier))))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_body
-        (import_identifier
+      (import_identifier
         (identifier))))
-    (import
+  (import
     (import_identifier
-        (identifier))
+      (identifier))
     (import_body)))
-
 
 ================================================================================
 Use crate and super
@@ -139,19 +140,20 @@ use crate::{ dot::{one, four} };
 use super::{ some::* };
 
 -------------------------------------------------------------------------------
+
 (source_file
-      (import
-        (import_identifier
-          (crate))
-        (import_body
-          (import_identifier
-            (identifier))
-          (import_body
-            (identifier)
-            (identifier))))
-      (import
-        (import_identifier
-          (super))
-        (import_body
-          (import_identifier
-            (identifier)))))
+  (import
+    (import_identifier
+      (crate))
+    (import_body
+      (import_identifier
+        (identifier))
+      (import_body
+        (identifier)
+        (identifier))))
+  (import
+    (import_identifier
+      (super))
+    (import_body
+      (import_identifier
+        (identifier)))))

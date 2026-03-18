@@ -1,0 +1,59 @@
+name: upstream-canary
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.6
+      - run: bun install --frozen-lockfile
+      - run: git clone --depth 1 https://github.com/noir-lang/noir.git /tmp/tree-sitter-noir-upstream
+      - id: canary
+        continue-on-error: true
+        run: node scripts/check-upstream-corpus.js --source /tmp/tree-sitter-noir-upstream --label upstream-master --report /tmp/upstream-canary-report.json
+      - if: always()
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const reportPath = "/tmp/upstream-canary-report.json";
+
+            if (!fs.existsSync(reportPath)) {
+              console.log("::warning::Upstream canary did not produce a report.");
+              process.exit(0);
+            }
+
+            const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+            const successRate = ((report.successfulCount / report.fileCount) * 100).toFixed(1);
+            const lines = [
+              "## Upstream Noir Canary",
+              "",
+              `- Commit: \`${report.commit}\``,
+              `- Parsed successfully: ${report.successfulCount}/${report.fileCount} (${successRate}%)`,
+              `- Failures: ${report.failureCount}`,
+            ];
+
+            if (report.failures.length > 0) {
+              lines.push("");
+              lines.push("First failures:");
+
+              for (const failure of report.failures.slice(0, 10)) {
+                lines.push(`- \`${failure.file}\` (${failure.start.row}:${failure.start.column} - ${failure.end.row}:${failure.end.column})`);
+              }
+
+              console.log(`::warning::Upstream canary found ${report.failureCount} parse failures against ${report.commit}.`);
+            }
+
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${lines.join("\n")}\n`);
+          '
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: upstream-noir-canary-report
+          path: /tmp/upstream-canary-report.json
+          if-no-files-found: ignore

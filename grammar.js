@@ -72,6 +72,7 @@ module.exports = grammar({
     [$.self_method],
     [$.function_import],
     [$.let_declaration, $.function_import],
+    [$.generic, $.generic_arguments],
   ],
 
   rules: {
@@ -94,11 +95,17 @@ module.exports = grammar({
         $.import,
         $.macro,
         $.struct_definition,
+        $.trait_definition,
+        $.trait_alias,
+        $.impl_block,
         $.self_method,
-        $.struct_method,
         $.struct_function,
         $.return,
-        $.global
+        $.global,
+        $.while_loop,
+        $.loop_expr,
+        $.break_statement,
+        $.continue_statement
       ),
 
     _statement: ($) =>
@@ -169,7 +176,7 @@ module.exports = grammar({
         ")"
       ),
 
-    global: ($) => seq("global", $._statement),
+    global: ($) => seq(optional($.visibility_modifier), "global", $._statement),
 
     _expression: ($) =>
       choice(
@@ -186,6 +193,7 @@ module.exports = grammar({
         $.struct_expression,
         $._function,
         $.struct_function,
+        $.loop_expr,
         $.as_identifier,
         $.self_method,
         $.typed_identifier,
@@ -199,7 +207,23 @@ module.exports = grammar({
 
     boolean: ($) => choice("true", "false"),
 
-    generic: ($) => seq("<", commaSep($.identifier), ">"),
+    generic: ($) =>
+      seq("<", commaSep(choice($.identifier, $.trait_bound)), ">"),
+
+    generic_arguments: ($) =>
+      seq(
+        "<",
+        commaSep(
+          choice(
+            $.identifier,
+            $.integer,
+            $.single_type,
+            $.generic_type,
+            $.import_variable
+          )
+        ),
+        ">"
+      ),
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
@@ -278,6 +302,12 @@ module.exports = grammar({
 
     viewer: ($) => "pub",
 
+    visibility_modifier: ($) =>
+      choice(
+        $.viewer,
+        seq($.viewer, "(", $.crate, ")")
+      ),
+
     return: ($) => "return",
 
     crate: ($) => "crate",
@@ -299,7 +329,19 @@ module.exports = grammar({
       ),
 
     generic_type: ($) =>
-      seq(optional($.identifier), $.generic),
+      seq(optional($.identifier), $.generic_arguments),
+
+    trait_bound: ($) =>
+      prec.right(
+        seq(
+          field("type", $.identifier),
+          ":",
+          commaSep1(choice($.identifier, $.generic_type, $.import_variable))
+        )
+      ),
+
+    where_clause: ($) =>
+      seq("where", commaSepTrailing1($.trait_bound)),
 
     _type: ($) =>
       seq(
@@ -324,38 +366,29 @@ module.exports = grammar({
 
     function_definition: ($) =>
       seq(
+        optional($.visibility_modifier),
+        optional($.unconstrained),
         "fn",
         $.identifier,
         optional($.generic),
         optional($.array_type),
         $.parameter,
         optional($.return_type),
+        optional($.where_clause),
         $.body
       ),
 
-    function_call: ($) => seq($.identifier, $.parameter),
+    function_call: ($) =>
+      prec(
+        PREC.call,
+        seq($.identifier, $.parameter)
+      ),
 
     parameter: ($) =>
       seq(
         "(",
-        optional(
-          commaSep(
-            choice(
-              $.typed_identifier,
-              $.self_method,
-              $.array,
-              $._function,
-              $.array_identifier,
-              $.identifier,
-              $.grouped_expression,
-              $.as_identifier,
-              $.integer,
-              $.string_literal,
-              $.character,
-              $.struct_expression
-            )
-          )
-        ),
+        optional(commaSep($._expression)),
+        optional(","),
         ")"
       ),
 
@@ -380,17 +413,19 @@ module.exports = grammar({
     function_type: ($) =>
       seq("fn", $.parameter, $.return_type),
 
+    unconstrained: ($) => "unconstrained",
+
     // modules
     module: ($) =>
       choice(
         seq(
-          optional($.viewer),
+          optional($.visibility_modifier),
           "mod",
           $.identifier,
           $.body
         ),
 
-        seq(optional($.viewer), "mod", $.identifier)
+        seq(optional($.visibility_modifier), "mod", $.identifier)
       ),
 
     // imports
@@ -405,7 +440,7 @@ module.exports = grammar({
 
     import: ($) =>
       seq(
-        optional($.viewer),
+        optional($.visibility_modifier),
         "use",
         repeat($.import_identifier),
         choice(
@@ -461,6 +496,7 @@ module.exports = grammar({
     // structs
     struct_definition: ($) =>
       seq(
+        optional($.visibility_modifier),
         "struct",
         field("name", $.identifier),
         optional($.generic),
@@ -515,6 +551,7 @@ module.exports = grammar({
 
     _field: ($) =>
       seq(
+        optional($.visibility_modifier),
         field("var", $.identifier),
         optional(
           seq(
@@ -525,13 +562,52 @@ module.exports = grammar({
         optional(",")
       ),
 
-    struct_method: ($) =>
+    trait_definition: ($) =>
+      seq(
+        "trait",
+        $.identifier,
+        optional($.generic),
+        optional($.where_clause),
+        "{",
+        repeat(choice($.trait_function_signature, $.comment, $.macro)),
+        "}"
+      ),
+
+    trait_function_signature: ($) =>
+      seq(
+        "fn",
+        $.identifier,
+        optional($.generic),
+        $.parameter,
+        optional($.return_type),
+        optional($.where_clause),
+        ";"
+      ),
+
+    trait_alias: ($) =>
+      seq(
+        "trait",
+        $.identifier,
+        optional($.generic),
+        "=",
+        commaSep1(choice($.identifier, $.generic_type, $.import_variable)),
+        optional($.where_clause),
+        ";"
+      ),
+
+    impl_block: ($) =>
       seq(
         "impl",
         optional($.generic),
-        optional($.identifier),
-        optional($.array_type),
-        optional($.generic),
+        choice(
+          seq(
+            choice($.identifier, $.generic_type, $.import_variable, $.array_type),
+            "for",
+            choice($.identifier, $.generic_type, $.import_variable, $.array_type)
+          ),
+          choice($.identifier, $.generic_type, $.import_variable, $.array_type)
+        ),
+        optional($.where_clause),
         $.body
       ),
 
@@ -544,6 +620,14 @@ module.exports = grammar({
         choice($._expression, $.range),
         $.body
       ),
+
+    while_loop: ($) => seq("while", $._expression, $.body),
+
+    loop_expr: ($) => seq("loop", $.body),
+
+    break_statement: ($) => seq("break", optional($._expression), ";"),
+
+    continue_statement: ($) => seq("continue", ";"),
 
     if_exp: ($) => seq("if", $._expression, $.body),
 
@@ -570,6 +654,14 @@ module.exports = grammar({
 // custom functions
 function commaSep(rule) {
   return optional(seq(rule, repeat(seq(",", rule))))
+}
+
+function commaSep1(rule) {
+  return seq(rule, repeat(seq(",", rule)))
+}
+
+function commaSepTrailing1(rule) {
+  return prec.right(seq(rule, repeat(seq(",", rule)), optional(",")))
 }
 
 function dotSep(rule) {

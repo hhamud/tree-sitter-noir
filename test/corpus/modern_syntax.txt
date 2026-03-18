@@ -1,0 +1,190 @@
+================================================================================
+Visibility And Traits
+================================================================================
+
+#[deprecated("use fast_area")]
+pub(crate) fn slow_area<T: Area>(shape: T) -> Field
+where
+    T: Area
+{
+    shape.area()
+}
+
+trait Area {
+    fn area(self) -> Field;
+}
+
+trait ShapeOps<T> = Area where T: Area;
+
+struct Rectangle {
+    width: Field,
+    height: Field,
+}
+
+impl Area for Rectangle {
+    fn area(self) -> Field {
+        self.width * self.height
+    }
+}
+
+impl<T> Rectangle where T: Area {
+    fn compare(self, other: T) -> bool {
+        self.area() == other.area()
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (macro
+    (identifier)
+    (string_literal))
+  (function_definition
+    (visibility_modifier
+      (viewer)
+      (crate))
+    (identifier)
+    (generic
+      (trait_bound
+        (identifier)
+        (identifier)))
+    (parameter
+      (typed_identifier
+        (identifier)
+        (identifier)))
+    (return_type
+      (single_type))
+    (where_clause
+      (trait_bound
+        (identifier)
+        (identifier)))
+    (body
+      (struct_function
+        (identifier)
+        (function_call
+          (identifier)
+          (parameter)))))
+  (trait_definition
+    (identifier)
+    (trait_function_signature
+      (identifier)
+      (parameter
+        (self_method
+          (self)))
+      (return_type
+        (single_type))))
+  (trait_alias
+    (identifier)
+    (generic
+      (identifier))
+    (identifier)
+    (where_clause
+      (trait_bound
+        (identifier)
+        (identifier))))
+  (struct_definition
+    (identifier)
+    (identifier)
+    (single_type)
+    (identifier)
+    (single_type))
+  (impl_block
+    (identifier)
+    (identifier)
+    (body
+      (function_definition
+        (identifier)
+        (parameter
+          (self_method
+            (self)))
+        (return_type
+          (single_type))
+        (body
+          (binary_expression
+            (self_method
+              (self)
+              (identifier))
+            (self_method
+              (self)
+              (identifier)))))))
+  (impl_block
+    (generic
+      (identifier))
+    (identifier)
+    (where_clause
+      (trait_bound
+        (identifier)
+        (identifier)))
+    (body
+      (function_definition
+        (identifier)
+        (parameter
+          (self_method
+            (self))
+          (typed_identifier
+            (identifier)
+            (identifier)))
+        (return_type
+          (single_type))
+        (body
+          (binary_expression
+            (self_method
+              (self)
+              (function_call
+                (identifier)
+                (parameter)))
+            (struct_function
+              (identifier)
+              (function_call
+                (identifier)
+                (parameter)))))))))
+
+================================================================================
+Unconstrained Loops
+================================================================================
+
+unconstrained fn control_flow(mut i: u32) {
+    while i < 10 {
+        i += 1;
+    }
+
+    loop {
+        if i == 12 {
+            break;
+        } else {
+            continue;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (unconstrained)
+    (identifier)
+    (parameter
+      (typed_identifier
+        (mutable)
+        (identifier)
+        (single_type)))
+    (body
+      (while_loop
+        (binary_expression
+          (identifier)
+          (integer))
+        (body
+          (binary_expression
+            (identifier)
+            (integer))))
+      (loop_expr
+        (body
+          (if_exp
+            (binary_expression
+              (identifier)
+              (integer))
+            (body
+              (break_statement)))
+          (else_exp
+            (body
+              (continue_statement))))))))

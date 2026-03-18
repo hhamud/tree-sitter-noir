@@ -59,7 +59,7 @@ bun run sync:upstream-noir
 To sync from an existing local checkout of `noir-lang/noir`:
 
 ```shell
-node scripts/sync-upstream-noir.js --source /path/to/noir
+bun scripts/sync-upstream-noir.js --source /path/to/noir
 ```
 
 After refreshing the manifest:

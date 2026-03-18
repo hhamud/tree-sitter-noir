@@ -109,4 +109,4 @@ No upstream Noir sources are committed to this repository. The pinned manifest
 intentionally targets `examples`, `noir_stdlib`, and the success-oriented
 `test_programs` directories. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the
 sync command, validation steps, and CI expectations around keeping this manifest
-up to date.
+up to date, including the Bun-based direct maintenance commands.

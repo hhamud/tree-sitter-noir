@@ -76,10 +76,37 @@ cargo add tree-sitter-noir
 
 Contributions to tree-sitter-noir are welcome. If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request on the [GitHub repository](https://github.com/hhamud/tree-sitter-noir).
 
+Contributor setup, testing expectations, and the upstream Noir sync workflow are documented in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 Install dependencies with Bun and use Bun to run the project scripts:
 
 ```shell
 bun install
 bun run generate
 bun run test
+bun run test:upstream-corpus
+bun run sync:upstream-noir
 ```
+
+## Tracking Noir Upstream
+
+Noir does not currently publish a standalone language specification, so this
+grammar treats the upstream `noir-lang/noir` repository as the source of truth
+for syntax changes.
+
+This repository now tracks upstream in two ways:
+
+- A pinned manifest lives at `test/upstream-corpus/noir/manifest.json`. It
+  records an upstream Noir commit plus the parse-clean file list to check
+  against that commit. Required CI downloads that pinned upstream revision and
+  runs `bun run test:upstream-corpus` against it.
+- A scheduled GitHub Actions canary clones the latest upstream Noir repository
+  and runs the parser against the full current upstream corpus. The canary is
+  informational: it uploads a JSON report and writes a job summary so grammar
+  drift stays visible without breaking required CI.
+
+No upstream Noir sources are committed to this repository. The pinned manifest
+intentionally targets `examples`, `noir_stdlib`, and the success-oriented
+`test_programs` directories. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the
+sync command, validation steps, and CI expectations around keeping this manifest
+up to date, including the Bun-based direct maintenance commands.

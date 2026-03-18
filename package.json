@@ -21,8 +21,10 @@
   "scripts": {
     "install": "node scripts/install.js",
     "test": "tree-sitter generate && tree-sitter test",
+    "test:upstream-corpus": "bun scripts/check-upstream-corpus.js",
     "format": "prettier --write \"**/*.{js,json}\"",
-    "generate": "tree-sitter generate"
+    "generate": "tree-sitter generate",
+    "sync:upstream-noir": "bun scripts/sync-upstream-noir.js"
   },
   "tree-sitter": [
     {

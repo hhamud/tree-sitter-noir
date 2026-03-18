@@ -1,0 +1,23 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 0,
+  "workspaces": {
+    "": {
+      "name": "tree-sitter-noir",
+      "dependencies": {
+        "nan": "^2.17.0",
+      },
+      "devDependencies": {
+        "prettier": "2.8.8",
+        "tree-sitter-cli": "0.25.10",
+      },
+    },
+  },
+  "packages": {
+    "nan": ["nan@2.17.0", "", {}, "sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ=="],
+
+    "prettier": ["prettier@2.8.8", "", { "bin": { "prettier": "bin-prettier.js" } }, "sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q=="],
+
+    "tree-sitter-cli": ["tree-sitter-cli@0.25.10", "", { "bin": { "tree-sitter": "cli.js" } }, "sha512-KoebQguKMCIghisEOdA372TIbrUl0kdnfZ9YQIBRAeOvNSKe85XbU4LuFW7hduRUwJj0rAG7pX5wo9sZhbBF1g=="],
+  }
+}

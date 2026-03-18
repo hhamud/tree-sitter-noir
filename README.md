@@ -14,33 +14,45 @@ To use with Emacs; use the following [package here](https://github.com/hhamud/no
 
 
 ### NeoVim
-1. Make sure that you have the latest version of Neovim and have also installed the neovim tree-sitter plugin.
-
-2. Add the following lines to your `init.vim` file:
-
+To use this parser with current `nvim-treesitter`, register the custom parser in
+the `User TSUpdate` hook, make sure Neovim recognizes `.nr` files as `noir`,
+and start tree-sitter highlighting for that filetype:
 
 ```lua
-
-lua <<EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-
-parser_config.noir = {
-    install_info = {
-        url = "https://github.com/hhamud/tree-sitter-noir", -- the url for this tree-sitter grammar
-        files = {"src/parser.c", "src/scanner.c"},
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").noir = {
+      install_info = {
+        url = "https://github.com/hhamud/tree-sitter-noir",
+        files = { "src/parser.c", "src/scanner.c" },
         branch = "main",
-    },
-    filetype = "noir", -- if filetype does not agrees with parser name you can define this field
-}
+        queries = "queries/neovim",
+      },
+    }
+  end,
+})
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "noir", -- The custom parser
-  highlight = {
-    enable = true,              -- false will disable the whole extension
+vim.filetype.add({
+  extension = {
+    nr = "noir",
   },
-}
-EOF
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "noir",
+  callback = function(args)
+    vim.treesitter.start(args.buf, "noir")
+  },
+})
 ```
+
+Then run `:TSInstall noir`.
+
+If you are on an older `nvim-treesitter` version that does not support the
+`queries` key in `install_info`, copy
+`queries/neovim/highlights.scm` into your Neovim `queries/noir/` runtime
+directory manually.
 
 ## Other
 

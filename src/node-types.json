@@ -1822,7 +1822,19 @@
           "named": true
         },
         {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -1846,7 +1858,15 @@
           "named": true
         },
         {
+          "type": "import_variable",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "loop_expr",
           "named": true
         },
         {
@@ -1862,7 +1882,19 @@
           "named": true
         },
         {
+          "type": "struct_function",
+          "named": true
+        },
+        {
+          "type": "struct_initialization",
+          "named": true
+        },
+        {
           "type": "typed_identifier",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]

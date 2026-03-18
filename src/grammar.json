@@ -1706,17 +1706,21 @@
       ]
     },
     "function_call": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parameter"
-        }
-      ]
+      "type": "PREC",
+      "value": 14,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "parameter"
+          }
+        ]
+      }
     },
     "parameter": {
       "type": "SEQ",
@@ -1735,57 +1739,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "typed_identifier"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "self_method"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "array"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_function"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "array_identifier"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "identifier"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "grouped_expression"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "as_identifier"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "integer"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "string_literal"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "character"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "struct_expression"
-                        }
-                      ]
+                      "type": "SYMBOL",
+                      "name": "_expression"
                     },
                     {
                       "type": "REPEAT",
@@ -1797,57 +1752,8 @@
                             "value": ","
                           },
                           {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "SYMBOL",
-                                "name": "typed_identifier"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "self_method"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "array"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "_function"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "array_identifier"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "identifier"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "grouped_expression"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "as_identifier"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "integer"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "string_literal"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "character"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "struct_expression"
-                              }
-                            ]
+                            "type": "SYMBOL",
+                            "name": "_expression"
                           }
                         ]
                       }
@@ -1858,6 +1764,18 @@
                   "type": "BLANK"
                 }
               ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ","
             },
             {
               "type": "BLANK"

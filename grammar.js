@@ -378,29 +378,17 @@ module.exports = grammar({
         $.body
       ),
 
-    function_call: ($) => seq($.identifier, $.parameter),
+    function_call: ($) =>
+      prec(
+        PREC.call,
+        seq($.identifier, $.parameter)
+      ),
 
     parameter: ($) =>
       seq(
         "(",
-        optional(
-          commaSep(
-            choice(
-              $.typed_identifier,
-              $.self_method,
-              $.array,
-              $._function,
-              $.array_identifier,
-              $.identifier,
-              $.grouped_expression,
-              $.as_identifier,
-              $.integer,
-              $.string_literal,
-              $.character,
-              $.struct_expression
-            )
-          )
-        ),
+        optional(commaSep($._expression)),
+        optional(","),
         ")"
       ),
 

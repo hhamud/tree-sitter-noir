@@ -77,9 +77,15 @@ Pull requests are expected to pass:
 - `bun run test`
 - `bun run test:upstream-corpus`
 
-The scheduled `upstream-canary` workflow is informational. It checks the full
-current upstream Noir corpus, uploads a JSON report artifact, and writes a job
-summary so parser drift stays visible without breaking required CI.
+The scheduled `upstream-canary` workflow checks the full current upstream Noir
+corpus, uploads a JSON report artifact, writes a job summary, and now fails if
+the parser regresses against upstream.
+
+When `upstream-canary` fails with a report artifact present, the
+`upstream-canary-autofix` workflow downloads that report, checks out the exact
+upstream Noir commit, runs Codex to attempt a minimal fix, and opens a pull
+request if verification passes. This automation requires an `OPENAI_API_KEY`
+repository secret and GitHub Actions permission to create pull requests.
 
 The pinned upstream-corpus check downloads the upstream Noir repository at the
 commit recorded in the manifest, builds the current parser locally, and then

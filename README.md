@@ -5,15 +5,14 @@
 [![Latest version](https://img.shields.io/crates/v/tree-sitter-noir.svg)](https://crates.io/crates/tree-sitter-noir)
 ![gpl-3.0](https://shields.io/badge/gpl-3.0-blue)
 
-
 Noir grammar and parser for [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 
-
 ### Emacs
+
 To use with Emacs; use the following [package here](https://github.com/hhamud/noir-ts-mode).
 
-
 ### NeoVim
+
 To use this parser with current `nvim-treesitter`, register the custom parser in
 the `User TSUpdate` hook, make sure Neovim recognizes `.nr` files as `noir`,
 and start tree-sitter highlighting for that filetype:
@@ -57,12 +56,13 @@ directory manually.
 ## Other
 
 To install the grammar from NPM
+
 ```shell
 npm i tree-sitter-noir
 ```
 
-
 To install the grammar from cargo
+
 ```shell
 cargo add tree-sitter-noir
 ```
@@ -101,9 +101,12 @@ This repository now tracks upstream in two ways:
   against that commit. Required CI downloads that pinned upstream revision and
   runs `bun run test:upstream-corpus` against it.
 - A scheduled GitHub Actions canary clones the latest upstream Noir repository
-  and runs the parser against the full current upstream corpus. The canary is
-  informational: it uploads a JSON report and writes a job summary so grammar
-  drift stays visible without breaking required CI.
+  and runs the parser against the full current upstream corpus. The canary
+  uploads a JSON report, writes a job summary, and fails when upstream parse
+  regressions are present.
+- A companion `upstream-canary-autofix` workflow listens for failed canary
+  runs, downloads the canary report artifact, checks out the matching upstream
+  Noir commit, and uses Codex to open a fix PR after verification passes.
 
 No upstream Noir sources are committed to this repository. The pinned manifest
 intentionally targets `examples`, `noir_stdlib`, and the success-oriented

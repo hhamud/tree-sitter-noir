@@ -85,8 +85,8 @@ jobs:
       - name: Read canary report metadata
         id: report
         run: |
-          upstream_commit="$(node -p "JSON.parse(require('node:fs').readFileSync('tmp/canary-artifact/upstream-canary-report.json', 'utf8')).commit")"
-          failure_count="$(node -p "JSON.parse(require('node:fs').readFileSync('tmp/canary-artifact/upstream-canary-report.json', 'utf8')).failureCount")"
+          upstream_commit="$(bun -e "const report = await Bun.file('tmp/canary-artifact/upstream-canary-report.json').json(); console.log(report.commit)")"
+          failure_count="$(bun -e "const report = await Bun.file('tmp/canary-artifact/upstream-canary-report.json').json(); console.log(report.failureCount)")"
           echo "upstream-commit=${upstream_commit}" >> "$GITHUB_OUTPUT"
           echo "failure-count=${failure_count}" >> "$GITHUB_OUTPUT"
 

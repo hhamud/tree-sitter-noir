@@ -98,18 +98,42 @@ jobs:
           git -C tmp/upstream-noir checkout --detach FETCH_HEAD
 
       - name: Write Codex context
+        env:
+          UPSTREAM_COMMIT: ${{ steps.report.outputs.upstream-commit }}
+          FAILURE_COUNT: ${{ steps.report.outputs.failure-count }}
         run: |
           mkdir -p tmp/codex
-          cat <<'EOF' > tmp/codex/upstream-canary-context.md
-          # Upstream Canary Context
+          node <<'EOF'
+          const fs = require("node:fs")
 
-          - Failed workflow run: ${{ env.FAILED_RUN_URL }}
-          - Base branch: `${{ env.FAILED_HEAD_BRANCH }}`
-          - Base commit: `${{ env.FAILED_HEAD_SHA }}`
-          - Upstream Noir commit: `${{ steps.report.outputs.upstream-commit }}`
-          - Reported parse failures: `${{ steps.report.outputs.failure-count }}`
-          - Report JSON: `tmp/canary-artifact/upstream-canary-report.json`
-          - Upstream checkout: `tmp/upstream-noir`
+          const report = JSON.parse(
+            fs.readFileSync("tmp/canary-artifact/upstream-canary-report.json", "utf8")
+          )
+          const lines = [
+            "# Upstream Canary Context",
+            "",
+            `- Base branch: \`${process.env.FAILED_HEAD_BRANCH}\``,
+            `- Base commit: \`${process.env.FAILED_HEAD_SHA}\``,
+            `- Upstream Noir commit: \`${process.env.UPSTREAM_COMMIT}\``,
+            `- Reported parse failures: \`${process.env.FAILURE_COUNT}\``,
+            "- Report JSON: `tmp/canary-artifact/upstream-canary-report.json`",
+            "- Upstream checkout: `tmp/upstream-noir`",
+            "- The downloaded report already captures the failing state from the triggering canary run.",
+            "- All required inputs are already local to this workspace.",
+          ]
+
+          if (report.failures.length > 0) {
+            lines.push("")
+            lines.push("First failures:")
+
+            for (const failure of report.failures.slice(0, 10)) {
+              lines.push(
+                `- \`${failure.file}\` (${failure.start.row}:${failure.start.column} - ${failure.end.row}:${failure.end.column})`
+              )
+            }
+          }
+
+          fs.writeFileSync("tmp/codex/upstream-canary-context.md", `${lines.join("\n")}\n`)
           EOF
 
       - name: Run Codex

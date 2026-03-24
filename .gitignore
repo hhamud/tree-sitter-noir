@@ -1,7 +1,6 @@
 .DS_Store
 .idea
 *.log
-.nvimlog
 tmp/
 
 *.tern-port
@@ -14,5 +13,3 @@ bun-debug.log*
 
 build/
 target/
-parser.so
-test/upstream-corpus/noir/*/

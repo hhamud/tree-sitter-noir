@@ -75,6 +75,3 @@ cargo add tree-sitter-noir
 ## Contributing
 
 Contributions to tree-sitter-noir are welcome. If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request on the [GitHub repository](https://github.com/hhamud/tree-sitter-noir).
-
-Contributor setup, testing expectations, and the upstream Noir sync workflow are documented in [CONTRIBUTING.md](./CONTRIBUTING.md).
-
